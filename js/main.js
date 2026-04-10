@@ -188,7 +188,7 @@ function criarCardProduto(p) {
       <h3 class="produto-nome">${p.nome}</h3>
       <div class="estrelas">
         ${gerarEstrelas(p.avaliacao)}
-        <span>(${p.avaliacoes})</span>
+        <span>${p.avaliacoes} avaliações</span>
       </div>
       <div class="precos">
         <span class="preco-de">${formatarPreco(p.precoDe)}</span>
