@@ -14,7 +14,7 @@ const PRODUTOS = [
     avaliacao: 4.8,
     avaliacoes: 124,
     tag: "destaque",
-    tamanhos: ["P","M","G","GG"],
+    tamanhos: ["PP","P","M","G","GG"],
     descricao: "Camisa casual 100% algodão, perfeita para o dia a dia."
   },
   {
@@ -40,7 +40,7 @@ const PRODUTOS = [
     avaliacao: 4.7,
     avaliacoes: 56,
     tag: "oferta",
-    tamanhos: ["P","M","G"],
+    tamanhos: ["PP","P","M","G","GG"],
     descricao: "Polo clássica com listras, tecido respirável e confortável."
   },
   {
@@ -53,7 +53,7 @@ const PRODUTOS = [
     avaliacao: 4.5,
     avaliacoes: 203,
     tag: "destaque",
-    tamanhos: ["P","M","G","GG"],
+    tamanhos: ["PP","P","M","G","GG"],
     descricao: "Estampada tropical vibrante, perfeita para o verão."
   },
   {
@@ -66,7 +66,7 @@ const PRODUTOS = [
     avaliacao: 4.7,
     avaliacoes: 78,
     tag: "novo",
-    tamanhos: ["P","M","G"],
+    tamanhos: ["PP","P","M","G","GG"],
     descricao: "Listras modernas em tecido macio e durável."
   },
   {
@@ -92,7 +92,7 @@ const PRODUTOS = [
     avaliacao: 4.8,
     avaliacoes: 91,
     tag: "novo",
-    tamanhos: ["P","M","G","GG"],
+    tamanhos: ["PP","P","M","G","GG"],
     descricao: "Polo premium com acabamento de alta qualidade."
   },
   {
@@ -105,7 +105,7 @@ const PRODUTOS = [
     avaliacao: 4.4,
     avaliacoes: 66,
     tag: "oferta",
-    tamanhos: ["P","M","G"],
+    tamanhos: ["PP","P","M","G","GG"],
     descricao: "Estampas coloridas e únicas, para quem ama se destacar."
   },
   {
@@ -131,7 +131,7 @@ const PRODUTOS = [
     avaliacao: 4.7,
     avaliacoes: 54,
     tag: "novo",
-    tamanhos: ["P","M","G"],
+    tamanhos: ["PP","P","M","G","GG"],
     descricao: "Xadrez clássico em corte social com toque moderno."
   },
   {
