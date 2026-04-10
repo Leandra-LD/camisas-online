@@ -904,6 +904,9 @@ button          { cursor: pointer; border: none; background: none; }
     flex-wrap: wrap;
     gap: 8px;
   }
+  .btn-remover-item {
+    white-space: nowrap;
+  }
   .carrinho-wrap {
     padding: 0;
   }

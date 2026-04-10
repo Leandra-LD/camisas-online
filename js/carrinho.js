@@ -62,7 +62,7 @@ let percentualDesconto = 0;
 
 function calcularTotais(cart) {
   const subtotal = cart.reduce((s, i) => s + i.preco * i.qtd, 0);
-  const frete    = subtotal >= 199 ? 0 : 19.90;
+  const frete    = cart.length === 0 || subtotal >= 199 ? 0 : 19.90;
   const desconto = subtotal * (percentualDesconto / 100);
   const total    = subtotal + frete - desconto;
   return { subtotal, frete, desconto, total };
