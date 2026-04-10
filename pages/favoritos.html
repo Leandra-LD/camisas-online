@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camisas Online | Favoritos</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- BARRA ACADÊMICA -->
+<div class="barra-academica">
+  <div class="container">
+    <div class="logo-estacio">
+      <img src="../images/estacio-logo.png" alt="Logo Estacio de Sa" class="logo-estacio-img" />
+    </div>
+    <div class="info-academica">
+      <p><i class="fas fa-book-open"></i> <strong>Disciplina:</strong> Desenvolvimento Web</p>
+      <p><i class="fas fa-chalkboard-teacher"></i> <strong>Professor:</strong> Paulo Cruz</p>
+      <p><i class="fas fa-user-graduate"></i> <strong>Aluna:</strong> Leandra Carreiro Silva Justino</p>
+      <p><i class="fas fa-id-card"></i> <strong>RA:</strong> 202508166267</p>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header-principal">
+  <div class="container header-flex">
+    <div class="logo-site">
+      <a href="../index.html">
+        <div class="logo-icone"><i class="fas fa-tshirt"></i></div>
+        <div class="logo-texto">
+          <span class="l1">CAMISAS ONLINE</span>
+          <span class="l2">Moda &amp; Estilo</span>
+        </div>
+      </a>
+    </div>
+    <div class="busca-wrap">
+      <input type="text" placeholder="Buscar camisas..." />
+      <button><i class="fas fa-search"></i></button>
+    </div>
+    <div class="header-acoes">
+      <a href="favoritos.html" class="icone-favoritos">
+        <i class="fas fa-heart"></i>
+        <span class="badge-favoritos">0</span>
+      </a>
+      <a href="carrinho.html" class="icone-carrinho">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge-carrinho">0</span>
+      </a>
+      <a href="contato.html" class="btn-cta">Fale Conosco</a>
+    </div>
+  </div>
+</header>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <ul class="nav-lista">
+      <li><a href="../index.html"><i class="fas fa-home"></i> Início</a></li>
+      <li><a href="produtos.html"><i class="fas fa-tshirt"></i> Produtos</a></li>
+      <li><a href="galeria.html"><i class="fas fa-images"></i> Galeria</a></li>
+      <li><a href="favoritos.html" class="ativo"><i class="fas fa-heart"></i> Favoritos</a></li>
+      <li><a href="carrinho.html"><i class="fas fa-shopping-cart"></i> Carrinho</a></li>
+      <li><a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre</a></li>
+      <li><a href="contato.html"><i class="fas fa-envelope"></i> Contato</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- BANNER TÍTULO -->
+<div class="banner-titulo">
+  <div class="container">
+    <h1><i class="fas fa-heart"></i> Meus Favoritos</h1>
+    <p>Produtos que você guardou com carinho</p>
+    <div class="breadcrumb"><a href="../index.html">Início</a> &rsaquo; Favoritos</div>
+  </div>
+</div>
+
+<!-- FAVORITOS -->
+<section class="section">
+  <div class="container">
+
+    <div id="favoritos-vazio" class="favoritos-vazio" style="display:none">
+      <i class="fas fa-heart-broken"></i>
+      <h3>Nenhum favorito ainda</h3>
+      <p>Explore nossa loja e salve os produtos que você mais gostou!</p>
+      <a href="produtos.html" class="btn-mais">Ver Produtos</a>
+    </div>
+
+    <div id="lista-favoritos" class="grid-produtos"></div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4><i class="fas fa-tshirt"></i> Camisas Online</h4>
+      <p>Sua loja virtual de camisas com qualidade e estilo.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Páginas</h4>
+      <ul>
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="favoritos.html">Favoritos</a></li>
+        <li><a href="carrinho.html">Carrinho</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <p><i class="fas fa-phone"></i> (99) 55555-5555</p>
+      <p><i class="fas fa-envelope"></i> contato@camisasonline.com.br</p>
+    </div>
+  </div>
+  <div class="footer-criadora">
+    <strong>Leandra Carreiro Silva Justino</strong> — Criadora do Site
+    <span class="ra">RA: 202508166267 | Disciplina: Desenvolvimento Web | Professor: Paulo Cruz | Estácio de Sá</span>
+  </div>
+  <div class="footer-copy">&copy; 2026 Camisas Online — Trabalho Acadêmico | Estácio de Sá</div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/carrinho.js"></script>
+<script>
+  renderizarFavoritos();
+  atualizarBadge();
+  atualizarBadgeFavoritos();
+</script>
+</body>
+</html>

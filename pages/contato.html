@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camisas Online | Contato</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- BARRA ACADÊMICA -->
+<div class="barra-academica">
+  <div class="container">
+        <div class="logo-estacio">
+      <img src="../images/estacio-logo.png" alt="Logo Estacio de Sa" class="logo-estacio-img" />
+    </div>
+    <div class="info-academica">
+      <p><i class="fas fa-book-open"></i> <strong>Disciplina:</strong> Desenvolvimento Web</p>
+      <p><i class="fas fa-chalkboard-teacher"></i> <strong>Professor:</strong> Paulo Cruz</p>
+      <p><i class="fas fa-user-graduate"></i> <strong>Aluna:</strong> Leandra Carreiro Silva Justino</p>
+      <p><i class="fas fa-id-card"></i> <strong>RA:</strong> 202508166267</p>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header-principal">
+  <div class="container header-flex">
+    <div class="logo-site">
+      <a href="../index.html">
+        <div class="logo-icone"><i class="fas fa-tshirt"></i></div>
+        <div class="logo-texto">
+          <span class="l1">CAMISAS ONLINE</span>
+          <span class="l2">Moda &amp; Estilo</span>
+        </div>
+      </a>
+    </div>
+    <div class="busca-wrap">
+      <input type="text" placeholder="Buscar camisas..." />
+      <button><i class="fas fa-search"></i></button>
+    </div>
+    <div class="header-acoes">
+      <a href="favoritos.html" class="icone-favoritos">
+        <i class="fas fa-heart"></i>
+        <span class="badge-favoritos">0</span>
+      </a>
+      <a href="carrinho.html" class="icone-carrinho">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge-carrinho">0</span>
+      </a>
+      <a href="contato.html" class="btn-cta">Fale Conosco</a>
+    </div>
+  </div>
+</header>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <ul class="nav-lista">
+      <li><a href="../index.html"><i class="fas fa-home"></i> Início</a></li>
+      <li><a href="produtos.html"><i class="fas fa-tshirt"></i> Produtos</a></li>
+      <li><a href="galeria.html"><i class="fas fa-images"></i> Galeria</a></li>
+      <li><a href="favoritos.html"><i class="fas fa-heart"></i> Favoritos</a></li>
+      <li><a href="carrinho.html"><i class="fas fa-shopping-cart"></i> Carrinho</a></li>
+      <li><a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre</a></li>
+      <li><a href="contato.html" class="ativo"><i class="fas fa-envelope"></i> Contato</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- BANNER -->
+<div class="banner-titulo">
+  <div class="container">
+    <h1><i class="fas fa-envelope"></i> Entre em Contato</h1>
+    <p>Estamos prontos para te ajudar!</p>
+    <div class="breadcrumb"><a href="../index.html">Início</a> &rsaquo; Contato</div>
+  </div>
+</div>
+
+<!-- CONTEÚDO -->
+<section class="section">
+  <div class="container contato-wrap">
+
+    <!-- FORMULÁRIO -->
+    <div class="box-form">
+      <h2><i class="fas fa-paper-plane"></i> Envie uma Mensagem</h2>
+
+      <form id="form-contato" action="../php/contato.php" method="POST"
+            onsubmit="return validarForm(event)">
+
+        <div class="campo-form">
+          <label for="nome"><i class="fas fa-user"></i> Nome Completo *</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
+          <span class="msg-erro" id="erro-nome"></span>
+        </div>
+
+        <div class="campo-form">
+          <label for="email"><i class="fas fa-envelope"></i> E-mail *</label>
+          <input type="email" id="email" name="email" placeholder="seu@email.com" required />
+          <span class="msg-erro" id="erro-email"></span>
+        </div>
+
+        <div class="campo-form">
+          <label for="telefone"><i class="fas fa-phone"></i> Telefone</label>
+          <input type="tel" id="telefone" name="telefone"
+                 placeholder="(21) 99999-9999"
+                 oninput="mascaraTel(this)" maxlength="15" />
+        </div>
+
+        <div class="campo-form">
+          <label for="assunto"><i class="fas fa-tag"></i> Assunto *</label>
+          <select id="assunto" name="assunto" required>
+            <option value="">Selecione o assunto...</option>
+            <option value="pedido">Dúvida sobre pedido</option>
+            <option value="troca">Troca ou devolução</option>
+            <option value="produto">Informação sobre produto</option>
+            <option value="pagamento">Problema com pagamento</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+
+        <div class="campo-form">
+          <label for="mensagem"><i class="fas fa-comment-dots"></i> Mensagem *</label>
+          <textarea id="mensagem" name="mensagem" rows="5"
+                    placeholder="Descreva sua dúvida ou comentário..." required></textarea>
+          <span class="msg-erro" id="erro-msg"></span>
+        </div>
+
+        <button type="submit" class="btn-enviar">
+          <i class="fas fa-paper-plane"></i> Enviar Mensagem
+        </button>
+      </form>
+
+      <!-- SUCESSO -->
+      <div class="msg-sucesso-form" id="sucesso-form">
+        <i class="fas fa-check-circle"></i>
+        <h3>Mensagem Enviada!</h3>
+        <p>Obrigado pelo contato. Retornaremos em até 24 horas úteis.</p>
+      </div>
+    </div>
+
+    <!-- INFORMAÇÕES -->
+    <div class="box-info-contato">
+      <h2><i class="fas fa-map-marker-alt"></i> Informações</h2>
+
+      <div class="card-info-contato">
+        <div class="icone-info"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <h4>Endereço</h4>
+          <p>Rua das Flores, 123<br>Centro — Rio de Janeiro, RJ<br>CEP: 20000-000</p>
+        </div>
+      </div>
+
+      <div class="card-info-contato">
+        <div class="icone-info"><i class="fas fa-phone"></i></div>
+        <div>
+          <h4>Telefone / WhatsApp</h4>
+          <p>(99) 55555-5555</p>
+        </div>
+      </div>
+
+      <div class="card-info-contato">
+        <div class="icone-info"><i class="fas fa-envelope"></i></div>
+        <div>
+          <h4>E-mail</h4>
+          <p>contato@camisasonline.com.br</p>
+        </div>
+      </div>
+
+      <div class="card-info-contato">
+        <div class="icone-info"><i class="fas fa-clock"></i></div>
+        <div>
+          <h4>Horário de Atendimento</h4>
+          <p>Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 13h</p>
+        </div>
+      </div>
+
+      <div class="redes-sociais-contato">
+        <h4>Siga-nos</h4>
+        <div class="redes-sociais dark">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4><i class="fas fa-tshirt"></i> Camisas Online</h4>
+      <p>Sua loja virtual de camisas com qualidade e estilo.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Páginas</h4>
+      <ul>
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <p><i class="fas fa-phone"></i> (21) 98765-4321</p>
+      <p><i class="fas fa-envelope"></i> contato@camisasonline.com.br</p>
+    </div>
+  </div>
+  <div class="footer-criadora">
+    <strong>Leandra Carreiro Silva Justino</strong> — Criadora do Site
+    <span class="ra">RA: 202508166267 | Disciplina: Desenvolvimento Web | Professor: Paulo Cruz | Estácio de Sá</span>
+  </div>
+  <div class="footer-copy">&copy; 2026 Camisas Online — Trabalho Acadêmico | Estácio de Sá</div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/carrinho.js"></script>
+<script>
+  atualizarBadge();
+
+  function mascaraTel(input) {
+    let v = input.value.replace(/\D/g,'');
+    if (v.length <= 10) v = v.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3');
+    else                v = v.replace(/(\d{2})(\d{5})(\d{0,4})/,'($1) $2-$3');
+    input.value = v;
+  }
+
+  function validarForm(e) {
+    e.preventDefault();
+    let ok = true;
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const msg = document.getElementById('mensagem').value.trim();
+
+    document.getElementById('erro-nome').textContent  = '';
+    document.getElementById('erro-email').textContent = '';
+    document.getElementById('erro-msg').textContent   = '';
+
+    if (nome.length < 3)       { document.getElementById('erro-nome').textContent  = 'Nome muito curto.'; ok = false; }
+    if (!email.includes('@'))  { document.getElementById('erro-email').textContent = 'E-mail inválido.'; ok = false; }
+    if (msg.length < 10)       { document.getElementById('erro-msg').textContent   = 'Mensagem muito curta.'; ok = false; }
+
+    if (ok) {
+      document.getElementById('form-contato').style.display = 'none';
+      document.getElementById('sucesso-form').style.display = 'block';
+    }
+    return false;
+  }
+</script>
+</body>
+</html>

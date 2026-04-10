@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camisas Online | Produtos</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- BARRA ACADÊMICA -->
+<div class="barra-academica">
+  <div class="container">
+        <div class="logo-estacio">
+      <img src="../images/estacio-logo.png" alt="Logo Estacio de Sa" class="logo-estacio-img" />
+    </div>
+    <div class="info-academica">
+      <p><i class="fas fa-book-open"></i> <strong>Disciplina:</strong> Desenvolvimento Web</p>
+      <p><i class="fas fa-chalkboard-teacher"></i> <strong>Professor:</strong> Paulo Cruz</p>
+      <p><i class="fas fa-user-graduate"></i> <strong>Aluna:</strong> Leandra Carreiro Silva Justino</p>
+      <p><i class="fas fa-id-card"></i> <strong>RA:</strong> 202508166267</p>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header-principal">
+  <div class="container header-flex">
+    <div class="logo-site">
+      <a href="../index.html">
+        <div class="logo-icone"><i class="fas fa-tshirt"></i></div>
+        <div class="logo-texto">
+          <span class="l1">CAMISAS ONLINE</span>
+          <span class="l2">Moda &amp; Estilo</span>
+        </div>
+      </a>
+    </div>
+    <div class="busca-wrap">
+      <input type="text" id="busca-input" placeholder="Buscar camisas..." oninput="filtroAtivo.busca=this.value;renderizarTodos()" />
+      <button><i class="fas fa-search"></i></button>
+    </div>
+    <div class="header-acoes">
+      <a href="favoritos.html" class="icone-favoritos">
+        <i class="fas fa-heart"></i>
+        <span class="badge-favoritos">0</span>
+      </a>
+      <a href="carrinho.html" class="icone-carrinho">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge-carrinho">0</span>
+      </a>
+      <a href="contato.html" class="btn-cta">Fale Conosco</a>
+    </div>
+  </div>
+</header>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <ul class="nav-lista">
+      <li><a href="../index.html"><i class="fas fa-home"></i> Início</a></li>
+      <li><a href="produtos.html" class="ativo"><i class="fas fa-tshirt"></i> Produtos</a></li>
+      <li><a href="galeria.html"><i class="fas fa-images"></i> Galeria</a></li>
+      <li><a href="favoritos.html"><i class="fas fa-heart"></i> Favoritos</a></li>
+      <li><a href="carrinho.html"><i class="fas fa-shopping-cart"></i> Carrinho</a></li>
+      <li><a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre</a></li>
+      <li><a href="contato.html"><i class="fas fa-envelope"></i> Contato</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- TÍTULO DA PÁGINA -->
+<div class="banner-titulo">
+  <div class="container">
+    <h1><i class="fas fa-tshirt"></i> Nossos Produtos</h1>
+    <p>Escolha entre as melhores camisas da temporada</p>
+    <div class="breadcrumb">
+      <a href="../index.html">Início</a> &rsaquo; Produtos
+    </div>
+  </div>
+</div>
+
+<!-- LOJA -->
+<section class="section">
+  <div class="container loja-wrap">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar-filtros">
+      <h3><i class="fas fa-sliders-h"></i> Filtros</h3>
+
+      <div class="grupo-filtro">
+        <h4>Categoria</h4>
+        <label><input type="checkbox" value="casual"    onchange="aplicarFiltros()"> Casual</label>
+        <label><input type="checkbox" value="social"    onchange="aplicarFiltros()"> Social</label>
+        <label><input type="checkbox" value="polo"      onchange="aplicarFiltros()"> Polo</label>
+        <label><input type="checkbox" value="estampada" onchange="aplicarFiltros()"> Estampada</label>
+        <label><input type="checkbox" value="esporte"   onchange="aplicarFiltros()"> Esporte</label>
+      </div>
+
+      <div class="grupo-filtro">
+        <h4>Tamanho</h4>
+        <div class="tamanhos-wrap">
+          <button class="btn-tamanho" onclick="selecionarTamanho(this,'PP')">PP</button>
+          <button class="btn-tamanho" onclick="selecionarTamanho(this,'P')">P</button>
+          <button class="btn-tamanho" onclick="selecionarTamanho(this,'M')">M</button>
+          <button class="btn-tamanho" onclick="selecionarTamanho(this,'G')">G</button>
+          <button class="btn-tamanho" onclick="selecionarTamanho(this,'GG')">GG</button>
+        </div>
+      </div>
+
+      <div class="grupo-filtro">
+        <h4>Preço máximo: <span id="preco-display">R$ 300,00</span></h4>
+        <input type="range" id="range-preco" min="30" max="300" value="300"
+               oninput="atualizarPreco(this.value)" />
+      </div>
+
+      <div class="grupo-filtro">
+        <h4>Ordenar por</h4>
+        <select id="select-ordem" onchange="aplicarFiltros()">
+          <option value="padrao">Padrão</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+          <option value="nome">Nome A–Z</option>
+        </select>
+      </div>
+
+      <div class="grupo-filtro">
+        <button class="btn-limpar-filtros" onclick="limparFiltros()">
+          <i class="fas fa-times"></i> Limpar Filtros
+        </button>
+      </div>
+    </aside>
+
+    <!-- LISTA -->
+    <main>
+      <div class="barra-resultados">
+        <span id="total-resultados"></span>
+        <div class="toggle-view">
+          <button id="btn-grid" class="ativo" onclick="toggleView('grid')" title="Grade"><i class="fas fa-th"></i></button>
+          <button id="btn-lista" onclick="toggleView('lista')" title="Lista"><i class="fas fa-list"></i></button>
+        </div>
+      </div>
+      <div class="grid-produtos" id="lista-produtos"></div>
+    </main>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4><i class="fas fa-tshirt"></i> Camisas Online</h4>
+      <p>Sua loja virtual de camisas com qualidade e estilo.</p>
+      <br/>
+      <div class="redes-sociais">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Páginas</h4>
+      <ul>
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <p><i class="fas fa-phone"></i> (99) 55555-5555</p>
+      <p><i class="fas fa-envelope"></i> contato@camisasonline.com.br</p>
+    </div>
+  </div>
+  <div class="footer-criadora">
+    <strong>Leandra Carreiro Silva Justino</strong> — Criadora do Site
+    <span class="ra">RA: 202508166267 | Disciplina: Desenvolvimento Web | Professor: Paulo Cruz | Estácio de Sá</span>
+  </div>
+  <div class="footer-copy">&copy; 2026 Camisas Online — Trabalho Acadêmico | Estácio de Sá</div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/carrinho.js"></script>
+<script>
+  // Checar parâmetros da URL
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('cat')) {
+    filtroAtivo.cats = [params.get('cat')];
+    document.querySelectorAll('.grupo-filtro input[type="checkbox"]').forEach(c => {
+      if (c.value === params.get('cat')) c.checked = true;
+    });
+  }
+  if (params.get('busca')) {
+    filtroAtivo.busca = params.get('busca');
+    const bi = document.getElementById('busca-input');
+    if (bi) bi.value = params.get('busca');
+  }
+  renderizarTodos();
+  atualizarBadge();
+</script>
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relatório Técnico — Camisas Online</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --azul:    #1b3f6e;
+      --verm:    #c0392b;
+      --am:      #f1c40f;
+      --cinza:   #f4f6f9;
+      --texto:   #2d3436;
+      --muted:   #636e72;
+      --borda:   #dde3ec;
+      --branco:  #fff;
+    }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: var(--texto); background: var(--cinza); line-height: 1.7; }
+    a { color: var(--azul); }
+
+    /* CAPA */
+    .capa {
+      background: linear-gradient(135deg, var(--azul) 0%, #2980b9 100%);
+      color: var(--branco); text-align: center; padding: 60px 30px;
+    }
+    .capa .logo-box {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--branco); padding: 12px 24px; border-radius: 12px; margin-bottom: 28px;
+    }
+    .capa h1 { font-size: 2.6rem; margin-bottom: 8px; }
+    .capa h2 { font-size: 1.4rem; font-weight: 400; opacity: .88; margin-bottom: 32px; }
+    .capa-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; margin-top: 20px; }
+    .capa-info {
+      background: rgba(255,255,255,.15); padding: 14px 22px; border-radius: 10px;
+      font-size: .92rem; text-align: left; min-width: 200px;
+    }
+    .capa-info strong { display: block; color: var(--am); font-size: .75rem; text-transform: uppercase; margin-bottom: 4px; }
+
+    /* CONTAINER */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* SEÇÕES */
+    .secao { background: var(--branco); border-radius: 12px; padding: 36px; margin: 30px auto; max-width: 960px; box-shadow: 0 3px 14px rgba(0,0,0,.07); }
+    .secao-titulo {
+      font-size: 1.5rem; color: var(--azul); font-weight: 800;
+      margin-bottom: 20px; padding-bottom: 10px;
+      border-bottom: 3px solid var(--verm); display: flex; align-items: center; gap: 10px;
+    }
+    .secao-titulo i { color: var(--verm); }
+    p { margin-bottom: 14px; color: var(--texto); }
+    h3 { font-size: 1.1rem; color: var(--azul); margin: 20px 0 8px; font-weight: 700; }
+    ul, ol { padding-left: 22px; margin-bottom: 14px; }
+    ul li, ol li { margin-bottom: 6px; font-size: .95rem; }
+
+    /* TABELAS */
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: .92rem; }
+    thead th { background: var(--azul); color: var(--branco); padding: 11px 14px; text-align: left; font-weight: 700; }
+    tbody td { padding: 10px 14px; border-bottom: 1px solid var(--borda); }
+    tbody tr:nth-child(even) { background: var(--cinza); }
+    tbody tr:hover { background: #eaf0fb; }
+
+    /* ESTRUTURA DE PASTAS */
+    .arvore { background: #0f2645; color: #a8d5ff; font-family: monospace; font-size: .88rem;
+              padding: 22px; border-radius: 10px; line-height: 1.8; overflow-x: auto; }
+    .arvore .raiz  { color: var(--am); font-weight: 700; }
+    .arvore .pasta { color: #74b9ff; }
+    .arvore .arq   { color: #dfe6e9; }
+    .arvore .php   { color: #fd79a8; }
+    .arvore .js    { color: #fdcb6e; }
+    .arvore .css   { color: #81ecec; }
+
+    /* TECNOLOGIAS */
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 16px; margin-top: 10px; }
+    .tech-card {
+      border: 2px solid var(--borda); border-radius: 10px; padding: 20px; text-align: center;
+      transition: border-color .2s;
+    }
+    .tech-card:hover { border-color: var(--azul); }
+    .tech-card i    { font-size: 2.2rem; margin-bottom: 10px; }
+    .tech-card h4   { font-size: .95rem; font-weight: 800; color: var(--azul); margin-bottom: 6px; }
+    .tech-card p    { font-size: .82rem; color: var(--muted); margin: 0; }
+    .html-ic { color: #e44d26; }
+    .css-ic  { color: #1572b6; }
+    .js-ic   { color: #f7df1e; background:#333; border-radius:4px; padding:2px; }
+    .php-ic  { color: #777bb4; }
+
+    /* PÁGINAS */
+    .pag-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 14px; }
+    .pag-card {
+      border: 1.5px solid var(--borda); border-radius: 10px; padding: 18px;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .pag-card i { font-size: 1.6rem; color: var(--azul); flex-shrink: 0; margin-top: 2px; }
+    .pag-card h4 { font-size: .92rem; font-weight: 800; color: var(--azul); margin-bottom: 4px; }
+    .pag-card p  { font-size: .82rem; color: var(--muted); margin: 0; }
+
+    /* BADGE */
+    .badge {
+      display: inline-block; padding: 3px 10px; border-radius: 20px;
+      font-size: .75rem; font-weight: 700; text-transform: uppercase;
+    }
+    .badge-html { background: #fde8e4; color: #e44d26; }
+    .badge-css  { background: #e3f0fb; color: #1572b6; }
+    .badge-js   { background: #fffde4; color: #f59f00; }
+    .badge-php  { background: #eee8fb; color: #777bb4; }
+
+    /* CONCLUSÃO */
+    .box-conclusao {
+      background: linear-gradient(135deg, var(--azul), #2980b9);
+      color: var(--branco); border-radius: 12px; padding: 30px; margin-top: 20px; text-align: center;
+    }
+    .box-conclusao h3 { color: var(--am); margin-bottom: 12px; font-size: 1.3rem; }
+    .box-conclusao p  { opacity: .9; margin-bottom: 8px; }
+
+    /* RODAPÉ */
+    .rodape-rel {
+      background: var(--azul); color: rgba(255,255,255,.7);
+      text-align: center; padding: 24px; font-size: .85rem;
+    }
+    .rodape-rel strong { color: var(--am); }
+
+    @media print {
+      body { background: white; }
+      .secao { box-shadow: none; border: 1px solid var(--borda); }
+    }
+    @media (max-width: 600px) {
+      .capa h1 { font-size: 1.8rem; }
+      .secao   { padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="capa">
+  <div class="logo-box">
+    <img src="../images/estacio-logo.png" alt="Logo Estácio de Sá" style="height:52px;width:auto;display:block;" />
+  </div>
+
+  <h1><i class="fas fa-tshirt"></i> Camisas Online</h1>
+  <h2>Relatório Técnico do Projeto</h2>
+
+  <div class="capa-grid">
+    <div class="capa-info">
+      <strong>Aluna</strong>
+      Leandra Carreiro Silva Justino
+    </div>
+    <div class="capa-info">
+      <strong>RA</strong>
+      202508166267
+    </div>
+    <div class="capa-info">
+      <strong>Disciplina</strong>
+      Desenvolvimento Web
+    </div>
+    <div class="capa-info">
+      <strong>Professor</strong>
+      Paulo Cruz
+    </div>
+  </div>
+</div>
+
+<!-- 1. INTRODUÇÃO -->
+<div class="secao">
+  <h2 class="secao-titulo"><i class="fas fa-book-open"></i> 1. Introdução</h2>
+  <p>
+    Este relatório descreve o desenvolvimento do projeto <strong>Camisas Online</strong>, um
+    site de comércio eletrônico voltado para a venda de camisas masculinas e femininas.
+    O trabalho foi realizado como avaliação prática da disciplina <em>Desenvolvimento Web</em>
+    da Universidade Estácio de Sá, sob orientação do Professor Paulo Cruz.
+  </p>
+  <p>
+    O objetivo principal foi aplicar na prática os conceitos de desenvolvimento front-end e
+    back-end, criando um site funcional, responsivo e organizado, utilizando as linguagens
+    HTML5, CSS3, JavaScript e PHP.
+  </p>
+  <p>
+    O site simula uma loja virtual completa, com catálogo de produtos, galeria de fotos,
+    carrinho de compras com persistência via localStorage, formulário de contato com
+    processamento PHP e relatório acadêmico.
+  </p>
+</div>
+
+<!-- 2. TECNOLOGIAS -->
+<div class="secao">
+  <h2 class="secao-titulo"><i class="fas fa-code"></i> 2. Tecnologias Utilizadas</h2>
+  <div class="tech-grid">
+    <div class="tech-card">
+      <i class="fab fa-html5 html-ic"></i>
+      <h4>HTML5</h4>
+      <p>Estrutura semântica das páginas com tags modernas como &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;footer&gt;.</p>
+    </div>
+    <div class="tech-card">
+      <i class="fab fa-css3-alt css-ic"></i>
+      <h4>CSS3</h4>
+      <p>Estilização completa com Flexbox, Grid Layout, variáveis CSS, animações e design responsivo (media queries).</p>
+    </div>
+    <div class="tech-card">
+      <i class="fab fa-js-square js-ic"></i>
+      <h4>JavaScript</h4>
+      <p>Interatividade: carrinho com localStorage, filtros de produtos, galeria lightbox e validação de formulários.</p>
+    </div>
+    <div class="tech-card">
+      <i class="fab fa-php php-ic"></i>
+      <h4>PHP</h4>
+      <p>Back-end para processamento do formulário de contato e simulação de pedidos com validação e log em arquivo.</p>
+    </div>
+  </div>
+
+  <h3>Recursos Externos</h3>
+  <table>
+    <thead>
+      <tr><th>Recurso</th><th>Finalidade</th><th>Fonte</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Font Awesome 6.4</td><td>Biblioteca de ícones vetoriais</td><td>cdnjs.cloudflare.com</td></tr>
+      <tr><td>Unsplash</td><td>Imagens de camisas gratuitas e de alta qualidade</td><td>images.unsplash.com</td></tr>
+      <tr><td>Google Fonts</td><td>Tipografia moderna (Segoe UI fallback)</td><td>fonts.google.com</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 3. ESTRUTURA DE PASTAS -->
+<div class="secao">
+  <h2 class="secao-titulo"><i class="fas fa-folder-open"></i> 3. Estrutura de Pastas</h2>
+  <p>O projeto segue uma organização modular, separando cada tipo de arquivo em sua respectiva pasta:</p>
+  <div class="arvore">
+<span class="raiz">Camisas online/</span>
+├── <span class="arq">index.html</span>              <span style="color:#55efc4">← Página principal (ponto de entrada)</span>
+│
+├── <span class="pasta">pages/</span>                  <span style="color:#55efc4">← Páginas HTML internas</span>
+│   ├── <span class="arq">produtos.html</span>
+│   ├── <span class="arq">galeria.html</span>
+│   ├── <span class="arq">carrinho.html</span>
+│   ├── <span class="arq">contato.html</span>
+│   └── <span class="arq">sobre.html</span>
+│
+├── <span class="pasta">css/</span>                    <span style="color:#55efc4">← Estilos</span>
+│   └── <span class="css">style.css</span>
+│
+├── <span class="pasta">js/</span>                     <span style="color:#55efc4">← Scripts JavaScript</span>
+│   ├── <span class="js">main.js</span>
+│   └── <span class="js">carrinho.js</span>
+│
+├── <span class="pasta">php/</span>                    <span style="color:#55efc4">← Back-end PHP</span>
+│   ├── <span class="php">contato.php</span>
+│   └── <span class="php">pedido.php</span>
+│
+├── <span class="pasta">images/</span>                 <span style="color:#55efc4">← Pasta reservada para imagens locais</span>
+│
+└── <span class="pasta">relatorio/</span>              <span style="color:#55efc4">← Documentação</span>
+    └── <span class="arq">relatorio.html</span>
+  </div>
+</div>
+
+<!-- 4. PÁGINAS DESENVOLVIDAS -->
+<div class="secao">
+  <h2 class="secao-titulo"><i class="fas fa-file-code"></i> 4. Páginas Desenvolvidas</h2>
+  <div class="pag-grid">
+    <div class="pag-card">
+      <i class="fas fa-home"></i>
+      <div>
+        <h4>index.html — Início</h4>
+        <p>Página principal com hero banner, seção de vantagens, categorias, produtos em destaque e banner de oferta.</p>
+      </div>
+    </div>
+    <div class="pag-card">
+      <i class="fas fa-tshirt"></i>
+      <div>
+        <h4>produtos.html — Catálogo</h4>
+        <p>Listagem de 12 produtos com filtros por categoria, tamanho, preço e ordenação. Suporta busca via URL.</p>
+      </div>
+    </div>
+    <div class="pag-card">
+      <i class="fas fa-images"></i>
+      <div>
+        <h4>galeria.html — Galeria</h4>
+        <p>12 fotos organizadas em grid com filtro por categoria e lightbox para ampliar as imagens.</p>
+      </div>
+    </div>
+    <div class="pag-card">
+      <i class="fas fa-shopping-cart"></i>
+      <div>
+        <h4>carrinho.html — Carrinho</h4>
+        <p>Gerenciamento de itens com controle de quantidade, remoção, sistema de cupons e finalização de pedido.</p>
+      </div>
+    </div>
+    <div class="pag-card">
+      <i class="fas fa-envelope"></i>
+      <div>
+        <h4>contato.html — Contato</h4>
+        <p>Formulário com validação JavaScript e envio via PHP. Inclui máscara de telefone e feedback visual.</p>
+      </div>
+    </div>
+    <div class="pag-card">
+      <i class="fas fa-info-circle"></i>
+      <div>
+        <h4>sobre.html — Sobre Nós</h4>
+        <p>Apresentação da empresa com números, valores institucionais e equipe com fotos reais.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. FUNCIONALIDADES -->
+<div class="secao">
+  <h2 class="secao-titulo"><i class="fas fa-cogs"></i> 5. Funcionalidades Implementadas</h2>
+
+  <h3><span class="badge badge-html">HTML</span> Estrutura</h3>
+  <ul>
+    <li>Estrutura semântica com &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;footer&gt;</li>
+    <li>Meta tags de responsividade e charset UTF-8</li>
+    <li>Barra acadêmica em todas as páginas (Estácio, disciplina, professor, aluna, RA)</li>
+    <li>Formulários com atributos HTML5 (required, type, placeholder, pattern)</li>
+    <li>Links de navegação interligando todas as páginas</li>
+  </ul>
+
+  <h3><span class="badge badge-css">CSS</span> Estilização</h3>
+  <ul>
+    <li>Sistema de variáveis CSS (custom properties) para paleta de cores consistente</li>
+    <li>Layout responsivo com CSS Grid e Flexbox</li>
+    <li>Media queries para mobile (480px, 720px, 960px)</li>
+    <li>Animações e transições suaves (hover, toast, lightbox)</li>
+    <li>Design moderno com cards, sombras, gradientes e bordas arredondadas</li>
+    <li>Navbar com indicador da página ativa</li>
+  </ul>
+
+  <h3><span class="badge badge-js">JavaScript</span> Interatividade</h3>
+  <ul>
+    <li>Carrinho de compras persistido via <strong>localStorage</strong></li>
+    <li>Filtros de produtos por categoria, tamanho, preço e ordenação</li>
+    <li>Busca de produtos em tempo real e via parâmetro de URL</li>
+    <li>Galeria lightbox com navegação por teclado (setas e ESC)</li>
+    <li>Sistema de cupons de desconto (ESTACIO10, WEB20, PROMO15)</li>
+    <li>Validação de formulário no client-side com mensagens de erro</li>
+    <li>Notificações toast animadas</li>
+    <li>Máscara de telefone em tempo real</li>
+    <li>Contador dinâmico do carrinho no header</li>
+    <li>Toggles de visualização em grade/lista</li>
+  </ul>
+
+  <h3><span class="badge badge-php">PHP</span> Back-end</h3>
+  <ul>
+    <li>Sanitização de entradas com <code>htmlspecialchars()</code> e <code>strip_tags()</code></li>
+    <li>Validação server-side de todos os campos do formulário</li>
+    <li>Envio de e-mail com <code>mail()</code> e cabeçalhos corretos</li>
+    <li>Log de contatos e pedidos em arquivos .log e .json</li>
+    <li>Suporte a requisições AJAX (retorna JSON) e formulários tradicionais</li>
+    <li>Geração de número único de pedido com data + hash MD5</li>
+  </ul>
+</div>
+
+<!-- 6. BANCO DE DADOS / PRODUTOS -->
+<div class="secao">
+  <h2 class="secao-titulo"><i class="fas fa-database"></i> 6. Catálogo de Produtos</h2>
+  <p>Os produtos são gerenciados via array JavaScript no arquivo <code>js/main.js</code>, simulando um banco de dados. Cada produto contém:</p>
+  <table>
+    <thead>
+      <tr><th>Campo</th><th>Tipo</th><th>Descrição</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>id</td><td>Number</td><td>Identificador único do produto</td></tr>
+      <tr><td>nome</td><td>String</td><td>Nome completo do produto</td></tr>
+      <tr><td>categoria</td><td>String</td><td>casual | social | polo | estampada | esporte</td></tr>
+      <tr><td>preco</td><td>Number</td><td>Preço de venda atual (R$)</td></tr>
+      <tr><td>precoDe</td><td>Number</td><td>Preço original (riscado)</td></tr>
+      <tr><td>imagem</td><td>String (URL)</td><td>URL da foto do produto (Unsplash)</td></tr>
+      <tr><td>avaliacao</td><td>Number (0–5)</td><td>Nota média das avaliações</td></tr>
+      <tr><td>avaliacoes</td><td>Number</td><td>Quantidade de avaliações recebidas</td></tr>
+      <tr><td>tag</td><td>String</td><td>oferta | novo | destaque</td></tr>
+      <tr><td>tamanhos</td><td>Array</td><td>Tamanhos disponíveis (PP, P, M, G, GG)</td></tr>
+      <tr><td>descricao</td><td>String</td><td>Descrição curta do produto</td></tr>
+    </tbody>
+  </table>
+  <p>Ao todo são <strong>12 produtos</strong> cadastrados, distribuídos nas 5 categorias disponíveis.</p>
+</div>
+
+<!-- 7. RESPONSIVIDADE -->
+<div class="secao">
+  <h2 class="secao-titulo"><i class="fas fa-mobile-alt"></i> 7. Responsividade</h2>
+  <p>O site foi desenvolvido com abordagem <strong>mobile-friendly</strong>, adaptando-se a diferentes tamanhos de tela:</p>
+  <table>
+    <thead>
+      <tr><th>Breakpoint</th><th>Dispositivo</th><th>Ajustes aplicados</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>&lt; 480px</td><td>Smartphones pequenos</td>
+        <td>Grades reduzidas para 2 colunas (categorias, galeria)</td>
+      </tr>
+      <tr>
+        <td>&lt; 720px</td><td>Smartphones</td>
+        <td>Header em coluna, busca em largura total, navbar com scroll horizontal</td>
+      </tr>
+      <tr>
+        <td>&lt; 960px</td><td>Tablets</td>
+        <td>Layout loja (sidebar + produtos) passa para 1 coluna</td>
+      </tr>
+      <tr>
+        <td>&ge; 960px</td><td>Desktop</td>
+        <td>Layout completo de 2 colunas, sidebar fixa, grid completo</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 8. CONSIDERAÇÕES FINAIS -->
+<div class="secao">
+  <h2 class="secao-titulo"><i class="fas fa-check-circle"></i> 8. Considerações Finais</h2>
+  <p>
+    O projeto <strong>Camisas Online</strong> atingiu todos os objetivos propostos: criação de um
+    site multi-páginas organizado em pastas, uso das quatro linguagens solicitadas (HTML, CSS,
+    JavaScript e PHP), design responsivo e funcionalidades de e-commerce.
+  </p>
+  <p>
+    Durante o desenvolvimento foram aplicados conceitos fundamentais de desenvolvimento web como
+    separação de responsabilidades (HTML para estrutura, CSS para estilo, JS para comportamento,
+    PHP para servidor), boas práticas de semântica HTML5, CSS moderno com variáveis e Grid Layout,
+    além de segurança básica no back-end com sanitização de dados.
+  </p>
+
+  <div class="box-conclusao">
+    <h3><i class="fas fa-star"></i> Objetivos Alcançados</h3>
+    <p>✔ Site completo com 6 páginas interligadas organizadas em pastas</p>
+    <p>✔ Linguagens HTML5, CSS3, JavaScript e PHP implementadas</p>
+    <p>✔ Logo e dados da Estácio de Sá em todas as páginas</p>
+    <p>✔ Identificação da aluna Leandra Carreiro Silva Justino | RA 202508166267</p>
+    <p>✔ Disciplina Desenvolvimento Web | Professor Paulo Cruz</p>
+    <p>✔ Imagens reais de camisas carregadas da Internet (Unsplash)</p>
+    <p>✔ Carrinho de compras funcional com localStorage</p>
+    <p>✔ Design responsivo para mobile, tablet e desktop</p>
+  </div>
+
+  <h3 style="margin-top:24px">Melhorias Futuras</h3>
+  <ul>
+    <li>Integração com banco de dados MySQL para gerenciamento dinâmico dos produtos</li>
+    <li>Sistema de login/cadastro de usuários</li>
+    <li>Integração com gateway de pagamento (Mercado Pago, PagSeguro)</li>
+    <li>Painel administrativo para gerenciar pedidos e estoque</li>
+    <li>Implementação de PWA (Progressive Web App)</li>
+    <li>SEO avançado e Open Graph para redes sociais</li>
+  </ul>
+</div>
+
+<!-- REFERÊNCIAS -->
+<div class="secao">
+  <h2 class="secao-titulo"><i class="fas fa-book"></i> 9. Referências</h2>
+  <ol>
+    <li>MDN Web Docs — <em>HTML5 Reference</em>. Disponível em: developer.mozilla.org</li>
+    <li>MDN Web Docs — <em>CSS Reference</em>. Disponível em: developer.mozilla.org</li>
+    <li>MDN Web Docs — <em>JavaScript Guide</em>. Disponível em: developer.mozilla.org</li>
+    <li>PHP Manual — <em>PHP 8.x Documentation</em>. Disponível em: php.net</li>
+    <li>W3Schools — <em>Web Development Tutorials</em>. Disponível em: w3schools.com</li>
+    <li>Font Awesome — <em>Icon Library v6.4</em>. Disponível em: fontawesome.com</li>
+    <li>Unsplash — <em>Free High-Resolution Photos</em>. Disponível em: unsplash.com</li>
+    <li>DUCKETT, Jon. <em>HTML &amp; CSS: Design and Build Websites</em>. John Wiley &amp; Sons, 2011.</li>
+    <li>FLANAGAN, David. <em>JavaScript: The Definitive Guide</em>. 7ª ed. O'Reilly Media, 2020.</li>
+  </ol>
+</div>
+
+<!-- RODAPÉ -->
+<div class="rodape-rel">
+  <p>
+    <strong>Leandra Carreiro Silva Justino</strong> &nbsp;|&nbsp; RA: 202508166267<br />
+    Disciplina: Desenvolvimento Web &nbsp;|&nbsp; Professor: Paulo Cruz<br />
+    Universidade Estácio de Sá &mdash; 2026
+  </p>
+</div>
+
+</body>
+</html>
