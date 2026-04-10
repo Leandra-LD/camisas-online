@@ -129,17 +129,31 @@ const CUPONS = { 'ESTACIO10': 10, 'WEB20': 20, 'PROMO15': 15, 'LEANDRA5': 5 };
 function tentarCupom() {
   const inp = document.getElementById('cupom-input');
   const msg = document.getElementById('cupom-msg');
+  const btn = document.getElementById('btn-remover-cupom');
   if (!inp || !msg) return;
   const cod = inp.value.trim().toUpperCase();
   if (CUPONS[cod]) {
     const pct = CUPONS[cod];
     msg.textContent = `Cupom "${cod}" aplicado — ${pct}% de desconto!`;
     msg.style.color = '#27ae60';
+    if (btn) btn.style.display = 'inline';
     aplicarDesconto(pct);
   } else {
     msg.textContent = 'Cupom inválido ou expirado.';
     msg.style.color = '#e74c3c';
+    if (btn) btn.style.display = 'none';
   }
+}
+
+function removerCupom() {
+  percentualDesconto = 0;
+  const inp = document.getElementById('cupom-input');
+  const msg = document.getElementById('cupom-msg');
+  const btn = document.getElementById('btn-remover-cupom');
+  if (inp) inp.value = '';
+  if (msg) { msg.textContent = 'Cupom removido.'; msg.style.color = '#636e72'; }
+  if (btn) btn.style.display = 'none';
+  renderizarCarrinho();
 }
 
 /* ── FINALIZAR COMPRA ────────────────────────────────────── */
