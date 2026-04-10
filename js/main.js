@@ -140,7 +140,7 @@ const PRODUTOS = [
     categoria: "casual",
     preco: 79.90,
     precoDe: 109.90,
-    imagem: "camisa-esportiva-simples.jpg",
+    imagem: "camisa-simples.jpg",
     avaliacao: 4.5,
     avaliacoes: 230,
     tag: "oferta",
