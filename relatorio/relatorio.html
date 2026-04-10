@@ -190,14 +190,14 @@
     da Universidade Estácio de Sá, sob orientação do Professor Paulo Cruz.
   </p>
   <p>
-    O objetivo principal foi aplicar na prática os conceitos de desenvolvimento front-end e
-    back-end, criando um site funcional, responsivo e organizado, utilizando as linguagens
-    HTML5, CSS3, JavaScript e PHP.
+    O objetivo principal foi aplicar na prática os conceitos de desenvolvimento front-end,
+    criando um site funcional, responsivo e organizado, utilizando as linguagens
+    HTML5, CSS3 e JavaScript.
   </p>
   <p>
     O site simula uma loja virtual completa, com catálogo de produtos, galeria de fotos,
     carrinho de compras com persistência via localStorage, formulário de contato com
-    processamento PHP e relatório acadêmico.
+    validação client-side e relatório acadêmico.
   </p>
 </div>
 
@@ -219,11 +219,6 @@
       <i class="fab fa-js-square js-ic"></i>
       <h4>JavaScript</h4>
       <p>Interatividade: carrinho com localStorage, filtros de produtos, galeria lightbox e validação de formulários.</p>
-    </div>
-    <div class="tech-card">
-      <i class="fab fa-php php-ic"></i>
-      <h4>PHP</h4>
-      <p>Back-end para processamento do formulário de contato e simulação de pedidos com validação e log em arquivo.</p>
     </div>
   </div>
 
@@ -262,10 +257,6 @@
 │   ├── <span class="js">main.js</span>
 │   └── <span class="js">carrinho.js</span>
 │
-├── <span class="pasta">php/</span>                    <span style="color:#55efc4">← Back-end PHP</span>
-│   ├── <span class="php">contato.php</span>
-│   └── <span class="php">pedido.php</span>
-│
 ├── <span class="pasta">images/</span>                 <span style="color:#55efc4">← Imagens dos produtos e do site</span>
 │   ├── <span class="arq">camisa-casual-branca-premium.jpg</span>
 │   ├── <span class="arq">camisa-casual-branca.jpg</span>
@@ -275,7 +266,7 @@
 │   ├── <span class="arq">camisa-estampada.jpg</span>
 │   ├── <span class="arq">camisa-estampada-com-letras.jpg</span>
 │   ├── <span class="arq">camisa-esportiva-dry-fit.jpg</span>
-│   ├── <span class="arq">camisa-esportiva-simples.jpg</span>
+│   ├── <span class="arq">camisa-simples.jpg</span>
 │   ├── <span class="arq">polo-classica.jpg</span>
 │   ├── <span class="arq">polo-masculina-premium.jpg</span>
 │   └── <span class="arq">hero-banner.jpg, estacio-logo.png ...</span>
@@ -321,7 +312,7 @@
       <i class="fas fa-envelope"></i>
       <div>
         <h4>contato.html — Contato</h4>
-        <p>Formulário com validação JavaScript e envio via PHP. Inclui máscara de telefone e feedback visual.</p>
+        <p>Formulário com validação JavaScript client-side. Inclui máscara de telefone e feedback visual.</p>
       </div>
     </div>
     <div class="pag-card">
@@ -371,15 +362,6 @@
     <li>Toggles de visualização em grade/lista</li>
   </ul>
 
-  <h3><span class="badge badge-php">PHP</span> Back-end</h3>
-  <ul>
-    <li>Sanitização de entradas com <code>htmlspecialchars()</code> e <code>strip_tags()</code></li>
-    <li>Validação server-side de todos os campos do formulário</li>
-    <li>Envio de e-mail com <code>mail()</code> e cabeçalhos corretos</li>
-    <li>Log de contatos e pedidos em arquivos .log e .json</li>
-    <li>Suporte a requisições AJAX (retorna JSON) e formulários tradicionais</li>
-    <li>Geração de número único de pedido com data + hash MD5</li>
-  </ul>
 </div>
 
 <!-- 6. BANCO DE DADOS / PRODUTOS -->
@@ -441,20 +423,20 @@
   <h2 class="secao-titulo"><i class="fas fa-check-circle"></i> 8. Considerações Finais</h2>
   <p>
     O projeto <strong>Camisas Online</strong> atingiu todos os objetivos propostos: criação de um
-    site multi-páginas organizado em pastas, uso das quatro linguagens solicitadas (HTML, CSS,
-    JavaScript e PHP), design responsivo e funcionalidades de e-commerce.
+    site multi-páginas organizado em pastas, uso das linguagens solicitadas (HTML5, CSS3 e
+    JavaScript), design responsivo e funcionalidades de e-commerce.
   </p>
   <p>
     Durante o desenvolvimento foram aplicados conceitos fundamentais de desenvolvimento web como
-    separação de responsabilidades (HTML para estrutura, CSS para estilo, JS para comportamento,
-    PHP para servidor), boas práticas de semântica HTML5, CSS moderno com variáveis e Grid Layout,
-    além de segurança básica no back-end com sanitização de dados.
+    separação de responsabilidades (HTML para estrutura, CSS para estilo, JS para comportamento),
+    boas práticas de semântica HTML5, CSS moderno com variáveis e Grid Layout,
+    além de interatividade avançada com JavaScript e localStorage.
   </p>
 
   <div class="box-conclusao">
     <h3><i class="fas fa-star"></i> Objetivos Alcançados</h3>
     <p>✔ Site completo com 6 páginas interligadas organizadas em pastas</p>
-    <p>✔ Linguagens HTML5, CSS3, JavaScript e PHP implementadas</p>
+    <p>✔ Linguagens HTML5, CSS3 e JavaScript implementadas</p>
     <p>✔ Logo e dados da Estácio de Sá em todas as páginas</p>
     <p>✔ Identificação da aluna Leandra Carreiro Silva Justino | RA 202508166267</p>
     <p>✔ Disciplina Desenvolvimento Web | Professor Paulo Cruz</p>
@@ -481,7 +463,6 @@
     <li>MDN Web Docs — <em>HTML5 Reference</em>. Disponível em: developer.mozilla.org</li>
     <li>MDN Web Docs — <em>CSS Reference</em>. Disponível em: developer.mozilla.org</li>
     <li>MDN Web Docs — <em>JavaScript Guide</em>. Disponível em: developer.mozilla.org</li>
-    <li>PHP Manual — <em>PHP 8.x Documentation</em>. Disponível em: php.net</li>
     <li>W3Schools — <em>Web Development Tutorials</em>. Disponível em: w3schools.com</li>
     <li>Font Awesome — <em>Icon Library v6.4</em>. Disponível em: fontawesome.com</li>
     <li>Unsplash — <em>Free High-Resolution Photos</em>. Disponível em: unsplash.com</li>
