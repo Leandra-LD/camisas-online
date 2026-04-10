@@ -514,13 +514,29 @@ button          { cursor: pointer; border: none; background: none; }
 .grupo-filtro select:focus { border-color: var(--azul); }
 .grupo-filtro input[type="range"] { width: 100%; accent-color: var(--azul); margin-bottom: 6px; }
 
-.tamanhos-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
+.tamanhos-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
 .btn-tamanho {
-  padding: 6px 12px; border: 1.5px solid var(--cinza-borda);
-  border-radius: 7px; font-size: .84rem; font-weight: 700;
+  padding: 8px 14px; border: 2px solid var(--cinza-borda);
+  border-radius: 8px; font-size: .9rem; font-weight: 700;
+  transition: all var(--trans); color: var(--texto); min-width: 44px; text-align: center;
+}
+.btn-tamanho:hover { border-color: var(--azul); color: var(--azul); }
+.btn-tamanho.sel {
+  background: var(--azul); color: var(--branco); border-color: var(--azul);
+  box-shadow: 0 2px 8px rgba(27,63,110,.3);
+}
+
+/* Tamanhos no card de produto */
+.tam-card-wrap { display: flex; align-items: center; gap: 8px; margin: 8px 0 4px; flex-wrap: wrap; }
+.tam-label { font-size: .75rem; color: var(--texto-muted); font-weight: 600; white-space: nowrap; }
+.tam-card-btns { display: flex; gap: 5px; flex-wrap: wrap; }
+.btn-tam-card {
+  padding: 4px 9px; border: 1.5px solid var(--cinza-borda);
+  border-radius: 6px; font-size: .78rem; font-weight: 700;
   transition: all var(--trans); color: var(--texto);
 }
-.btn-tamanho:hover, .btn-tamanho.sel {
+.btn-tam-card:hover { border-color: var(--azul); color: var(--azul); }
+.btn-tam-card.sel {
   background: var(--azul); color: var(--branco); border-color: var(--azul);
 }
 .btn-limpar-filtros {

@@ -177,8 +177,13 @@ function formatarPreco(valor) {
 function criarCardProduto(p) {
   const tags = { oferta:'OFERTA', novo:'NOVO', destaque:'DESTAQUE' };
   const clsTags = { oferta:'oferta', novo:'novo', destaque:'destaque' };
+  const tamSelecionado = p.tamanhos[1] || p.tamanhos[0];
+  const botoesTom = p.tamanhos.map(t => `
+    <button class="btn-tam-card${t === tamSelecionado ? ' sel' : ''}"
+      onclick="selecionarTamCard(this, ${p.id})" data-tam="${t}">${t}</button>
+  `).join('');
   return `
-  <div class="card-produto">
+  <div class="card-produto" data-id="${p.id}" data-tam-sel="${tamSelecionado}">
     <span class="tag-produto ${clsTags[p.tag]}">${tags[p.tag]}</span>
     <div class="produto-foto-wrap">
       <img class="produto-foto" src="${prefixo()}images/${p.imagem}" alt="${p.nome}" loading="lazy" />
@@ -196,8 +201,12 @@ function criarCardProduto(p) {
         <span class="preco-de">${formatarPreco(p.precoDe)}</span>
         <span class="preco-por">${formatarPreco(p.preco)}</span>
       </div>
+      <div class="tam-card-wrap">
+        <span class="tam-label">Tamanho:</span>
+        <div class="tam-card-btns">${botoesTom}</div>
+      </div>
       <div class="acoes-produto">
-        <button class="btn-add-cart" onclick="adicionarAoCarrinho(${p.id})">
+        <button class="btn-add-cart" onclick="adicionarAoCarrinhoComTam(${p.id})">
           <i class="fas fa-cart-plus"></i> Adicionar
         </button>
         <button class="btn-fav" onclick="toggleFavorito(this)" data-id="${p.id}" title="Favoritar">
@@ -206,6 +215,19 @@ function criarCardProduto(p) {
       </div>
     </div>
   </div>`;
+}
+
+function selecionarTamCard(btn, idProduto) {
+  const card = btn.closest('.card-produto');
+  card.querySelectorAll('.btn-tam-card').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  card.dataset.tamSel = btn.dataset.tam;
+}
+
+function adicionarAoCarrinhoComTam(idProduto) {
+  const card = document.querySelector(`.card-produto[data-id="${idProduto}"]`);
+  const tam = card ? card.dataset.tamSel : null;
+  adicionarAoCarrinho(idProduto, tam);
 }
 
 /* ── RENDERIZAR DESTAQUES (index) ────────────────────────── */
