@@ -136,8 +136,8 @@ const PRODUTOS = [
   },
   {
     id: 12,
-    nome: "Camisa Esportiva Simples",
-    categoria: "esporte",
+    nome: "Camisa Simples",
+    categoria: "casual",
     preco: 79.90,
     precoDe: 109.90,
     imagem: "camisa-esportiva-simples.jpg",
