@@ -39,10 +39,8 @@
       </a>
     </div>
     <div class="busca-wrap">
-      <input type="text" id="busca-input" placeholder="Buscar camisas..." oninput="buscarGlobal(this.value)" />
-      <button onclick="buscarGlobal(document.getElementById('busca-input').value)">
-        <i class="fas fa-search"></i>
-      </button>
+      <input type="text" id="busca-header" placeholder="Buscar camisas..." />
+      <button id="btn-busca-header"><i class="fas fa-search"></i></button>
     </div>
     <div class="header-acoes">
       <a href="pages/favoritos.html" class="icone-favoritos">
@@ -286,15 +284,7 @@
   renderizarDestaques();
   atualizarBadge();
   atualizarBadgeFavoritos();
-
-  function buscarGlobal(val) {
-    if (val.trim().length > 1) {
-      window.location = `pages/produtos.html?busca=${encodeURIComponent(val.trim())}`;
-    }
-  }
-  document.getElementById('busca-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') buscarGlobal(e.target.value);
-  });
+  iniciarBuscaHeader();
 </script>
 
 </body>

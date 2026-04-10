@@ -197,9 +197,17 @@
     const bi = document.getElementById('busca-input');
     if (bi) bi.value = params.get('busca');
   }
+  const buscaPendente = sessionStorage.getItem('busca_pendente');
+  if (buscaPendente) {
+    filtroAtivo.busca = buscaPendente;
+    const bi = document.getElementById('busca-input');
+    if (bi) bi.value = buscaPendente;
+    sessionStorage.removeItem('busca_pendente');
+  }
   renderizarTodos();
   atualizarBadge();
   atualizarBadgeFavoritos();
+  iniciarBuscaHeader();
 </script>
 </body>
 </html>

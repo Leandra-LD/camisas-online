@@ -376,3 +376,20 @@ function atualizarBadge() {
   const total = cart.reduce((s, i) => s + i.qtd, 0);
   document.querySelectorAll('.badge-carrinho').forEach(b => b.textContent = total);
 }
+
+/* ── BUSCA GLOBAL (HEADER) ───────────────────────────────── */
+function buscarGlobal(val) {
+  if (val.trim().length > 1) {
+    sessionStorage.setItem('busca_pendente', val.trim());
+    const destino = ePagina() ? 'produtos.html' : 'pages/produtos.html';
+    window.location = destino;
+  }
+}
+
+function iniciarBuscaHeader() {
+  const inp = document.getElementById('busca-header');
+  const btn = document.getElementById('btn-busca-header');
+  if (!inp) return;
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') buscarGlobal(inp.value); });
+  if (btn) btn.addEventListener('click', () => buscarGlobal(inp.value));
+}
