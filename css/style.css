@@ -644,7 +644,7 @@ button          { cursor: pointer; border: none; background: none; }
   transition: background var(--trans);
 }
 .cupom-area button:hover { background: var(--vermelho); }
-.cupom-msg { font-size: .8rem; margin-bottom: 10px; height: 16px; }
+.cupom-msg { font-size: .8rem; margin-bottom: 10px; min-height: 16px; }
 
 .btn-finalizar {
   width: 100%;
