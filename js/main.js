@@ -84,11 +84,11 @@ const PRODUTOS = [
   },
   {
     id: 8,
-    nome: "Polo Masculina Premium",
+    nome: "Polo Premium",
     categoria: "polo",
     preco: 109.90,
     precoDe: 149.90,
-    imagem: "polo-masculina-premium.jpg",
+    imagem: "polo-premium.jpg",
     avaliacao: 4.8,
     avaliacoes: 91,
     tag: "novo",
