@@ -193,6 +193,14 @@
     if (bi) bi.value = buscaPendente;
     sessionStorage.removeItem('busca_pendente');
   }
+  const catPendente = sessionStorage.getItem('cat_pendente');
+  if (catPendente) {
+    filtroAtivo.cats = [catPendente];
+    document.querySelectorAll('.grupo-filtro input[type="checkbox"]').forEach(c => {
+      if (c.value === catPendente) c.checked = true;
+    });
+    sessionStorage.removeItem('cat_pendente');
+  }
   renderizarTodos();
   atualizarBadge();
   atualizarBadgeFavoritos();

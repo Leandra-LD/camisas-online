@@ -120,23 +120,23 @@
   <div class="container">
     <h2 class="titulo-secao">Compre por Categoria</h2>
     <div class="cats-grid">
-      <div class="cat-item" onclick="window.location='pages/produtos.html?cat=casual'">
+      <div class="cat-item" onclick="sessionStorage.setItem('cat_pendente','casual');window.location='pages/produtos.html'">
         <div class="cat-foto" style="background-image:url('images/camisa-casual-branca-premium.jpg')"></div>
         <div class="cat-label">Casual</div>
       </div>
-      <div class="cat-item" onclick="window.location='pages/produtos.html?cat=social'">
+      <div class="cat-item" onclick="sessionStorage.setItem('cat_pendente','social');window.location='pages/produtos.html'">
         <div class="cat-foto" style="background-image:url('images/camisa-social-slim.jpg')"></div>
         <div class="cat-label">Social</div>
       </div>
-      <div class="cat-item" onclick="window.location='pages/produtos.html?cat=polo'">
+      <div class="cat-item" onclick="sessionStorage.setItem('cat_pendente','polo');window.location='pages/produtos.html'">
         <div class="cat-foto" style="background-image:url('images/polo-classica.jpg')"></div>
         <div class="cat-label">Polo</div>
       </div>
-      <div class="cat-item" onclick="window.location='pages/produtos.html?cat=estampada'">
+      <div class="cat-item" onclick="sessionStorage.setItem('cat_pendente','estampada');window.location='pages/produtos.html'">
         <div class="cat-foto" style="background-image:url('images/camisa-estampada.jpg')"></div>
         <div class="cat-label">Estampada</div>
       </div>
-      <div class="cat-item" onclick="window.location='pages/produtos.html?cat=esporte'">
+      <div class="cat-item" onclick="sessionStorage.setItem('cat_pendente','esporte');window.location='pages/produtos.html'">
         <div class="cat-foto" style="background-image:url('images/camisa-esportiva-dry-fit.jpg')"></div>
         <div class="cat-label">Esporte</div>
       </div>
@@ -251,11 +251,11 @@
     <div class="footer-col">
       <h4>Categorias</h4>
       <ul>
-        <li><a href="pages/produtos.html">Camisas Casuais</a></li>
-        <li><a href="pages/produtos.html">Camisas Sociais</a></li>
-        <li><a href="pages/produtos.html">Polo</a></li>
-        <li><a href="pages/produtos.html">Estampadas</a></li>
-        <li><a href="pages/produtos.html">Esportivas</a></li>
+        <li><a href="pages/produtos.html" onclick="sessionStorage.setItem('cat_pendente','casual')">Camisas Casuais</a></li>
+        <li><a href="pages/produtos.html" onclick="sessionStorage.setItem('cat_pendente','social')">Camisas Sociais</a></li>
+        <li><a href="pages/produtos.html" onclick="sessionStorage.setItem('cat_pendente','polo')">Polo</a></li>
+        <li><a href="pages/produtos.html" onclick="sessionStorage.setItem('cat_pendente','estampada')">Estampadas</a></li>
+        <li><a href="pages/produtos.html" onclick="sessionStorage.setItem('cat_pendente','esporte')">Esportivas</a></li>
       </ul>
     </div>
     <div class="footer-col">
