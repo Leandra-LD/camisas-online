@@ -41,7 +41,7 @@ const PRODUTOS = [
     avaliacoes: 56,
     tag: "oferta",
     tamanhos: ["PP","P","M","G","GG"],
-    descricao: "Polo clássica com listras, tecido respirável e confortável."
+    descricao: "Polo premium com listras, tecido respirável e confortável."
   },
   {
     id: 4,
@@ -93,7 +93,7 @@ const PRODUTOS = [
     avaliacoes: 91,
     tag: "novo",
     tamanhos: ["PP","P","M","G","GG"],
-    descricao: "Polo premium com acabamento de alta qualidade."
+    descricao: "Polo clássica com acabamento elegante e confortável."
   },
   {
     id: 9,
@@ -119,7 +119,7 @@ const PRODUTOS = [
     avaliacoes: 189,
     tag: "destaque",
     tamanhos: ["PP","P","M","G","GG"],
-    descricao: "Clássica camisa preta, combina com tudo."
+    descricao: "Clássica camisa branca, combina com tudo."
   },
   {
     id: 11,
@@ -145,7 +145,7 @@ const PRODUTOS = [
     avaliacoes: 230,
     tag: "oferta",
     tamanhos: ["PP","P","M","G","GG"],
-    descricao: "Ideal para corrida e atividades ao ar livre."
+    descricao: "Modelo simples e versátil para o dia a dia."
   }
 ];
 
