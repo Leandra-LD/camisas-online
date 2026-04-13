@@ -1,14 +1,12 @@
 # Camisas Online 👕
 
-Site de e-commerce fictício desenvolvido como trabalho acadêmico para a disciplina de **Desenvolvimento Web** da **Universidade Estácio de Sá**.
+Site de e-commerce de camisas desenvolvido com HTML5, CSS3, JavaScript e PHP.
 
 ---
 
 ## Sobre o Projeto
 
-**Camisas Online** é uma loja virtual simulada de camisas. O site apresenta catálogo de produtos, galeria de fotos, carrinho de compras, lista de favoritos e formulário de contato — tudo funcionando no navegador, sem necessidade de servidor.
-
-> Este projeto é fictício e foi criado exclusivamente para fins acadêmicos. Todos os produtos, preços, pessoas e informações de contato são inventados.
+**Camisas Online** é uma loja virtual de camisas. O site apresenta catálogo de produtos, galeria de fotos, carrinho de compras, lista de favoritos e formulário de contato — tudo funcionando no navegador, sem necessidade de servidor.
 
 ---
 
@@ -80,15 +78,3 @@ Camisas online/
 
 Basta abrir o arquivo `index.html` em qualquer navegador. Não é necessário instalar nada.
 
----
-
-## Informações Acadêmicas
-
-| | |
-|---|---|
-| **Aluna** | Leandra Carreiro Silva Justino |
-| **RA** | 202508166267 |
-| **Disciplina** | Desenvolvimento Web |
-| **Professor** | Paulo Cruz |
-| **Instituição** | Universidade Estácio de Sá |
-| **Ano** | 2026 |
