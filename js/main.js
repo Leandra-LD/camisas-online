@@ -32,7 +32,7 @@ const PRODUTOS = [
   },
   {
     id: 3,
-    nome: "Polo Clássica",
+    nome: "Polo Premium",
     categoria: "polo",
     preco: 99.90,
     precoDe: 139.90,
@@ -41,7 +41,7 @@ const PRODUTOS = [
     avaliacoes: 56,
     tag: "oferta",
     tamanhos: ["PP","P","M","G","GG"],
-    descricao: "Polo clássica com listras, tecido respirável e confortável."
+    descricao: "Polo premium com listras, tecido respirável e confortável."
   },
   {
     id: 4,
@@ -84,7 +84,7 @@ const PRODUTOS = [
   },
   {
     id: 8,
-    nome: "Polo Premium",
+    nome: "Polo Clássica",
     categoria: "polo",
     preco: 109.90,
     precoDe: 149.90,
@@ -93,7 +93,7 @@ const PRODUTOS = [
     avaliacoes: 91,
     tag: "novo",
     tamanhos: ["PP","P","M","G","GG"],
-    descricao: "Polo premium com acabamento de alta qualidade."
+    descricao: "Polo clássica com acabamento elegante e confortável."
   },
   {
     id: 9,
