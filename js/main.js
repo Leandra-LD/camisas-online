@@ -32,7 +32,7 @@ const PRODUTOS = [
   },
   {
     id: 3,
-    nome: "Polo Clássica",
+    nome: "Polo Premium",
     categoria: "polo",
     preco: 99.90,
     precoDe: 139.90,
@@ -84,7 +84,7 @@ const PRODUTOS = [
   },
   {
     id: 8,
-    nome: "Polo Premium",
+    nome: "Polo Clássica",
     categoria: "polo",
     preco: 109.90,
     precoDe: 149.90,
