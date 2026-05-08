@@ -59,6 +59,7 @@ function limparCarrinho() {
 
 /* ── CALCULAR TOTAIS ─────────────────────────────────────── */
 let percentualDesconto = 0;
+let descontoPix = 0;
 
 function calcularTotais(cart) {
   const subtotal  = cart.reduce((s, i) => s + i.preco * i.qtd, 0);
@@ -118,8 +119,13 @@ function atualizarResumo({ subtotal, frete, desconto, total }) {
   const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
   set('val-subtotal', formatarPreco(subtotal));
   set('val-frete',    frete === 0 ? 'Grátis' : formatarPreco(frete));
-  set('val-desconto', `- ${formatarPreco(desconto)}`);
   set('val-total',    formatarPreco(total));
+
+  // Linha de desconto: só mostra se houver desconto
+  const linhaDesc = document.getElementById('linha-desconto');
+  if (linhaDesc) linhaDesc.style.display = desconto > 0 ? 'flex' : 'none';
+  set('val-desconto', `- ${formatarPreco(desconto)}`);
+
   const elFrete = document.getElementById('val-frete');
   if (elFrete) elFrete.className = 'frete-valor';
 }
@@ -194,12 +200,7 @@ function selecionarPagamento(metodo) {
   if (areaBoleto)   areaBoleto.style.display    = metodo === 'boleto'  ? 'block' : 'none';
 
   // Desconto PIX (5%)
-  if (metodo === 'pix') {
-    aplicarDesconto(percentualDesconto > 0 ? percentualDesconto : 0);
-    descontoPix = 5;
-  } else {
-    descontoPix = 0;
-  }
+  descontoPix = metodo === 'pix' ? 5 : 0;
   renderizarCarrinho();
 
   const aviso = document.getElementById('aviso-pagamento');
@@ -219,8 +220,6 @@ function selecionarParcela(parcelas) {
     info.textContent = `${n}x de ${formatarPreco(parc)} com juros`;
   }
 }
-
-let descontoPix = 0;
 
 /* ── FINALIZAR COMPRA ────────────────────────────────────── */
 function finalizarCompra() {
