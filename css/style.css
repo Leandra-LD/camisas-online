@@ -527,7 +527,7 @@ button          { cursor: pointer; border: none; background: none; }
 }
 
 /* Tamanhos no card de produto */
-.tam-card-wrap { display: flex; align-items: center; gap: 8px; margin: 8px 0 4px; flex-wrap: wrap; }
+.tam-card-wrap { display: flex; align-items: center; gap: 8px; margin: 8px 0 10px; flex-wrap: wrap; }
 .tam-label { font-size: .75rem; color: var(--texto-muted); font-weight: 600; white-space: nowrap; }
 .tam-card-btns { display: flex; gap: 5px; flex-wrap: wrap; }
 .btn-tam-card {
@@ -543,7 +543,7 @@ button          { cursor: pointer; border: none; background: none; }
 /* ── SELETOR DE CORES ─────────────────────────────────────── */
 .cor-card-wrap {
   display: flex; align-items: center; gap: 8px;
-  margin: 2px 0 8px; flex-wrap: wrap;
+  margin: 10px 0 12px; flex-wrap: wrap;
 }
 .cor-card-btns { display: flex; gap: 6px; flex-wrap: wrap; }
 .btn-cor-card {
