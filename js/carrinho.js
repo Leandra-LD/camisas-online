@@ -16,7 +16,7 @@ function salvarCarrinho(cart) {
 function adicionarAoCarrinho(idProduto, tamanho) {
   const produto = PRODUTOS.find(p => p.id === idProduto);
   if (!produto) return;
-  const tam = tamanho || produto.tamanhos[1] || produto.tamanhos[0];
+  const tam = tamanho || produto.tamanhos[1] || produto.tamanhos[0] || 'M';
   const cart = obterCarrinho();
   const idx  = cart.findIndex(i => i.id === idProduto && i.tamanho === tam);
   if (idx > -1) {

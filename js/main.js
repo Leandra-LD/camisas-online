@@ -273,7 +273,7 @@ function renderizarTodos() {
 function aplicarFiltros() {
   const chks = document.querySelectorAll('.grupo-filtro input[type="checkbox"]:checked');
   filtroAtivo.cats = [...chks].map(c => c.value);
-  filtroAtivo.maxPreco = parseFloat(document.getElementById('range-preco')?.value || 9999);
+  filtroAtivo.maxPreco = parseFloat(document.getElementById('range-preco')?.value) || 9999;
   filtroAtivo.ordem = document.getElementById('select-ordem')?.value || 'padrao';
   const busca = document.getElementById('busca-input');
   filtroAtivo.busca = busca ? busca.value.trim() : '';
@@ -291,9 +291,9 @@ function selecionarTamanho(btn, tam) {
 }
 
 function atualizarPreco(val) {
-  filtroAtivo.maxPreco = parseFloat(val);
+  filtroAtivo.maxPreco = parseFloat(val) || 9999;
   const span = document.getElementById('preco-display');
-  if (span) span.textContent = formatarPreco(parseFloat(val));
+  if (span) span.textContent = formatarPreco(parseFloat(val) || 9999);
   renderizarTodos();
 }
 
