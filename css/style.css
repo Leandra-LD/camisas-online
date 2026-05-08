@@ -539,6 +539,29 @@ button          { cursor: pointer; border: none; background: none; }
 .btn-tam-card.sel {
   background: var(--azul); color: var(--branco); border-color: var(--azul);
 }
+
+/* ── SELETOR DE CORES ─────────────────────────────────────── */
+.cor-card-wrap {
+  display: flex; align-items: center; gap: 8px;
+  margin: 2px 0 8px; flex-wrap: wrap;
+}
+.cor-card-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.btn-cor-card {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 2.5px solid transparent;
+  cursor: pointer; transition: transform .15s, border-color .15s;
+  outline: 1.5px solid rgba(0,0,0,.15);
+  outline-offset: 0;
+  flex-shrink: 0;
+}
+.btn-cor-card:hover  { transform: scale(1.15); }
+.btn-cor-card.sel    {
+  border-color: var(--azul);
+  outline: 2px solid var(--azul);
+  outline-offset: 2px;
+  transform: scale(1.12);
+}
+
 .btn-limpar-filtros {
   width: 100%; padding: 10px;
   background: #fdecea; color: #c0392b;

@@ -13,16 +13,21 @@ function salvarCarrinho(cart) {
 }
 
 /* ── ADICIONAR ───────────────────────────────────────────── */
-function adicionarAoCarrinho(idProduto, tamanho) {
+function adicionarAoCarrinho(idProduto, tamanho, cor) {
   const produto = PRODUTOS.find(p => p.id === idProduto);
   if (!produto) return;
-  const tam = tamanho || produto.tamanhos[1] || produto.tamanhos[0] || 'M';
-  const cart = obterCarrinho();
-  const idx  = cart.findIndex(i => i.id === idProduto && i.tamanho === tam);
+  const tam    = tamanho || produto.tamanhos[1] || produto.tamanhos[0] || 'M';
+  const corSel = cor || (produto.cores ? produto.cores[0].nome : null);
+  const cart   = obterCarrinho();
+  const idx    = cart.findIndex(i =>
+    i.id === idProduto &&
+    i.tamanho === tam &&
+    (i.cor || '') === (corSel || '')
+  );
   if (idx > -1) {
     cart[idx].qtd++;
   } else {
-    cart.push({ id: idProduto, nome: produto.nome, preco: produto.preco, imagem: produto.imagem, tamanho: tam, qtd: 1 });
+    cart.push({ id: idProduto, nome: produto.nome, preco: produto.preco, imagem: produto.imagem, tamanho: tam, cor: corSel, qtd: 1 });
   }
   salvarCarrinho(cart);
   atualizarBadge();
@@ -30,18 +35,26 @@ function adicionarAoCarrinho(idProduto, tamanho) {
 }
 
 /* ── REMOVER ─────────────────────────────────────────────── */
-function removerDoCarrinho(idProduto, tamanho) {
+function removerDoCarrinho(idProduto, tamanho, cor) {
   let cart = obterCarrinho();
-  cart = cart.filter(i => !(i.id === idProduto && i.tamanho === tamanho));
+  cart = cart.filter(i => !(
+    i.id === idProduto &&
+    i.tamanho === tamanho &&
+    (i.cor || '') === (cor || '')
+  ));
   salvarCarrinho(cart);
   atualizarBadge();
   renderizarCarrinho();
 }
 
 /* ── ALTERAR QUANTIDADE ──────────────────────────────────── */
-function alterarQtd(idProduto, tamanho, delta) {
+function alterarQtd(idProduto, tamanho, cor, delta) {
   const cart = obterCarrinho();
-  const idx  = cart.findIndex(i => i.id === idProduto && i.tamanho === tamanho);
+  const idx  = cart.findIndex(i =>
+    i.id === idProduto &&
+    i.tamanho === tamanho &&
+    (i.cor || '') === (cor || '')
+  );
   if (idx === -1) return;
   cart[idx].qtd += delta;
   if (cart[idx].qtd <= 0) { cart.splice(idx, 1); }
@@ -97,12 +110,13 @@ function renderizarCarrinho() {
     <div class="item-cart-info">
       <h4>${item.nome}</h4>
       <p class="tamanho">Tamanho: <strong>${item.tamanho}</strong></p>
+      ${item.cor ? `<p class="tamanho">Cor: <strong>${item.cor}</strong></p>` : ''}
       <p class="preco-item">${formatarPreco(item.preco)}</p>
       <div class="qtd-controle">
-        <button onclick="alterarQtd(${item.id},'${item.tamanho}',-1)"><i class="fas fa-minus"></i></button>
+        <button onclick="alterarQtd(${item.id},'${item.tamanho}','${item.cor || ''}',-1)"><i class="fas fa-minus"></i></button>
         <span>${item.qtd}</span>
-        <button onclick="alterarQtd(${item.id},'${item.tamanho}',1)"><i class="fas fa-plus"></i></button>
-        <button class="btn-remover-item" onclick="removerDoCarrinho(${item.id},'${item.tamanho}')">
+        <button onclick="alterarQtd(${item.id},'${item.tamanho}','${item.cor || ''}',1)"><i class="fas fa-plus"></i></button>
+        <button class="btn-remover-item" onclick="removerDoCarrinho(${item.id},'${item.tamanho}','${item.cor || ''}')">
           <i class="fas fa-trash-alt"></i> Remover
         </button>
       </div>

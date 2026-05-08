@@ -15,6 +15,11 @@ const PRODUTOS = [
     avaliacoes: 124,
     tag: "destaque",
     tamanhos: ["PP","P","M","G","GG"],
+    cores: [
+      { nome: "Branca",  hex: "#f8f8f8" },
+      { nome: "Cinza",   hex: "#9ca3af" },
+      { nome: "Azul",    hex: "#3b82f6" }
+    ],
     descricao: "Camisa casual 100% algodão, perfeita para o dia a dia."
   },
   {
@@ -28,6 +33,11 @@ const PRODUTOS = [
     avaliacoes: 87,
     tag: "novo",
     tamanhos: ["PP","P","M","G","GG"],
+    cores: [
+      { nome: "Azul",        hex: "#2563eb" },
+      { nome: "Branca",      hex: "#f8f8f8" },
+      { nome: "Cinza Claro", hex: "#d1d5db" }
+    ],
     descricao: "Camisa social azul slim fit ideal para trabalho e eventos formais."
   },
   {
@@ -41,6 +51,11 @@ const PRODUTOS = [
     avaliacoes: 56,
     tag: "oferta",
     tamanhos: ["PP","P","M","G","GG"],
+    cores: [
+      { nome: "Branca",      hex: "#f8f8f8" },
+      { nome: "Preta",       hex: "#1f2937" },
+      { nome: "Azul Marinho",hex: "#1e3a5f" }
+    ],
     descricao: "Polo premium com listras, tecido respirável e confortável."
   },
   {
@@ -67,6 +82,11 @@ const PRODUTOS = [
     avaliacoes: 78,
     tag: "novo",
     tamanhos: ["PP","P","M","G","GG"],
+    cores: [
+      { nome: "Azul",     hex: "#3b82f6" },
+      { nome: "Vermelha", hex: "#dc2626" },
+      { nome: "Verde",    hex: "#16a34a" }
+    ],
     descricao: "Listras modernas em tecido macio e durável."
   },
   {
@@ -80,6 +100,11 @@ const PRODUTOS = [
     avaliacoes: 145,
     tag: "destaque",
     tamanhos: ["PP","P","M","G","GG"],
+    cores: [
+      { nome: "Preta",    hex: "#1f2937" },
+      { nome: "Azul",     hex: "#2563eb" },
+      { nome: "Vermelha", hex: "#dc2626" }
+    ],
     descricao: "Tecnologia dry-fit para máximo desempenho nos treinos."
   },
   {
@@ -93,6 +118,11 @@ const PRODUTOS = [
     avaliacoes: 91,
     tag: "novo",
     tamanhos: ["PP","P","M","G","GG"],
+    cores: [
+      { nome: "Branca", hex: "#f8f8f8" },
+      { nome: "Verde",  hex: "#16a34a" },
+      { nome: "Vinho",  hex: "#7c2d2d" }
+    ],
     descricao: "Polo clássica com acabamento elegante e confortável."
   },
   {
@@ -145,6 +175,12 @@ const PRODUTOS = [
     avaliacoes: 230,
     tag: "oferta",
     tamanhos: ["PP","P","M","G","GG"],
+    cores: [
+      { nome: "Branca",  hex: "#f8f8f8" },
+      { nome: "Preta",   hex: "#1f2937" },
+      { nome: "Cinza",   hex: "#9ca3af" },
+      { nome: "Azul",    hex: "#3b82f6" }
+    ],
     descricao: "Modelo simples e versátil para o dia a dia."
   }
 ];
@@ -178,12 +214,28 @@ function criarCardProduto(p) {
   const tags = { oferta:'OFERTA', novo:'NOVO', destaque:'DESTAQUE' };
   const clsTags = { oferta:'oferta', novo:'novo', destaque:'destaque' };
   const tamSelecionado = p.tamanhos[1] || p.tamanhos[0];
+  const corSelecionada = p.cores ? p.cores[0].nome : '';
+
   const botoesTom = p.tamanhos.map(t => `
     <button class="btn-tam-card${t === tamSelecionado ? ' sel' : ''}"
       onclick="selecionarTamCard(this, ${p.id})" data-tam="${t}">${t}</button>
   `).join('');
+
+  const swatchesCor = p.cores ? `
+    <div class="cor-card-wrap">
+      <span class="tam-label">Cor: <strong class="cor-nome-sel">${p.cores[0].nome}</strong></span>
+      <div class="cor-card-btns">
+        ${p.cores.map((c, i) => `<button
+          class="btn-cor-card${i === 0 ? ' sel' : ''}"
+          onclick="selecionarCorCard(this, ${p.id})"
+          data-cor="${c.nome}"
+          style="background:${c.hex}"
+          title="${c.nome}"></button>`).join('')}
+      </div>
+    </div>` : '';
+
   return `
-  <div class="card-produto" data-id="${p.id}" data-tam-sel="${tamSelecionado}">
+  <div class="card-produto" data-id="${p.id}" data-tam-sel="${tamSelecionado}" data-cor-sel="${corSelecionada}">
     <span class="tag-produto ${clsTags[p.tag]}">${tags[p.tag]}</span>
     <div class="produto-foto-wrap">
       <img class="produto-foto" src="${prefixo()}images/${p.imagem}" alt="${p.nome}" loading="lazy" />
@@ -205,6 +257,7 @@ function criarCardProduto(p) {
         <span class="tam-label">Tamanho:</span>
         <div class="tam-card-btns">${botoesTom}</div>
       </div>
+      ${swatchesCor}
       <div class="acoes-produto">
         <button class="btn-add-cart" onclick="adicionarAoCarrinhoComTam(${p.id})">
           <i class="fas fa-cart-plus"></i> Adicionar
@@ -224,10 +277,20 @@ function selecionarTamCard(btn, idProduto) {
   card.dataset.tamSel = btn.dataset.tam;
 }
 
+function selecionarCorCard(btn, idProduto) {
+  const card = btn.closest('.card-produto');
+  card.querySelectorAll('.btn-cor-card').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  card.dataset.corSel = btn.dataset.cor;
+  const nomeEl = card.querySelector('.cor-nome-sel');
+  if (nomeEl) nomeEl.textContent = btn.dataset.cor;
+}
+
 function adicionarAoCarrinhoComTam(idProduto) {
   const card = document.querySelector(`.card-produto[data-id="${idProduto}"]`);
   const tam = card ? card.dataset.tamSel : null;
-  adicionarAoCarrinho(idProduto, tam);
+  const cor = card && card.dataset.corSel ? card.dataset.corSel : null;
+  adicionarAoCarrinho(idProduto, tam, cor);
 }
 
 /* ── RENDERIZAR DESTAQUES (index) ────────────────────────── */
