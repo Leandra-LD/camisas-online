@@ -252,6 +252,19 @@ function finalizarCompra() {
   const num = 'CO' + Date.now().toString().slice(-6);
   const el  = document.getElementById('num-pedido');
   if (el) el.textContent = `Pedido #${num} — ${nomes[metodoPagamento]}`;
+
+  // QR Code PIX
+  const areaQr = document.getElementById('area-qr-pix');
+  const imgQr  = document.getElementById('img-qr-pix');
+  if (metodoPagamento === 'pix' && areaQr && imgQr) {
+    const total   = calcularTotais(cart).total.toFixed(2);
+    const pixData = `PIX|camisasonline|contato@camisasonline.com.br|${total}|${num}`;
+    imgQr.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(pixData)}`;
+    areaQr.style.display = 'block';
+  } else if (areaQr) {
+    areaQr.style.display = 'none';
+  }
+
   const modal = document.getElementById('modal-sucesso');
   if (modal) modal.classList.add('aberto');
 }

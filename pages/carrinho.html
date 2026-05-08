@@ -276,6 +276,17 @@
     <h2>Pedido Confirmado!</h2>
     <p>Obrigado pela sua compra! Você receberá a confirmação por e-mail em breve.</p>
     <p id="num-pedido" style="font-weight:800;color:#1b3f6e;margin-top:8px"></p>
+
+    <!-- QR CODE PIX -->
+    <div id="area-qr-pix" style="display:none;margin:16px 0">
+      <p style="font-size:.85rem;color:#27ae60;font-weight:700;margin-bottom:8px">
+        <i class="fab fa-pix"></i> Escaneie o QR Code para pagar via PIX
+      </p>
+      <img id="img-qr-pix" src="" alt="QR Code PIX"
+           style="width:180px;height:180px;border:3px solid #27ae60;border-radius:10px;display:block;margin:0 auto 8px" />
+      <p style="font-size:.75rem;color:#636e72">Chave PIX: contato@camisasonline.com.br</p>
+    </div>
+
     <button onclick="limparCarrinho(); document.getElementById('modal-sucesso').classList.remove('aberto'); window.location='../index.html'">
       <i class="fas fa-home"></i> Voltar ao Início
     </button>
