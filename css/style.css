@@ -745,10 +745,10 @@ button          { cursor: pointer; border: none; background: none; }
 /* ── MODAL CUPONS ────────────────────────────────────────── */
 .modal-cupons-caixa { max-width: 440px; text-align: left; position: relative; }
 .modal-fechar {
-  position: absolute; top: 14px; right: 14px;
-  background: none; border: none; font-size: .75rem;
-  color: var(--texto-muted); cursor: pointer; padding: 3px 7px;
-  border-radius: 6px; transition: background var(--trans);
+  position: absolute; top: 10px; right: 10px;
+  background: none; border: none; font-size: .6rem;
+  color: var(--texto-muted); cursor: pointer; padding: 2px 6px;
+  border-radius: 4px; transition: background var(--trans);
 }
 .modal-fechar:hover { background: var(--cinza-borda); }
 .lista-cupons { display: flex; flex-direction: column; gap: 10px; }
