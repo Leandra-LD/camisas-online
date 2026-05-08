@@ -259,7 +259,7 @@ function finalizarCompra() {
   if (metodoPagamento === 'pix' && areaQr && imgQr) {
     const total   = calcularTotais(cart).total.toFixed(2);
     const pixData = `PIX|camisasonline|contato@camisasonline.com.br|${total}|${num}`;
-    imgQr.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(pixData)}`;
+    imgQr.src = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(pixData)}`;
     areaQr.style.display = 'block';
   } else if (areaQr) {
     areaQr.style.display = 'none';

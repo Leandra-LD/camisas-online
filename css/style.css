@@ -822,15 +822,16 @@ button          { cursor: pointer; border: none; background: none; }
 .overlay-modal.aberto { display: flex; }
 .modal-caixa {
   background: var(--branco); border-radius: var(--radius);
-  padding: 44px 36px; text-align: center; max-width: 420px; width: 92%;
+  padding: 28px 28px 24px; text-align: center; max-width: 400px; width: 92%;
+  max-height: 90vh; overflow-y: auto;
 }
-.modal-caixa i      { font-size: 4rem; color: var(--verde); margin-bottom: 14px; }
-.modal-caixa h2     { color: var(--azul); margin-bottom: 10px; font-size: 1.6rem; }
-.modal-caixa p      { color: var(--texto-muted); margin-bottom: 8px; font-size: .95rem; }
+.modal-caixa > i    { font-size: 2.8rem; color: var(--verde); margin-bottom: 8px; }
+.modal-caixa h2     { color: var(--azul); margin-bottom: 8px; font-size: 1.35rem; }
+.modal-caixa p      { color: var(--texto-muted); margin-bottom: 6px; font-size: .88rem; }
 .modal-caixa button {
-  margin-top: 20px;
+  margin-top: 14px;
   background: var(--azul); color: var(--branco);
-  padding: 12px 30px; border-radius: 30px; font-size: 1rem; font-weight: 700;
+  padding: 10px 26px; border-radius: 30px; font-size: .95rem; font-weight: 700;
   transition: background var(--trans);
 }
 .modal-caixa button:hover { background: var(--vermelho); }
