@@ -237,6 +237,7 @@
       <tr><td>Font Awesome 6.4</td><td>Biblioteca de ícones vetoriais</td><td>cdnjs.cloudflare.com</td></tr>
       <tr><td>Unsplash</td><td>Imagens de camisas utilizadas na galeria e categorias</td><td>images.unsplash.com</td></tr>
       <tr><td>Google Fonts</td><td>Tipografia moderna (Segoe UI fallback)</td><td>fonts.google.com</td></tr>
+      <tr><td>QR Server API</td><td>Geração dinâmica do QR Code para pagamento via PIX</td><td>api.qrserver.com</td></tr>
     </tbody>
   </table>
 </div>
@@ -365,8 +366,8 @@
   <h3><span class="badge badge-js">JavaScript</span> Interatividade</h3>
   <ul>
     <li>Carrinho de compras persistido via <strong>localStorage</strong></li>
-    <li>Seleção de cor e tamanho por produto — itens da mesma camisa em cores/tamanhos diferentes ficam separados no carrinho</li>
-    <li>Filtros de produtos por categoria, tamanho, preço e ordenação</li>
+    <li>Seleção de tamanho e cor por produto — bolinhas coloridas interativas nos cards; itens em cores/tamanhos diferentes ficam separados no carrinho</li>
+    <li>Filtros de produtos por categoria, tamanho, preço e ordenação; campo de busca com botão e suporte à tecla Enter</li>
     <li>Busca global persistida via sessionStorage entre páginas</li>
     <li>Galeria lightbox com navegação por teclado (setas e ESC)</li>
     <li>Sistema de cupons de desconto com modal: PATTAYA (5%), BANGKOK (10%), CHIANGMAI (15%), PHUKET (20%)</li>
@@ -379,7 +380,7 @@
     <li>Toggles de visualização em grade/lista</li>
   </ul>
 
-  <h3><span class="badge badge-php">PHP</span> Back-end</h3>
+  <h3><span class="badge badge-php">PHP</span> Back-end <small style="font-size:.78rem;color:var(--muted);font-weight:400">(planejado para versão futura)</small></h3>
   <ul>
     <li>Processamento server-side do formulário de contato (envio de e-mail via <code>mail()</code>)</li>
     <li>Geração dinâmica do catálogo de produtos a partir de banco de dados</li>
@@ -387,6 +388,9 @@
     <li>Gerenciamento de sessões para controle de login e carrinho persistente</li>
     <li>Integração com banco de dados MySQL para armazenamento de pedidos e clientes</li>
   </ul>
+  <p style="font-size:.88rem;color:var(--muted)">
+    <i class="fas fa-info-circle"></i> Na versão atual, toda a lógica do site é executada no cliente (front-end). O back-end em PHP e a integração com banco de dados estão documentados como escopo de evolução futura do projeto.
+  </p>
 
 </div>
 
@@ -468,7 +472,9 @@
     <p>✔ Identificação da aluna Leandra Carreiro Silva Justino | RA 202508166267</p>
     <p>✔ Disciplina Desenvolvimento Web | Professor Paulo Cruz</p>
     <p>✔ Imagens de camisas armazenadas localmente na pasta images/ com nomes correspondentes aos produtos</p>
-    <p>✔ Carrinho de compras funcional com localStorage</p>
+    <p>✔ Carrinho de compras funcional com localStorage, cupons de desconto e métodos de pagamento</p>
+    <p>✔ Seleção de cor com bolinhas interativas em 4 produtos; seleção de tamanho em todos os 11 produtos</p>
+    <p>✔ Geração de QR Code PIX automático ao finalizar pedido via API externa</p>
     <p>✔ Design responsivo para mobile, tablet e desktop</p>
   </div>
 
