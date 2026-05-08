@@ -418,10 +418,6 @@ function iniciarBuscaHeader() {
 
 /* ── TRANSIÇÃO SUAVE ENTRE PÁGINAS ──────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  // Fade in ao carregar
-  document.body.style.opacity = '1';
-
-  // Fade out ao sair
   document.querySelectorAll('a[href]').forEach(link => {
     const href = link.getAttribute('href');
     if (!href || href.startsWith('#') || href.startsWith('javascript')
@@ -430,8 +426,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     link.addEventListener('click', e => {
       e.preventDefault();
-      document.body.style.opacity = '0';
-      setTimeout(() => { window.location.href = href; }, 220);
+      const overlay = document.getElementById('pg-overlay');
+      if (overlay) {
+        overlay.style.opacity = '1';
+        setTimeout(() => { window.location.href = href; }, 220);
+      } else {
+        window.location.href = href;
+      }
     });
   });
 });
