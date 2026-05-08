@@ -147,11 +147,11 @@ function atualizarResumo({ subtotal, frete, desconto, total }) {
 /* ── MODAL CUPONS ────────────────────────────────────────── */
 function abrirModalCupons() {
   const modal = document.getElementById('modal-cupons');
-  if (modal) modal.style.display = 'flex';
+  if (modal) modal.classList.add('aberto');
 }
 function fecharModalCupons() {
   const modal = document.getElementById('modal-cupons');
-  if (modal) modal.style.display = 'none';
+  if (modal) modal.classList.remove('aberto');
 }
 function usarCupom(codigo) {
   const inp = document.getElementById('cupom-input');

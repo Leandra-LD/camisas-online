@@ -87,8 +87,7 @@
     <div class="box-form">
       <h2><i class="fas fa-paper-plane"></i> Envie uma Mensagem</h2>
 
-      <form id="form-contato" action="../php/contato.php" method="POST"
-            onsubmit="return validarForm(event)">
+      <form id="form-contato" onsubmit="return validarForm(event)">
 
         <div class="campo-form">
           <label for="nome"><i class="fas fa-user"></i> Nome Completo *</label>
@@ -248,9 +247,10 @@
     document.getElementById('erro-email').textContent = '';
     document.getElementById('erro-msg').textContent   = '';
 
-    if (nome.length < 3)       { document.getElementById('erro-nome').textContent  = 'Nome muito curto.'; ok = false; }
-    if (!email.includes('@'))  { document.getElementById('erro-email').textContent = 'E-mail inválido.'; ok = false; }
-    if (msg.length < 10)       { document.getElementById('erro-msg').textContent   = 'Mensagem muito curta.'; ok = false; }
+    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (nome.length < 3)   { document.getElementById('erro-nome').textContent  = 'Nome muito curto.'; ok = false; }
+    if (!emailValido)      { document.getElementById('erro-email').textContent = 'E-mail inválido.'; ok = false; }
+    if (msg.length < 10)   { document.getElementById('erro-msg').textContent   = 'Mensagem muito curta.'; ok = false; }
 
     if (ok) {
       document.getElementById('form-contato').style.display = 'none';
