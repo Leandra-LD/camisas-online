@@ -416,24 +416,4 @@ function iniciarBuscaHeader() {
   if (btn) btn.addEventListener('click', () => buscarGlobal(inp.value));
 }
 
-/* ── TRANSIÇÃO SUAVE ENTRE PÁGINAS ──────────────────────── */
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('a[href]').forEach(link => {
-    const href = link.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('javascript')
-        || href.startsWith('mailto') || href.startsWith('tel')
-        || link.hasAttribute('onclick') || link.target === '_blank') return;
-
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const overlay = document.getElementById('pg-overlay');
-      if (overlay) {
-        overlay.style.opacity = '1';
-        setTimeout(() => { window.location.href = href; }, 220);
-      } else {
-        window.location.href = href;
-      }
-    });
-  });
-});
 
