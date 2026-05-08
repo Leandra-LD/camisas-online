@@ -318,7 +318,7 @@
       <i class="fas fa-shopping-cart"></i>
       <div>
         <h4>carrinho.html — Carrinho</h4>
-        <p>Gerenciamento de itens com controle de quantidade, remoção, sistema de cupons e finalização de pedido.</p>
+        <p>Gerenciamento de itens com controle de quantidade, seleção de cor e tamanho, sistema de cupons, métodos de pagamento (PIX, Crédito, Débito, Boleto) e finalização de pedido.</p>
       </div>
     </div>
     <div class="pag-card">
@@ -364,14 +364,17 @@
   <h3><span class="badge badge-js">JavaScript</span> Interatividade</h3>
   <ul>
     <li>Carrinho de compras persistido via <strong>localStorage</strong></li>
+    <li>Seleção de cor e tamanho por produto — itens da mesma camisa em cores/tamanhos diferentes ficam separados no carrinho</li>
     <li>Filtros de produtos por categoria, tamanho, preço e ordenação</li>
     <li>Busca global persistida via sessionStorage entre páginas</li>
     <li>Galeria lightbox com navegação por teclado (setas e ESC)</li>
-    <li>Sistema de cupons de desconto (ESTACIO10, WEB20, PROMO15)</li>
+    <li>Sistema de cupons de desconto com modal: PATTAYA (5%), BANGKOK (10%), CHIANGMAI (15%), PHUKET (20%)</li>
+    <li>Métodos de pagamento: PIX (5% de desconto), Cartão de Crédito (até 12x com juros), Débito e Boleto</li>
+    <li>Calculadora do carrinho: subtotal, frete grátis acima de R$ 199, desconto empilhável (cupom + PIX)</li>
     <li>Validação de formulário no client-side com mensagens de erro</li>
     <li>Notificações toast animadas</li>
     <li>Máscara de telefone em tempo real</li>
-    <li>Contador dinâmico do carrinho no header</li>
+    <li>Contador dinâmico do carrinho e favoritos no header</li>
     <li>Toggles de visualização em grade/lista</li>
   </ul>
 
@@ -405,10 +408,11 @@
       <tr><td>avaliacoes</td><td>Number</td><td>Quantidade de avaliações recebidas</td></tr>
       <tr><td>tag</td><td>String</td><td>oferta | novo | destaque</td></tr>
       <tr><td>tamanhos</td><td>Array</td><td>Tamanhos disponíveis (PP, P, M, G, GG)</td></tr>
+      <tr><td>cores</td><td>Array (opcional)</td><td>Lista de objetos <code>{nome, hex}</code> com as cores disponíveis. Presente em 6 produtos; os demais não possuem variação de cor.</td></tr>
       <tr><td>descricao</td><td>String</td><td>Descrição curta do produto</td></tr>
     </tbody>
   </table>
-  <p>Ao todo são <strong>11 produtos</strong> cadastrados, distribuídos nas 5 categorias disponíveis: Casual, Social, Polo, Estampada e Esporte.</p>
+  <p>Ao todo são <strong>11 produtos</strong> cadastrados, distribuídos nas 5 categorias disponíveis: Casual, Social, Polo, Estampada e Esporte. Destes, <strong>6 possuem seleção de cor</strong> com bolinhas coloridas interativas no card do produto.</p>
 </div>
 
 <!-- 7. RESPONSIVIDADE -->
