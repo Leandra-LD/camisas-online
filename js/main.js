@@ -102,6 +102,7 @@ const PRODUTOS = [
     cores: [
       { nome: "Branca",     hex: "#f8f8f8" },
       { nome: "Preta",      hex: "#1f2937" },
+      { nome: "Vermelha",   hex: "#dc2626" },
       { nome: "Vinho",      hex: "#7c2d2d" },
       { nome: "Azul Escuro",hex: "#1e3a5f" },
       { nome: "Amarelo",    hex: "#eab308" }
