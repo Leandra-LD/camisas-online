@@ -120,10 +120,12 @@ const PRODUTOS = [
     tag: "novo",
     tamanhos: ["PP","P","M","G","GG"],
     cores: [
-      { nome: "Branca", hex: "#f8f8f8" },
-      { nome: "Preta",  hex: "#1f2937" },
-      { nome: "Verde",  hex: "#16a34a" },
-      { nome: "Vinho",  hex: "#7c2d2d" }
+      { nome: "Branca",      hex: "#f8f8f8" },
+      { nome: "Preta",       hex: "#1f2937" },
+      { nome: "Verde",       hex: "#16a34a" },
+      { nome: "Coral",       hex: "#f08060" },
+      { nome: "Cinza Escuro",hex: "#4b5563" },
+      { nome: "Azul Escuro", hex: "#1e3a5f" }
     ],
     descricao: "Polo clássica com acabamento elegante e confortável."
   },
