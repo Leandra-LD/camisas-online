@@ -15,11 +15,6 @@ const PRODUTOS = [
     avaliacoes: 124,
     tag: "destaque",
     tamanhos: ["PP","P","M","G","GG"],
-    cores: [
-      { nome: "Branca",  hex: "#f8f8f8" },
-      { nome: "Cinza",   hex: "#9ca3af" },
-      { nome: "Azul",    hex: "#3b82f6" }
-    ],
     descricao: "Camisa casual 100% algodão, perfeita para o dia a dia."
   },
   {
