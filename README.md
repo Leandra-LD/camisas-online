@@ -20,7 +20,7 @@ Site de e-commerce fictício desenvolvido como trabalho acadêmico para a discip
 | `pages/produtos.html` | Catálogo completo com filtros por categoria, tamanho e preço |
 | `pages/galeria.html` | Galeria de fotos com lightbox e filtro por categoria |
 | `pages/favoritos.html` | Lista de produtos salvos pelo usuário |
-| `pages/carrinho.html` | Carrinho de compras com cupons e resumo do pedido |
+| `pages/carrinho.html` | Carrinho de compras com cupons, pagamento e resumo do pedido |
 | `pages/sobre.html` | Apresentação da empresa fictícia |
 | `pages/contato.html` | Formulário de contato com validação |
 
@@ -31,13 +31,16 @@ Site de e-commerce fictício desenvolvido como trabalho acadêmico para a discip
 - Catálogo com 11 produtos em 5 categorias (Casual, Social, Polo, Estampada, Esporte)
 - Filtros por categoria, tamanho, faixa de preço e ordenação
 - Busca global que funciona entre páginas
-- Seleção de tamanho diretamente no card do produto (PP, P, M, G, GG)
+- Seleção de tamanho e cor diretamente no card do produto
 - Carrinho de compras com controle de quantidade e persistência no navegador
-- Sistema de cupons de desconto (`ESTACIO10`, `WEB20`, `PROMO15`)
+- Calculadora de pedido: subtotal, frete grátis acima de R$ 199, descontos empilháveis
+- Sistema de cupons de desconto com modal: `PATTAYA` (5%), `BANGKOK` (10%), `CHIANGMAI` (15%), `PHUKET` (20%)
+- Métodos de pagamento: PIX (5% de desconto), Crédito (até 12x), Débito e Boleto
 - Lista de favoritos persistida no navegador
 - Galeria com lightbox e navegação por teclado (← → ESC)
 - Design responsivo para celular, tablet e desktop
 - Notificações visuais (toast) para ações do usuário
+- Formulário de contato com validação de campos e máscara de telefone
 
 ---
 
@@ -79,4 +82,3 @@ Camisas online/
 ## Como Abrir
 
 Basta abrir o arquivo `index.html` em qualquer navegador. Não é necessário instalar nada.
-

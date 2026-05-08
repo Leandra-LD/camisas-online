@@ -38,8 +38,10 @@
       </a>
     </div>
     <div class="busca-wrap">
-      <input type="text" id="busca-input" placeholder="Buscar camisas..." oninput="filtroAtivo.busca=this.value;renderizarTodos()" />
-      <button><i class="fas fa-search"></i></button>
+      <input type="text" id="busca-input" placeholder="Buscar camisas..."
+             oninput="filtroAtivo.busca=this.value;renderizarTodos()"
+             onkeydown="if(event.key==='Enter'){filtroAtivo.busca=this.value;renderizarTodos()}" />
+      <button onclick="filtroAtivo.busca=document.getElementById('busca-input').value;renderizarTodos()"><i class="fas fa-search"></i></button>
     </div>
     <div class="header-acoes">
       <a href="favoritos.html" class="icone-favoritos">
