@@ -29,10 +29,10 @@ const PRODUTOS = [
     tag: "novo",
     tamanhos: ["PP","P","M","G","GG"],
     cores: [
-      { nome: "Azul",        hex: "#2563eb" },
       { nome: "Branca",      hex: "#f8f8f8" },
       { nome: "Preta",       hex: "#1f2937" },
-      { nome: "Cinza Claro", hex: "#d1d5db" }
+      { nome: "Vinho",       hex: "#7c2d2d" },
+      { nome: "Cinza Escuro",hex: "#4b5563" }
     ],
     descricao: "Camisa social azul slim fit ideal para trabalho e eventos formais."
   },
