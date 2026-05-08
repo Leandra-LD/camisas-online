@@ -28,6 +28,23 @@
 
 html { scroll-behavior: smooth; background: #f4f6f9; }
 
+/* ── TRANSIÇÃO ENTRE PÁGINAS ─────────────────────────────── */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root) {
+  animation: sairPagina .2s ease forwards;
+}
+::view-transition-new(root) {
+  animation: entrarPagina .2s ease forwards;
+}
+
+@keyframes sairPagina {
+  to { opacity: 0; transform: translateY(-4px); }
+}
+@keyframes entrarPagina {
+  from { opacity: 0; transform: translateY(4px); }
+}
+
 body {
   font-family: 'Segoe UI', Roboto, Arial, sans-serif;
   color: var(--texto);
