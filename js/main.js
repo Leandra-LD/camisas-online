@@ -80,12 +80,6 @@ const PRODUTOS = [
     avaliacoes: 78,
     tag: "novo",
     tamanhos: ["PP","P","M","G","GG"],
-    cores: [
-      { nome: "Preta",    hex: "#1f2937" },
-      { nome: "Azul",     hex: "#3b82f6" },
-      { nome: "Vermelha", hex: "#dc2626" },
-      { nome: "Verde",    hex: "#16a34a" }
-    ],
     descricao: "Listras modernas em tecido macio e durável."
   },
   {
