@@ -100,9 +100,10 @@ const PRODUTOS = [
     tag: "destaque",
     tamanhos: ["PP","P","M","G","GG"],
     cores: [
-      { nome: "Preta",    hex: "#1f2937" },
-      { nome: "Azul",     hex: "#2563eb" },
-      { nome: "Vermelha", hex: "#dc2626" }
+      { nome: "Preta",      hex: "#1f2937" },
+      { nome: "Vinho",      hex: "#7c2d2d" },
+      { nome: "Azul Escuro",hex: "#1e3a5f" },
+      { nome: "Amarelo",    hex: "#eab308" }
     ],
     descricao: "Tecnologia dry-fit para máximo desempenho nos treinos."
   },
