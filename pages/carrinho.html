@@ -123,9 +123,10 @@
       </div>
       <p class="cupom-msg" id="cupom-msg"></p>
       <a id="btn-remover-cupom" onclick="removerCupom()" style="display:none;font-size:.78rem;color:#e74c3c;cursor:pointer;text-decoration:underline;margin-bottom:6px">✕ Remover cupom</a>
-      <p style="font-size:.75rem;color:#636e72;margin-bottom:14px">
-        Cupons: <strong>ESTACIO10</strong>, <strong>WEB20</strong>, <strong>PROMO15</strong>
-      </p>
+
+      <button class="btn-ver-cupons" onclick="abrirModalCupons()">
+        <i class="fas fa-tag"></i> Ver cupons disponíveis
+      </button>
 
       <!-- PAGAMENTO -->
       <div class="pagamento-area">
@@ -218,6 +219,55 @@
 
   </div>
 </section>
+
+<!-- MODAL CUPONS -->
+<div class="overlay-modal" id="modal-cupons">
+  <div class="modal-caixa modal-cupons-caixa">
+    <button class="modal-fechar" onclick="fecharModalCupons()"><i class="fas fa-times"></i></button>
+    <h2><i class="fas fa-tag"></i> Cupons Disponíveis</h2>
+    <p style="font-size:.85rem;color:#636e72;margin-bottom:16px">Clique em "Usar" para aplicar o cupom automaticamente.</p>
+
+    <div class="lista-cupons">
+
+      <div class="cupom-card">
+        <div class="cupom-badge">10%</div>
+        <div class="cupom-info">
+          <strong>ESTACIO10</strong>
+          <span>10% de desconto em toda a compra</span>
+        </div>
+        <button class="btn-usar-cupom" onclick="usarCupom('ESTACIO10')">Usar</button>
+      </div>
+
+      <div class="cupom-card">
+        <div class="cupom-badge">20%</div>
+        <div class="cupom-info">
+          <strong>WEB20</strong>
+          <span>20% de desconto em toda a compra</span>
+        </div>
+        <button class="btn-usar-cupom" onclick="usarCupom('WEB20')">Usar</button>
+      </div>
+
+      <div class="cupom-card">
+        <div class="cupom-badge">15%</div>
+        <div class="cupom-info">
+          <strong>PROMO15</strong>
+          <span>15% de desconto em toda a compra</span>
+        </div>
+        <button class="btn-usar-cupom" onclick="usarCupom('PROMO15')">Usar</button>
+      </div>
+
+      <div class="cupom-card">
+        <div class="cupom-badge">5%</div>
+        <div class="cupom-info">
+          <strong>LEANDRA5</strong>
+          <span>5% de desconto exclusivo</span>
+        </div>
+        <button class="btn-usar-cupom" onclick="usarCupom('LEANDRA5')">Usar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- MODAL SUCESSO -->
 <div class="overlay-modal" id="modal-sucesso">

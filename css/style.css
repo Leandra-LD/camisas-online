@@ -733,6 +733,46 @@ button          { cursor: pointer; border: none; background: none; }
 .link-continuar:hover { color: var(--vermelho); }
 .icones-pag { display: flex; gap: 12px; justify-content: center; font-size: 1.85rem; color: var(--texto-muted); }
 
+/* ── BOTÃO VER CUPONS ────────────────────────────────────── */
+.btn-ver-cupons {
+  width: 100%; padding: 9px; margin-bottom: 14px;
+  background: #fff8e1; color: #e67e22; border: 1.5px dashed #f1c40f;
+  border-radius: 8px; font-size: .82rem; font-weight: 700;
+  cursor: pointer; transition: all var(--trans);
+}
+.btn-ver-cupons:hover { background: #fff3cd; border-color: #e67e22; }
+
+/* ── MODAL CUPONS ────────────────────────────────────────── */
+.modal-cupons-caixa { max-width: 440px; text-align: left; position: relative; }
+.modal-fechar {
+  position: absolute; top: 14px; right: 14px;
+  background: none; border: none; font-size: 1.1rem;
+  color: var(--texto-muted); cursor: pointer; padding: 4px 8px;
+  border-radius: 6px; transition: background var(--trans);
+}
+.modal-fechar:hover { background: var(--cinza-borda); }
+.lista-cupons { display: flex; flex-direction: column; gap: 10px; }
+.cupom-card {
+  display: flex; align-items: center; gap: 14px;
+  border: 1.5px solid var(--cinza-borda); border-radius: 10px;
+  padding: 12px 14px; transition: border-color var(--trans);
+}
+.cupom-card:hover { border-color: var(--azul); }
+.cupom-badge {
+  min-width: 52px; height: 52px; background: var(--azul); color: #fff;
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; font-weight: 800; flex-shrink: 0;
+}
+.cupom-info { flex: 1; }
+.cupom-info strong { display: block; font-size: .92rem; color: var(--azul); letter-spacing: .5px; }
+.cupom-info span { font-size: .78rem; color: var(--texto-muted); }
+.btn-usar-cupom {
+  padding: 7px 14px; background: var(--azul); color: #fff;
+  border-radius: 8px; font-size: .82rem; font-weight: 700;
+  cursor: pointer; white-space: nowrap; transition: background var(--trans);
+}
+.btn-usar-cupom:hover { background: var(--azul-esc); }
+
 /* ── MÉTODOS DE PAGAMENTO ────────────────────────────────── */
 .pagamento-area { margin: 18px 0 14px; }
 .pagamento-area h4 { font-size: .92rem; color: var(--azul); font-weight: 700; margin-bottom: 10px; }

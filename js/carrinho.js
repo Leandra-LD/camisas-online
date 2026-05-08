@@ -124,6 +124,22 @@ function atualizarResumo({ subtotal, frete, desconto, total }) {
   if (elFrete) elFrete.className = 'frete-valor';
 }
 
+/* ── MODAL CUPONS ────────────────────────────────────────── */
+function abrirModalCupons() {
+  const modal = document.getElementById('modal-cupons');
+  if (modal) modal.style.display = 'flex';
+}
+function fecharModalCupons() {
+  const modal = document.getElementById('modal-cupons');
+  if (modal) modal.style.display = 'none';
+}
+function usarCupom(codigo) {
+  const inp = document.getElementById('cupom-input');
+  if (inp) inp.value = codigo;
+  fecharModalCupons();
+  tentarCupom();
+}
+
 /* ── APLICAR CUPOM ───────────────────────────────────────── */
 const CUPONS = { 'ESTACIO10': 10, 'WEB20': 20, 'PROMO15': 15, 'LEANDRA5': 5 };
 
