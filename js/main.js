@@ -48,9 +48,11 @@ const PRODUTOS = [
     tag: "oferta",
     tamanhos: ["PP","P","M","G","GG"],
     cores: [
-      { nome: "Branca",      hex: "#f8f8f8" },
-      { nome: "Preta",       hex: "#1f2937" },
-      { nome: "Azul Marinho",hex: "#1e3a5f" }
+      { nome: "Branca", hex: "#f8f8f8" },
+      { nome: "Preta",  hex: "#1f2937" },
+      { nome: "Bege",   hex: "#d4b896" },
+      { nome: "Cinza",  hex: "#9ca3af" },
+      { nome: "Coral",  hex: "#f08060" }
     ],
     descricao: "Polo premium com listras, tecido respirável e confortável."
   },
