@@ -61,10 +61,11 @@ function limparCarrinho() {
 let percentualDesconto = 0;
 
 function calcularTotais(cart) {
-  const subtotal = cart.reduce((s, i) => s + i.preco * i.qtd, 0);
-  const frete    = cart.length === 0 || subtotal >= 199 ? 0 : 19.90;
-  const desconto = subtotal * (percentualDesconto / 100);
-  const total    = subtotal + frete - desconto;
+  const subtotal  = cart.reduce((s, i) => s + i.preco * i.qtd, 0);
+  const frete     = cart.length === 0 || subtotal >= 199 ? 0 : 19.90;
+  const pctTotal  = Math.min((percentualDesconto || 0) + (descontoPix || 0), 100);
+  const desconto  = subtotal * (pctTotal / 100);
+  const total     = subtotal + frete - desconto;
   return { subtotal, frete, desconto, total };
 }
 
@@ -156,6 +157,55 @@ function removerCupom() {
   renderizarCarrinho();
 }
 
+/* ── MÉTODOS DE PAGAMENTO ────────────────────────────────── */
+let metodoPagamento = null;
+
+function selecionarPagamento(metodo) {
+  metodoPagamento = metodo;
+
+  // Remover seleção de todos
+  document.querySelectorAll('.metodo-card').forEach(c => c.classList.remove('selecionado'));
+  // Marcar selecionado
+  const card = document.getElementById('metodo-' + metodo);
+  if (card) card.classList.add('selecionado');
+
+  // Mostrar/ocultar áreas extras
+  const areaParcelas = document.getElementById('area-parcelas');
+  const areaPix      = document.getElementById('area-pix');
+  const areaBoleto   = document.getElementById('area-boleto');
+  if (areaParcelas) areaParcelas.style.display = metodo === 'credito' ? 'block' : 'none';
+  if (areaPix)      areaPix.style.display      = metodo === 'pix'     ? 'block' : 'none';
+  if (areaBoleto)   areaBoleto.style.display    = metodo === 'boleto'  ? 'block' : 'none';
+
+  // Desconto PIX (5%)
+  if (metodo === 'pix') {
+    aplicarDesconto(percentualDesconto > 0 ? percentualDesconto : 0);
+    descontoPix = 5;
+  } else {
+    descontoPix = 0;
+  }
+  renderizarCarrinho();
+
+  const aviso = document.getElementById('aviso-pagamento');
+  if (aviso) aviso.style.display = 'none';
+}
+
+function selecionarParcela(parcelas) {
+  const total = calcularTotais(obterCarrinho()).total;
+  const info  = document.getElementById('info-parcela');
+  if (!info) return;
+  const n = parseInt(parcelas);
+  if (n <= 6) {
+    info.textContent = `${n}x de ${formatarPreco(total / n)} sem juros`;
+  } else {
+    const taxa  = 0.0199;
+    const parc  = total * (taxa * Math.pow(1 + taxa, n)) / (Math.pow(1 + taxa, n) - 1);
+    info.textContent = `${n}x de ${formatarPreco(parc)} com juros`;
+  }
+}
+
+let descontoPix = 0;
+
 /* ── FINALIZAR COMPRA ────────────────────────────────────── */
 function finalizarCompra() {
   const cart = obterCarrinho();
@@ -163,9 +213,16 @@ function finalizarCompra() {
     mostrarToast('Seu carrinho está vazio!', 'aviso');
     return;
   }
+  const aviso = document.getElementById('aviso-pagamento');
+  if (!metodoPagamento) {
+    if (aviso) aviso.style.display = 'block';
+    mostrarToast('Selecione uma forma de pagamento!', 'aviso');
+    return;
+  }
+  const nomes = { pix: 'PIX', credito: 'Cartão de Crédito', debito: 'Cartão de Débito', boleto: 'Boleto' };
   const num = 'CO' + Date.now().toString().slice(-6);
   const el  = document.getElementById('num-pedido');
-  if (el) el.textContent = `Número do pedido: #${num}`;
+  if (el) el.textContent = `Pedido #${num} — ${nomes[metodoPagamento]}`;
   const modal = document.getElementById('modal-sucesso');
   if (modal) modal.classList.add('aberto');
 }

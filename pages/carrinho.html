@@ -127,6 +127,80 @@
         Cupons: <strong>ESTACIO10</strong>, <strong>WEB20</strong>, <strong>PROMO15</strong>
       </p>
 
+      <!-- PAGAMENTO -->
+      <div class="pagamento-area">
+        <h4><i class="fas fa-credit-card"></i> Forma de Pagamento</h4>
+        <div class="metodos-grid">
+
+          <label class="metodo-card" id="metodo-pix">
+            <input type="radio" name="pagamento" value="pix" onchange="selecionarPagamento('pix')" />
+            <i class="fab fa-pix"></i>
+            <span class="metodo-nome">PIX</span>
+            <span class="metodo-desc">5% de desconto</span>
+          </label>
+
+          <label class="metodo-card" id="metodo-credito">
+            <input type="radio" name="pagamento" value="credito" onchange="selecionarPagamento('credito')" />
+            <i class="fab fa-cc-visa"></i>
+            <span class="metodo-nome">Crédito</span>
+            <span class="metodo-desc">até 12x</span>
+          </label>
+
+          <label class="metodo-card" id="metodo-debito">
+            <input type="radio" name="pagamento" value="debito" onchange="selecionarPagamento('debito')" />
+            <i class="fab fa-cc-mastercard"></i>
+            <span class="metodo-nome">Débito</span>
+            <span class="metodo-desc">à vista</span>
+          </label>
+
+          <label class="metodo-card" id="metodo-boleto">
+            <input type="radio" name="pagamento" value="boleto" onchange="selecionarPagamento('boleto')" />
+            <i class="fas fa-barcode"></i>
+            <span class="metodo-nome">Boleto</span>
+            <span class="metodo-desc">vence em 3 dias</span>
+          </label>
+
+        </div>
+
+        <!-- Parcelas (só aparece no crédito) -->
+        <div id="area-parcelas" style="display:none;margin-top:10px">
+          <select id="select-parcelas" onchange="selecionarParcela(this.value)"
+                  style="width:100%;padding:9px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:.9rem">
+            <option value="1">1x sem juros</option>
+            <option value="2">2x sem juros</option>
+            <option value="3">3x sem juros</option>
+            <option value="4">4x sem juros</option>
+            <option value="5">5x sem juros</option>
+            <option value="6">6x sem juros</option>
+            <option value="7">7x + 1,99% a.m.</option>
+            <option value="8">8x + 1,99% a.m.</option>
+            <option value="9">9x + 1,99% a.m.</option>
+            <option value="10">10x + 1,99% a.m.</option>
+            <option value="11">11x + 1,99% a.m.</option>
+            <option value="12">12x + 1,99% a.m.</option>
+          </select>
+          <p id="info-parcela" style="font-size:.78rem;color:#1b3f6e;margin-top:6px;font-weight:600"></p>
+        </div>
+
+        <!-- PIX info -->
+        <div id="area-pix" style="display:none;margin-top:10px;background:#f0faf4;border-radius:8px;padding:12px;text-align:center;border:1.5px solid #27ae60">
+          <i class="fab fa-pix" style="font-size:2rem;color:#27ae60"></i>
+          <p style="font-size:.85rem;color:#27ae60;font-weight:700;margin:4px 0">5% de desconto aplicado!</p>
+          <p style="font-size:.78rem;color:#636e72">O QR Code será gerado ao finalizar o pedido.</p>
+        </div>
+
+        <!-- Boleto info -->
+        <div id="area-boleto" style="display:none;margin-top:10px;background:#fffbf0;border-radius:8px;padding:12px;border:1.5px solid #f1c40f">
+          <i class="fas fa-barcode" style="font-size:1.5rem;color:#e67e22"></i>
+          <p style="font-size:.85rem;color:#e67e22;font-weight:700;margin:4px 0">Boleto vence em 3 dias úteis</p>
+          <p style="font-size:.78rem;color:#636e72">O boleto será enviado por e-mail após confirmação.</p>
+        </div>
+
+        <p id="aviso-pagamento" style="font-size:.75rem;color:#e74c3c;margin-top:6px;display:none">
+          Selecione uma forma de pagamento.
+        </p>
+      </div>
+
       <button class="btn-finalizar" onclick="finalizarCompra()">
         <i class="fas fa-lock"></i> Finalizar Compra
       </button>
