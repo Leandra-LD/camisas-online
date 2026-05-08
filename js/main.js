@@ -100,6 +100,7 @@ const PRODUTOS = [
     tag: "destaque",
     tamanhos: ["PP","P","M","G","GG"],
     cores: [
+      { nome: "Branca",     hex: "#f8f8f8" },
       { nome: "Preta",      hex: "#1f2937" },
       { nome: "Vinho",      hex: "#7c2d2d" },
       { nome: "Azul Escuro",hex: "#1e3a5f" },
