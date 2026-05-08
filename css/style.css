@@ -28,6 +28,27 @@
 
 html { scroll-behavior: smooth; }
 
+/* ── TRANSIÇÃO DE PÁGINA ─────────────────────────────────── */
+body {
+  animation: fadeInPage .3s ease both;
+}
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+a[href]:not([href^="#"]):not([href^="javascript"]):not([onclick]) {
+  transition: opacity .15s ease;
+}
+
+.page-saindo {
+  animation: fadeOutPage .2s ease forwards;
+  pointer-events: none;
+}
+@keyframes fadeOutPage {
+  to { opacity: 0; transform: translateY(-6px); }
+}
+
 body {
   font-family: 'Segoe UI', Roboto, Arial, sans-serif;
   color: var(--texto);
