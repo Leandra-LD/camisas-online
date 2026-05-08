@@ -336,7 +336,7 @@ function renderizarTodos() {
 
   el.innerHTML = lista.length
     ? lista.map(criarCardProduto).join('')
-    : '<p style="text-align:center;color:#636e72;padding:40px 0">Nenhum produto encontrado com esses filtros.</p>';
+    : '<p style="text-align:center;color:#636e72;padding:40px 0;grid-column:1/-1;width:100%">Nenhum produto encontrado com esses filtros.</p>';
 }
 
 function aplicarFiltros() {
