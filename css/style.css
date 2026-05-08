@@ -542,8 +542,8 @@ button          { cursor: pointer; border: none; background: none; }
 
 /* ── SELETOR DE CORES ─────────────────────────────────────── */
 .cor-card-wrap {
-  display: flex; align-items: center; gap: 8px;
-  margin: 10px 0 12px; flex-wrap: wrap;
+  display: flex; flex-direction: column; gap: 6px;
+  margin: 10px 0 12px;
 }
 .cor-card-btns { display: flex; gap: 6px; flex-wrap: wrap; }
 .btn-cor-card {
