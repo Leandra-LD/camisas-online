@@ -746,8 +746,8 @@ button          { cursor: pointer; border: none; background: none; }
 .modal-cupons-caixa { max-width: 440px; text-align: left; position: relative; }
 .modal-fechar {
   position: absolute; top: 14px; right: 14px;
-  background: none; border: none; font-size: 1.1rem;
-  color: var(--texto-muted); cursor: pointer; padding: 4px 8px;
+  background: none; border: none; font-size: .75rem;
+  color: var(--texto-muted); cursor: pointer; padding: 3px 7px;
   border-radius: 6px; transition: background var(--trans);
 }
 .modal-fechar:hover { background: var(--cinza-borda); }

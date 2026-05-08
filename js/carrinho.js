@@ -141,7 +141,7 @@ function usarCupom(codigo) {
 }
 
 /* ── APLICAR CUPOM ───────────────────────────────────────── */
-const CUPONS = { 'ESTACIO10': 10, 'WEB20': 20, 'PROMO15': 15, 'LEANDRA5': 5 };
+const CUPONS = { 'BANGKOK': 10, 'PHUKET': 20, 'CHIANGMAI': 15, 'PATTAYA': 5 };
 
 function tentarCupom() {
   const inp = document.getElementById('cupom-input');
