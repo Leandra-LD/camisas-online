@@ -28,15 +28,6 @@
 
 html { scroll-behavior: smooth; background: #f4f6f9; }
 
-/* ── TRANSIÇÃO DE PÁGINA ─────────────────────────────────── */
-body {
-  animation: fadeInPage .25s ease both;
-}
-@keyframes fadeInPage {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
 body {
   font-family: 'Segoe UI', Roboto, Arial, sans-serif;
   color: var(--texto);
