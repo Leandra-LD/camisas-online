@@ -180,10 +180,11 @@ const PRODUTOS = [
     tag: "oferta",
     tamanhos: ["PP","P","M","G","GG"],
     cores: [
-      { nome: "Branca",  hex: "#f8f8f8" },
-      { nome: "Preta",   hex: "#1f2937" },
-      { nome: "Cinza",   hex: "#9ca3af" },
-      { nome: "Azul",    hex: "#3b82f6" }
+      { nome: "Branca",      hex: "#f8f8f8" },
+      { nome: "Preta",       hex: "#1f2937" },
+      { nome: "Cinza",       hex: "#9ca3af" },
+      { nome: "Azul",        hex: "#3b82f6" },
+      { nome: "Verde Escuro",hex: "#14532d" }
     ],
     descricao: "Modelo simples e versátil para o dia a dia."
   }
