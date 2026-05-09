@@ -110,7 +110,9 @@ function renderizarCarrinho() {
     <div class="item-cart-info">
       <h4>${item.nome}</h4>
       <p class="tamanho">Tamanho: <strong>${item.tamanho}</strong></p>
-      ${item.cor ? `<p class="tamanho">Cor: <strong>${item.cor}</strong></p>` : ''}
+      ${item.cor
+        ? `<p class="tamanho">Cor: <strong>${item.cor}</strong></p>`
+        : `<p class="tamanho"><span class="cor-unica-wrap" style="margin:2px 0 4px"><i class="fas fa-tshirt cor-unica-icon"></i><span class="cor-unica-label">Cor única</span></span></p>`}
       <p class="preco-item">${formatarPreco(item.preco)}</p>
       <div class="qtd-controle">
         <button onclick="alterarQtd(${item.id},'${item.tamanho}','${item.cor || ''}',-1)"><i class="fas fa-minus"></i></button>
