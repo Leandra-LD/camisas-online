@@ -260,7 +260,7 @@ function criarCardProduto(p) {
           <i class="fas fa-cart-plus"></i> Adicionar
         </button>
         <button class="btn-fav" onclick="toggleFavorito(this)" data-id="${p.id}" title="Favoritar">
-          <i class="${obterFavoritos().includes(p.id) ? 'fas' : 'far'} fa-heart"></i>
+          <i class="${favoritoInclui(p.id) ? 'fas' : 'far'} fa-heart"></i>
         </button>
       </div>
     </div>
@@ -386,20 +386,29 @@ function toggleView(modo) {
 const CHAVE_FAV = 'camisas_favoritos';
 
 function obterFavoritos() {
-  return JSON.parse(localStorage.getItem(CHAVE_FAV) || '[]');
+  const raw = JSON.parse(localStorage.getItem(CHAVE_FAV) || '[]');
+  // compatibilidade com formato antigo (array de números)
+  return raw.map(f => typeof f === 'object' ? f : { id: f, tamanho: null, cor: null });
 }
 function salvarFavoritos(favs) {
   localStorage.setItem(CHAVE_FAV, JSON.stringify(favs));
 }
+function favoritoInclui(id) {
+  return obterFavoritos().some(f => f.id === id);
+}
 
 function toggleFavorito(btn) {
-  const id = parseInt(btn.dataset.id);
+  const id  = parseInt(btn.dataset.id);
   const ico = btn.querySelector('i');
   const favs = obterFavoritos();
-  const idx = favs.indexOf(id);
+  const idx  = favs.findIndex(f => f.id === id);
 
   if (idx === -1) {
-    favs.push(id);
+    // captura tamanho e cor do card no momento do clique
+    const card    = btn.closest('.card-produto');
+    const tamanho = card ? card.dataset.tamSel  : null;
+    const cor     = card ? (card.dataset.corSel || null) : null;
+    favs.push({ id, tamanho, cor });
     ico.classList.replace('far', 'fas');
     btn.classList.add('ativo');
     mostrarToast('Adicionado aos favoritos!', 'ok');
@@ -424,21 +433,47 @@ function atualizarBadgeFavoritos() {
 }
 
 function renderizarFavoritos() {
-  const el = document.getElementById('lista-favoritos');
+  const el    = document.getElementById('lista-favoritos');
   const vazio = document.getElementById('favoritos-vazio');
   if (!el) return;
-  const favs = obterFavoritos();
-  const lista = PRODUTOS.filter(p => favs.includes(p.id));
+  const favs  = obterFavoritos();
+  const lista = PRODUTOS.filter(p => favoritoInclui(p.id));
   if (lista.length === 0) {
     el.innerHTML = '';
     if (vazio) vazio.style.display = 'block';
   } else {
     if (vazio) vazio.style.display = 'none';
     el.innerHTML = lista.map(criarCardProduto).join('');
-    // marcar corações como ativos
-    el.querySelectorAll('.btn-fav').forEach(btn => {
-      btn.querySelector('i').classList.replace('far', 'fas');
-      btn.classList.add('ativo');
+    // restaurar tamanho e cor salvos + marcar coração ativo
+    el.querySelectorAll('.card-produto').forEach(card => {
+      const id  = parseInt(card.dataset.id);
+      const fav = favs.find(f => f.id === id);
+      if (!fav) return;
+
+      // restaurar tamanho
+      if (fav.tamanho) {
+        card.querySelectorAll('.btn-tam-card').forEach(b => {
+          b.classList.toggle('sel', b.dataset.tam === fav.tamanho);
+        });
+        card.dataset.tamSel = fav.tamanho;
+      }
+
+      // restaurar cor
+      if (fav.cor && card.querySelector('.btn-cor-card')) {
+        card.querySelectorAll('.btn-cor-card').forEach(b => {
+          b.classList.toggle('sel', b.dataset.cor === fav.cor);
+        });
+        card.dataset.corSel = fav.cor;
+        const nomeEl = card.querySelector('.cor-nome-sel');
+        if (nomeEl) nomeEl.textContent = fav.cor;
+      }
+
+      // marcar coração
+      const btnFav = card.querySelector('.btn-fav');
+      if (btnFav) {
+        btnFav.querySelector('i').classList.replace('far', 'fas');
+        btnFav.classList.add('ativo');
+      }
     });
   }
 }
