@@ -110,9 +110,13 @@ function renderizarCarrinho() {
     <div class="item-cart-info">
       <h4>${item.nome}</h4>
       <p class="tamanho">Tamanho: <strong>${item.tamanho}</strong></p>
-      ${item.cor
-        ? `<p class="tamanho">Cor: <strong>${item.cor}</strong></p>`
-        : `<p class="tamanho"><span class="cor-unica-wrap" style="margin:2px 0 4px"><i class="fas fa-tshirt cor-unica-icon"></i><span class="cor-unica-label">Cor única</span></span></p>`}
+      ${(() => {
+          if (!item.cor) return `<p class="tamanho"><span class="cor-unica-wrap" style="margin:2px 0 4px"><i class="fas fa-tshirt cor-unica-icon"></i><span class="cor-unica-label">Cor única</span></span></p>`;
+          const prod = PRODUTOS.find(p => p.id === item.id);
+          const corObj = prod && prod.cores ? prod.cores.find(c => c.nome === item.cor) : null;
+          const bolinha = corObj ? `<span style="display:inline-block;width:13px;height:13px;border-radius:50%;background:${corObj.hex};border:1.5px solid rgba(0,0,0,.18);outline:1.5px solid rgba(0,0,0,.08);vertical-align:middle;margin-right:5px;flex-shrink:0"></span>` : '';
+          return `<p class="tamanho" style="display:flex;align-items:center;gap:4px">Cor: ${bolinha}<strong>${item.cor}</strong></p>`;
+        })()}
       <p class="preco-item">${formatarPreco(item.preco)}</p>
       <div class="qtd-controle">
         <button onclick="alterarQtd(${item.id},'${item.tamanho}','${item.cor || ''}',-1)"><i class="fas fa-minus"></i></button>
