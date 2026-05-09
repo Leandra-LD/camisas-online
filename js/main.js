@@ -225,7 +225,11 @@ function criarCardProduto(p) {
           style="background:${c.hex}"
           title="${c.nome}"></button>`).join('')}
       </div>
-    </div>` : '';
+    </div>` : `
+    <div class="cor-unica-wrap">
+      <i class="fas fa-tshirt cor-unica-icon"></i>
+      <span class="cor-unica-label">Cor única</span>
+    </div>`;
 
   return `
   <div class="card-produto" data-id="${p.id}" data-tam-sel="${tamSelecionado}" data-cor-sel="${corSelecionada}">

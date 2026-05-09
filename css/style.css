@@ -562,6 +562,17 @@ button          { cursor: pointer; border: none; background: none; }
   transform: scale(1.12);
 }
 
+/* ── COR ÚNICA ───────────────────────────────────────────── */
+.cor-unica-wrap {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin: 10px 0 12px;
+  background: #f0f4ff; border: 1.5px solid #c7d5f5;
+  border-radius: 20px; padding: 4px 10px;
+  width: fit-content;
+}
+.cor-unica-icon { color: #4a6fa5; font-size: .78rem; }
+.cor-unica-label { font-size: .78rem; font-weight: 700; color: #4a6fa5; }
+
 .btn-limpar-filtros {
   width: 100%; padding: 10px;
   background: #fdecea; color: #c0392b;
