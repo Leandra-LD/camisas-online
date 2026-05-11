@@ -279,6 +279,10 @@
 │   ├── <span class="arq">polo-premium.jpg</span>
 │   └── <span class="arq">hero-banner.jpg, estacio-logo.png ...</span>
 │
+├── <span class="pasta">php/</span>                    <span style="color:#55efc4">← Scripts PHP (back-end)</span>
+│   ├── <span class="php">contato.php</span>
+│   └── <span class="php">pedido.php</span>
+│
 └── <span class="pasta">relatorio/</span>              <span style="color:#55efc4">← Documentação</span>
     └── <span class="arq">relatorio.html</span>
   </div>
@@ -382,10 +386,10 @@
 
   <h3><span class="badge badge-php">PHP</span> Back-end</h3>
   <ul>
-    <li>Processamento server-side do formulário de contato com envio de e-mail via <code>mail()</code></li>
+    <li><code>contato.php</code> — processamento server-side do formulário de contato com sanitização, validação e envio de e-mail via <code>mail()</code></li>
+    <li><code>pedido.php</code> — recebe os itens do carrinho via JSON, gera número de pedido único e registra os dados em arquivo</li>
     <li>Validação server-side dos dados enviados pelo usuário</li>
-    <li>Gerenciamento de sessões para controle de login e carrinho persistente</li>
-    <li>Integração com banco de dados MySQL para armazenamento de pedidos e clientes</li>
+    <li>Registro de logs de contatos e pedidos em arquivos no servidor</li>
   </ul>
 
 </div>
@@ -450,8 +454,8 @@
   <h2 class="secao-titulo"><i class="fas fa-check-circle"></i> 8. Considerações Finais</h2>
   <p>
     O projeto <strong>Camisas Online</strong> atingiu todos os objetivos propostos: criação de um
-    site multi-páginas organizado em pastas, uso das linguagens solicitadas (HTML5, CSS3 e
-    JavaScript), design responsivo e funcionalidades de e-commerce.
+    site multi-páginas organizado em pastas, uso das linguagens solicitadas (HTML5, CSS3,
+    JavaScript e PHP), design responsivo e funcionalidades de e-commerce.
   </p>
   <p>
     Durante o desenvolvimento foram aplicados conceitos fundamentais de desenvolvimento web como
