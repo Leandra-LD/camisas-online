@@ -155,7 +155,33 @@ function atualizarResumo({ subtotal, frete, desconto, total }) {
 /* ── MODAL CUPONS ────────────────────────────────────────── */
 function abrirModalCupons() {
   const modal = document.getElementById('modal-cupons');
-  if (modal) modal.classList.add('aberto');
+  if (!modal) return;
+
+  const subtotal = obterCarrinho().reduce((s, i) => s + i.preco * i.qtd, 0);
+
+  modal.querySelectorAll('.cupom-card[data-cupom]').forEach(card => {
+    const cod        = card.dataset.cupom;
+    const btn        = card.querySelector('.btn-usar-cupom');
+    const faltaEl    = card.querySelector('.cupom-falta');
+    const badge      = card.querySelector('.cupom-badge');
+    const cupom      = CUPONS[cod];
+    if (!cupom || !btn) return;
+
+    const disponivel = subtotal >= cupom.minimo;
+    const falta      = cupom.minimo - subtotal;
+
+    card.classList.toggle('cupom-indisponivel', !disponivel);
+    btn.disabled = !disponivel;
+
+    if (!disponivel) {
+      if (faltaEl) faltaEl.textContent = `Faltam ${formatarPreco(falta)} para usar`;
+      if (badge)   badge.setAttribute('title', `Mínimo ${formatarPreco(cupom.minimo)}`);
+    } else {
+      if (faltaEl) faltaEl.textContent = '';
+    }
+  });
+
+  modal.classList.add('aberto');
 }
 function fecharModalCupons() {
   const modal = document.getElementById('modal-cupons');

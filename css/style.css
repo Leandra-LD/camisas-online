@@ -797,21 +797,39 @@ button          { cursor: pointer; border: none; background: none; }
   border: 1.5px solid var(--cinza-borda); border-radius: 10px;
   padding: 12px 14px; transition: border-color var(--trans);
 }
-.cupom-card:hover { border-color: var(--azul); }
+.cupom-card:hover:not(.cupom-indisponivel) { border-color: var(--azul); }
 .cupom-badge {
   min-width: 52px; height: 52px; background: var(--azul); color: #fff;
   border-radius: 10px; display: flex; align-items: center; justify-content: center;
   font-size: 1.1rem; font-weight: 800; flex-shrink: 0;
+  transition: background var(--trans);
 }
 .cupom-info { flex: 1; }
 .cupom-info strong { display: block; font-size: .92rem; color: var(--azul); letter-spacing: .5px; }
 .cupom-info span { font-size: .78rem; color: var(--texto-muted); }
+.cupom-falta {
+  display: block; font-size: .73rem; color: var(--laranja);
+  font-weight: 700; margin-top: 3px;
+}
 .btn-usar-cupom {
   padding: 7px 14px; background: var(--azul); color: #fff;
   border-radius: 8px; font-size: .82rem; font-weight: 700;
   cursor: pointer; white-space: nowrap; transition: background var(--trans);
 }
 .btn-usar-cupom:hover { background: var(--azul-esc); }
+
+/* Cupom indisponível */
+.cupom-indisponivel {
+  opacity: .55;
+  border-color: var(--cinza-borda) !important;
+}
+.cupom-indisponivel .cupom-badge { background: var(--texto-muted); }
+.cupom-indisponivel .cupom-info strong { color: var(--texto-muted); }
+.cupom-indisponivel .btn-usar-cupom {
+  background: var(--cinza-borda);
+  color: var(--texto-muted);
+  cursor: not-allowed;
+}
 
 /* ── MÉTODOS DE PAGAMENTO ────────────────────────────────── */
 .pagamento-area { margin: 18px 0 14px; }
