@@ -784,13 +784,14 @@ button          { cursor: pointer; border: none; background: none; }
 
 /* ── MODAL CUPONS ────────────────────────────────────────── */
 .modal-cupons-caixa { max-width: 440px; text-align: left; position: relative; }
-.modal-fechar {
+.modal-caixa .modal-fechar {
   position: absolute; top: 12px; right: 12px;
-  background: none; border: none; font-size: .7rem;
-  color: var(--texto-muted); cursor: pointer; padding: 2px 5px;
+  background: none !important; border: none; font-size: 1rem;
+  color: var(--texto-muted); cursor: pointer; padding: 4px 8px;
   border-radius: 4px; line-height: 1; transition: color var(--trans);
+  margin-top: 0 !important;
 }
-.modal-fechar:hover { color: var(--vermelho); background: none; }
+.modal-caixa .modal-fechar:hover { color: var(--vermelho); background: none !important; }
 .lista-cupons { display: flex; flex-direction: column; gap: 10px; }
 .cupom-card {
   display: flex; align-items: center; gap: 14px;
