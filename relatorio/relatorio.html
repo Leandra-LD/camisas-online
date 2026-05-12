@@ -365,6 +365,9 @@
     <li>Animações e transições suaves (hover, toast, lightbox)</li>
     <li>Design moderno com cards, sombras, gradientes e bordas arredondadas</li>
     <li>Navbar com indicador da página ativa</li>
+    <li>Cards de produto com <code>display: flex; flex-direction: column</code> — todos os cards de uma linha ficam com a mesma altura e os botões de ação sempre alinhados na base</li>
+    <li>Cards de vantagens e de valores também utilizam layout flex-column para altura uniforme na grade</li>
+    <li>Cupons indisponíveis no modal exibem estilo específico (acinzentado, botão bloqueado e mensagem de quanto falta)</li>
   </ul>
 
   <h3><span class="badge badge-js">JavaScript</span> Interatividade</h3>
@@ -374,14 +377,15 @@
     <li>Filtros de produtos por categoria, tamanho, preço e ordenação; campo de busca com botão e suporte à tecla Enter</li>
     <li>Busca global persistida via sessionStorage entre páginas</li>
     <li>Galeria lightbox com navegação por teclado (setas e ESC)</li>
-    <li>Sistema de cupons de desconto com validação de compra mínima: PATTAYA 5% (mín. R$ 50), BANGKOK 10% (mín. R$ 100), CHIANGMAI 15% (mín. R$ 150) e PHUKET 20% (mín. R$ 200); cupons indisponíveis são bloqueados no modal e removidos automaticamente se o subtotal cair abaixo do mínimo</li>
-    <li>Métodos de pagamento: PIX (5% de desconto com QR Code gerado automaticamente), Cartão de Crédito (até 12x com juros), Débito e Boleto</li>
-    <li>Calculadora do carrinho: subtotal, frete grátis acima de R$ 199, desconto empilhável (cupom + PIX)</li>
-    <li>Validação de formulário no client-side com mensagens de erro</li>
-    <li>Notificações toast animadas</li>
+    <li>Sistema de cupons de desconto com validação de compra mínima: PATTAYA 5% (mín. R$ 50), BANGKOK 10% (mín. R$ 100), CHIANGMAI 15% (mín. R$ 150) e PHUKET 20% (mín. R$ 200); cupons indisponíveis são bloqueados no modal com mensagem indicando quanto falta; o cupom é removido automaticamente ao apagar o código do campo ou se o subtotal cair abaixo do mínimo após remover itens</li>
+    <li>Métodos de pagamento: PIX (5% de desconto com QR Code gerado automaticamente via API externa), Cartão de Crédito (até 12x com juros calculados pela fórmula de amortização Price), Débito e Boleto</li>
+    <li>Calculadora financeira do carrinho com precisão centesimal: subtotal, frete grátis acima de R$ 199,00, desconto empilhável (cupom + PIX), todos os valores arredondados para 2 casas decimais garantindo que a soma das linhas exibidas seja exata; valor das parcelas atualizado automaticamente ao aplicar ou remover cupom</li>
+    <li>Contador dinâmico do carrinho e favoritos no header — badges se ocultam automaticamente quando o contador é zero</li>
+    <li>Salvamento de tamanho e cor selecionados ao favoritar produto — restaurados ao abrir a página de favoritos</li>
+    <li>Validação de formulário no client-side com mensagens de erro individuais por campo</li>
+    <li>Notificações toast animadas para ações do carrinho e favoritos</li>
     <li>Máscara de telefone em tempo real</li>
-    <li>Contador dinâmico do carrinho e favoritos no header</li>
-    <li>Toggles de visualização em grade/lista</li>
+    <li>Toggles de visualização em grade/lista na página de produtos</li>
   </ul>
 
   <h3><span class="badge badge-php">PHP</span> Back-end</h3>
@@ -472,9 +476,12 @@
     <p>✔ Identificação da aluna Leandra Carreiro Silva Justino | RA 202508166267</p>
     <p>✔ Disciplina Desenvolvimento Web | Professor Paulo Cruz</p>
     <p>✔ Imagens de camisas armazenadas localmente na pasta images/ com nomes correspondentes aos produtos</p>
-    <p>✔ Carrinho de compras funcional com localStorage, cupons de desconto e métodos de pagamento</p>
+    <p>✔ Carrinho de compras funcional com localStorage, cupons com compra mínima e métodos de pagamento</p>
+    <p>✔ Calculadora financeira com arredondamento preciso — subtotal, frete, desconto e total sempre consistentes</p>
     <p>✔ Seleção de cor com bolinhas interativas em 4 produtos; badge "Cor única" nos 7 produtos sem variação de cor</p>
+    <p>✔ Favoritos com salvamento e restauração de tamanho e cor selecionados</p>
     <p>✔ Geração de QR Code PIX automático ao finalizar pedido via API externa</p>
+    <p>✔ Layout uniforme dos cards — mesma altura na grade com botões sempre alinhados na base</p>
     <p>✔ Design responsivo para mobile, tablet e desktop</p>
   </div>
 
