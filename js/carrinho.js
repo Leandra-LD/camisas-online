@@ -104,6 +104,8 @@ function renderizarCarrinho() {
   }
   if (vazio) vazio.style.display = 'none';
 
+  revalidarCupom(cart);
+
   lista.innerHTML = cart.map(item => `
   <div class="item-cart">
     <img class="item-cart-img" src="${prefixo()}images/${item.imagem}" alt="${item.nome}" />
@@ -167,7 +169,12 @@ function usarCupom(codigo) {
 }
 
 /* ── APLICAR CUPOM ───────────────────────────────────────── */
-const CUPONS = { 'BANGKOK': 10, 'PHUKET': 20, 'CHIANGMAI': 15, 'PATTAYA': 5 };
+const CUPONS = {
+  'PATTAYA':   { desconto: 5,  minimo: 50   },
+  'BANGKOK':   { desconto: 10, minimo: 100  },
+  'CHIANGMAI': { desconto: 15, minimo: 150  },
+  'PHUKET':    { desconto: 20, minimo: 200  }
+};
 
 function tentarCupom() {
   const inp = document.getElementById('cupom-input');
@@ -175,15 +182,50 @@ function tentarCupom() {
   const btn = document.getElementById('btn-remover-cupom');
   if (!inp || !msg) return;
   const cod = inp.value.trim().toUpperCase();
-  if (CUPONS[cod]) {
-    const pct = CUPONS[cod];
-    msg.textContent = `Cupom "${cod}" aplicado — ${pct}% de desconto!`;
-    msg.style.color = '#27ae60';
-    if (btn) btn.style.display = 'inline';
-    aplicarDesconto(pct);
-  } else {
+
+  if (!CUPONS[cod]) {
     msg.textContent = 'Cupom inválido ou expirado.';
     msg.style.color = '#e74c3c';
+    if (btn) btn.style.display = 'none';
+    return;
+  }
+
+  const { desconto, minimo } = CUPONS[cod];
+  const subtotal = obterCarrinho().reduce((s, i) => s + i.preco * i.qtd, 0);
+
+  if (subtotal < minimo) {
+    const falta = minimo - subtotal;
+    msg.textContent = `Compra mínima de ${formatarPreco(minimo)} para este cupom. Faltam ${formatarPreco(falta)}.`;
+    msg.style.color = '#e67e22';
+    if (btn) btn.style.display = 'none';
+    return;
+  }
+
+  msg.textContent = `Cupom "${cod}" aplicado — ${desconto}% de desconto!`;
+  msg.style.color = '#27ae60';
+  if (btn) btn.style.display = 'inline';
+  aplicarDesconto(desconto);
+}
+
+/* ── REVALIDAR CUPOM AO ALTERAR CARRINHO ─────────────────── */
+function revalidarCupom(cart) {
+  if (!percentualDesconto) return;
+  const inp = document.getElementById('cupom-input');
+  if (!inp) return;
+  const cod = inp.value.trim().toUpperCase();
+  if (!cod || !CUPONS[cod]) return;
+
+  const subtotal = cart.reduce((s, i) => s + i.preco * i.qtd, 0);
+  const { minimo } = CUPONS[cod];
+
+  if (subtotal < minimo) {
+    percentualDesconto = 0;
+    const msg = document.getElementById('cupom-msg');
+    const btn = document.getElementById('btn-remover-cupom');
+    if (msg) {
+      msg.textContent = `Cupom removido: subtotal ficou abaixo do mínimo de ${formatarPreco(minimo)}.`;
+      msg.style.color = '#e74c3c';
+    }
     if (btn) btn.style.display = 'none';
   }
 }
