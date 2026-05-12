@@ -390,10 +390,11 @@
 
   <h3><span class="badge badge-php">PHP</span> Back-end</h3>
   <ul>
-    <li><code>contato.php</code> — processamento server-side do formulário de contato com sanitização, validação e envio de e-mail via <code>mail()</code></li>
-    <li><code>pedido.php</code> — recebe os itens do carrinho via JSON, gera número de pedido único e registra os dados em arquivo</li>
-    <li>Validação server-side dos dados enviados pelo usuário</li>
-    <li>Registro de logs de contatos e pedidos em arquivos no servidor</li>
+    <li><code>contato.php</code> — formulário de contato envia os dados via <code>fetch</code> (AJAX) para o PHP, que sanitiza, valida server-side e envia e-mail via <code>mail()</code>; suporta resposta JSON (AJAX) e redirecionamento (POST direto)</li>
+    <li><code>pedido.php</code> — ao finalizar a compra, o carrinho é enviado via <code>fetch</code> com payload JSON; o PHP gera número de pedido único, salva o registro em arquivo JSON e retorna confirmação; o QR Code PIX usa o número retornado pelo servidor</li>
+    <li>Validação e sanitização server-side com <code>htmlspecialchars</code>, <code>strip_tags</code> e <code>filter_var</code></li>
+    <li>Registro de logs de contatos (<code>logs/contatos.log</code>) e pedidos (<code>pedidos/</code>) em arquivos no servidor</li>
+    <li>Compatibilidade com ambiente acadêmico sem servidor: o <code>catch</code> do <code>fetch</code> garante que o fluxo funciona mesmo sem PHP ativo</li>
   </ul>
 
 </div>

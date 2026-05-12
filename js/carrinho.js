@@ -331,17 +331,47 @@ function finalizarCompra() {
     mostrarToast('Selecione uma forma de pagamento!', 'aviso');
     return;
   }
+
+  const nomes   = { pix: 'PIX', credito: 'Cartão de Crédito', debito: 'Cartão de Débito', boleto: 'Boleto' };
+  const totais  = calcularTotais(cart);
+  const numLocal = 'CO' + Date.now().toString().slice(-6);
+
+  // Envia pedido ao PHP
+  const payload = {
+    itens:     cart,
+    subtotal:  totais.subtotal,
+    frete:     totais.frete,
+    desconto:  totais.desconto,
+    total:     totais.total,
+    pagamento: metodoPagamento
+  };
+
+  fetch(prefixo() + 'php/pedido.php', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(payload)
+  })
+  .then(r => r.json())
+  .then(res => {
+    const num = res.numeroPedido || numLocal;
+    exibirModalSucesso(num, cart, totais);
+  })
+  .catch(() => {
+    // Sem servidor PHP ativo: exibe modal com número local (ambiente acadêmico)
+    exibirModalSucesso(numLocal, cart, totais);
+  });
+}
+
+function exibirModalSucesso(num, cart, totais) {
   const nomes = { pix: 'PIX', credito: 'Cartão de Crédito', debito: 'Cartão de Débito', boleto: 'Boleto' };
-  const num = 'CO' + Date.now().toString().slice(-6);
-  const el  = document.getElementById('num-pedido');
+  const el = document.getElementById('num-pedido');
   if (el) el.textContent = `Pedido #${num} — ${nomes[metodoPagamento]}`;
 
   // QR Code PIX
   const areaQr = document.getElementById('area-qr-pix');
   const imgQr  = document.getElementById('img-qr-pix');
   if (metodoPagamento === 'pix' && areaQr && imgQr) {
-    const total   = calcularTotais(cart).total.toFixed(2);
-    const pixData = `PIX|camisasonline|contato@camisasonline.com.br|${total}|${num}`;
+    const pixData = `PIX|camisasonline|contato@camisasonline.com.br|${totais.total.toFixed(2)}|${num}`;
     imgQr.src = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(pixData)}`;
     areaQr.style.display = 'block';
   } else if (areaQr) {

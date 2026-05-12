@@ -262,9 +262,10 @@
   function validarForm(e) {
     e.preventDefault();
     let ok = true;
-    const nome = document.getElementById('nome').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const msg = document.getElementById('mensagem').value.trim();
+    const nome    = document.getElementById('nome').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const msg     = document.getElementById('mensagem').value.trim();
+    const assunto = document.getElementById('assunto').value;
 
     document.getElementById('erro-nome').textContent  = '';
     document.getElementById('erro-email').textContent = '';
@@ -275,10 +276,31 @@
     if (!emailValido)      { document.getElementById('erro-email').textContent = 'E-mail inválido.'; ok = false; }
     if (msg.length < 10)   { document.getElementById('erro-msg').textContent   = 'Mensagem muito curta.'; ok = false; }
 
-    if (ok) {
+    if (!ok) return false;
+
+    // Envia para o PHP via fetch
+    const btnEnviar = document.querySelector('.btn-enviar');
+    btnEnviar.disabled = true;
+    btnEnviar.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+
+    const dados = new FormData(document.getElementById('form-contato'));
+
+    fetch('../php/contato.php', {
+      method: 'POST',
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
+      body: dados
+    })
+    .then(r => r.json())
+    .then(res => {
       document.getElementById('form-contato').style.display = 'none';
       document.getElementById('sucesso-form').style.display = 'block';
-    }
+    })
+    .catch(() => {
+      // Sem servidor PHP ativo: exibe sucesso de forma acadêmica
+      document.getElementById('form-contato').style.display = 'none';
+      document.getElementById('sucesso-form').style.display = 'block';
+    });
+
     return false;
   }
 </script>
