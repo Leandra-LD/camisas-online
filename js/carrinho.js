@@ -332,7 +332,6 @@ function finalizarCompra() {
     return;
   }
 
-  const nomes   = { pix: 'PIX', credito: 'Cartão de Crédito', debito: 'Cartão de Débito', boleto: 'Boleto' };
   const totais  = calcularTotais(cart);
   const numLocal = 'CO' + Date.now().toString().slice(-6);
 

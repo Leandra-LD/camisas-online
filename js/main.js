@@ -211,7 +211,7 @@ function criarCardProduto(p) {
 
   const botoesTom = p.tamanhos.map(t => `
     <button class="btn-tam-card${t === tamSelecionado ? ' sel' : ''}"
-      onclick="selecionarTamCard(this, ${p.id})" data-tam="${t}">${t}</button>
+      onclick="selecionarTamCard(this)" data-tam="${t}">${t}</button>
   `).join('');
 
   const swatchesCor = p.cores ? `
@@ -220,7 +220,7 @@ function criarCardProduto(p) {
       <div class="cor-card-btns">
         ${p.cores.map((c, i) => `<button
           class="btn-cor-card${i === 0 ? ' sel' : ''}"
-          onclick="selecionarCorCard(this, ${p.id})"
+          onclick="selecionarCorCard(this)"
           data-cor="${c.nome}"
           style="background:${c.hex}"
           title="${c.nome}"></button>`).join('')}
@@ -235,7 +235,8 @@ function criarCardProduto(p) {
   <div class="card-produto" data-id="${p.id}" data-tam-sel="${tamSelecionado}" data-cor-sel="${corSelecionada}">
     <span class="tag-produto ${clsTags[p.tag]}">${tags[p.tag]}</span>
     <div class="produto-foto-wrap">
-      <img class="produto-foto" src="${prefixo()}images/${p.imagem}" alt="${p.nome}" loading="lazy" />
+      <img class="produto-foto" src="${prefixo()}images/${p.imagem}" alt="${p.nome}" loading="lazy"
+           onerror="this.src='${prefixo()}images/placeholder.jpg';this.onerror=null" />
     </div>
     <div class="produto-corpo">
       <p class="produto-cat">${p.categoria}</p>
@@ -267,14 +268,14 @@ function criarCardProduto(p) {
   </div>`;
 }
 
-function selecionarTamCard(btn, idProduto) {
+function selecionarTamCard(btn) {
   const card = btn.closest('.card-produto');
   card.querySelectorAll('.btn-tam-card').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
   card.dataset.tamSel = btn.dataset.tam;
 }
 
-function selecionarCorCard(btn, idProduto) {
+function selecionarCorCard(btn) {
   const card = btn.closest('.card-produto');
   card.querySelectorAll('.btn-cor-card').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');

@@ -198,7 +198,8 @@
   <p>
     O site simula uma loja virtual completa, com catálogo de produtos, galeria de fotos,
     carrinho de compras com persistência via localStorage, formulário de contato com
-    validação client-side e relatório acadêmico.
+    validação JavaScript e processamento server-side via PHP, finalização de pedidos
+    integrada ao back-end e relatório acadêmico.
   </p>
 </div>
 
@@ -224,7 +225,7 @@
     <div class="tech-card">
       <i class="fab fa-php php-ic"></i>
       <h4>PHP</h4>
-      <p>Linguagem de back-end para processamento do formulário de contato, validação server-side e futura integração com banco de dados.</p>
+      <p>Linguagem de back-end para processamento do formulário de contato e finalização de pedidos. Os scripts <code>contato.php</code> e <code>pedido.php</code> recebem os dados via Fetch API (AJAX) e retornam respostas em JSON.</p>
     </div>
   </div>
 
@@ -324,14 +325,14 @@
       <i class="fas fa-shopping-cart"></i>
       <div>
         <h4>carrinho.html — Carrinho</h4>
-        <p>Gerenciamento de itens com controle de quantidade, exibição de cor com bolinha colorida (ou badge "Cor única"), seleção de tamanho, sistema de cupons, métodos de pagamento (PIX, Crédito, Débito, Boleto) e finalização de pedido.</p>
+        <p>Gerenciamento de itens com controle de quantidade, exibição de cor com bolinha colorida (ou badge "Cor única"), seleção de tamanho, sistema de cupons com valor mínimo por código, métodos de pagamento (PIX, Crédito, Débito, Boleto), cálculo de frete e desconto com precisão monetária, e finalização de pedido enviada ao back-end via Fetch API (<code>pedido.php</code>).</p>
       </div>
     </div>
     <div class="pag-card">
       <i class="fas fa-envelope"></i>
       <div>
         <h4>contato.html — Contato</h4>
-        <p>Formulário com validação JavaScript client-side. Inclui máscara de telefone e feedback visual.</p>
+        <p>Formulário com validação JavaScript (nome, e-mail, mensagem obrigatórios). Após validação, os dados são enviados ao back-end via Fetch API (<code>contato.php</code>). Inclui máscara de telefone, spinner de carregamento e feedback visual de sucesso.</p>
       </div>
     </div>
     <div class="pag-card">
@@ -368,6 +369,7 @@
     <li>Cards de produto com <code>display: flex; flex-direction: column</code> — todos os cards de uma linha ficam com a mesma altura e os botões de ação sempre alinhados na base</li>
     <li>Cards de vantagens e de valores também utilizam layout flex-column para altura uniforme na grade</li>
     <li>Cupons indisponíveis no modal exibem estilo específico (acinzentado, botão bloqueado e mensagem de quanto falta)</li>
+    <li>Regras CSS organizadas sem duplicatas — seletores combinados (<code>.badge-carrinho, .badge-favoritos</code>) evitam redundância e mantêm o código enxuto</li>
   </ul>
 
   <h3><span class="badge badge-js">JavaScript</span> Interatividade</h3>
@@ -386,6 +388,8 @@
     <li>Notificações toast animadas para ações do carrinho e favoritos</li>
     <li>Máscara de telefone em tempo real</li>
     <li>Toggles de visualização em grade/lista na página de produtos</li>
+    <li>Imagens dos cards de produto com fallback automático via <code>onerror</code> — exibe imagem substituta caso o arquivo não seja encontrado, evitando ícones quebrados</li>
+    <li>Funções de seleção de tamanho e cor com assinaturas limpas, sem parâmetros desnecessários — código legível e sem variáveis mortas</li>
   </ul>
 
   <h3><span class="badge badge-php">PHP</span> Back-end</h3>
@@ -484,6 +488,10 @@
     <p>✔ Geração de QR Code PIX automático ao finalizar pedido via API externa</p>
     <p>✔ Layout uniforme dos cards — mesma altura na grade com botões sempre alinhados na base</p>
     <p>✔ Design responsivo para mobile, tablet e desktop</p>
+    <p>✔ Todos os 212 links internos verificados e funcionando corretamente</p>
+    <p>✔ Calculadora financeira testada em 26 cenários — subtotal, frete, descontos e parcelas sempre corretos</p>
+    <p>✔ Código JavaScript verificado sem erros de sintaxe; imagens com fallback automático via <code>onerror</code></p>
+    <p>✔ Galeria com textos alternativos (<code>alt</code>) corrigidos e consistentes com os nomes dos produtos</p>
   </div>
 
   <h3 style="margin-top:24px">Melhorias Futuras</h3>

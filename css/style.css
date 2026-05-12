@@ -182,8 +182,6 @@ button          { cursor: pointer; border: none; background: none; }
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
 }
-.badge-favoritos { background: var(--vermelho); }
-
 /* ── FAVORITOS PAGE ─────────────────────────────────────── */
 .favoritos-vazio {
   text-align: center; padding: 70px 20px; color: var(--texto-muted);
