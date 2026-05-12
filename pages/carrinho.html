@@ -118,7 +118,9 @@
 
       <!-- CUPOM -->
       <div class="cupom-area">
-        <input type="text" id="cupom-input" placeholder="Código do cupom" onkeydown="if(event.key==='Enter')tentarCupom()" />
+        <input type="text" id="cupom-input" placeholder="Código do cupom"
+               onkeydown="if(event.key==='Enter')tentarCupom()"
+               oninput="if(!this.value.trim())removerCupom(false)" />
         <button class="btn-aplicar-cupom" onclick="tentarCupom()">Aplicar</button>
       </div>
       <p class="cupom-msg" id="cupom-msg"></p>

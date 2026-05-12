@@ -230,13 +230,13 @@ function revalidarCupom(cart) {
   }
 }
 
-function removerCupom() {
+function removerCupom(limparCampo = true) {
   percentualDesconto = 0;
   const inp = document.getElementById('cupom-input');
   const msg = document.getElementById('cupom-msg');
   const btn = document.getElementById('btn-remover-cupom');
-  if (inp) inp.value = '';
-  if (msg) { msg.textContent = 'Cupom removido.'; msg.style.color = '#636e72'; }
+  if (limparCampo && inp) inp.value = '';
+  if (msg) { msg.textContent = ''; }
   if (btn) btn.style.display = 'none';
   renderizarCarrinho();
 }
