@@ -74,12 +74,14 @@ function limparCarrinho() {
 let percentualDesconto = 0;
 let descontoPix = 0;
 
+const arred = v => Math.round(v * 100) / 100;   // arredonda para 2 casas decimais
+
 function calcularTotais(cart) {
-  const subtotal  = cart.reduce((s, i) => s + i.preco * i.qtd, 0);
+  const subtotal  = arred(cart.reduce((s, i) => s + i.preco * i.qtd, 0));
   const frete     = cart.length === 0 || subtotal >= 199 ? 0 : 19.90;
   const pctTotal  = Math.min((percentualDesconto || 0) + (descontoPix || 0), 100);
-  const desconto  = subtotal * (pctTotal / 100);
-  const total     = subtotal + frete - desconto;
+  const desconto  = arred(subtotal * (pctTotal / 100));
+  const total     = arred(subtotal + frete - desconto);
   return { subtotal, frete, desconto, total };
 }
 
@@ -151,6 +153,12 @@ function atualizarResumo({ subtotal, frete, desconto, total }) {
 
   const elFrete = document.getElementById('val-frete');
   if (elFrete) elFrete.className = 'frete-valor';
+
+  // Atualiza parcelas se crédito estiver selecionado
+  if (metodoPagamento === 'credito') {
+    const sel = document.getElementById('select-parcelas');
+    if (sel) selecionarParcela(sel.value);
+  }
 }
 
 /* ── MODAL CUPONS ────────────────────────────────────────── */
@@ -302,10 +310,10 @@ function selecionarParcela(parcelas) {
   if (!info) return;
   const n = parseInt(parcelas);
   if (n <= 6) {
-    info.textContent = `${n}x de ${formatarPreco(total / n)} sem juros`;
+    info.textContent = `${n}x de ${formatarPreco(arred(total / n))} sem juros`;
   } else {
     const taxa  = 0.0199;
-    const parc  = total * (taxa * Math.pow(1 + taxa, n)) / (Math.pow(1 + taxa, n) - 1);
+    const parc  = arred(total * (taxa * Math.pow(1 + taxa, n)) / (Math.pow(1 + taxa, n) - 1));
     info.textContent = `${n}x de ${formatarPreco(parc)} com juros`;
   }
 }
