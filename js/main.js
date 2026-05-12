@@ -34,7 +34,7 @@ const PRODUTOS = [
       { nome: "Vinho",       hex: "#7c2d2d" },
       { nome: "Cinza Escuro",hex: "#4b5563" }
     ],
-    descricao: "Camisa social azul slim fit ideal para trabalho e eventos formais."
+    descricao: "Camisa slim fit ideal para trabalho e eventos formais."
   },
   {
     id: 3,
@@ -186,6 +186,13 @@ function prefixo() {
   return ePagina() ? '../' : '';
 }
 
+/* ── FALLBACK PARA IMAGENS QUEBRADAS ─────────────────────── */
+function imgError(el) {
+  el.onerror = null;
+  el.style.background = '#f4f6f9';
+  el.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+}
+
 /* ── GERAÇÃO DE ESTRELAS ─────────────────────────────────── */
 function gerarEstrelas(nota) {
   let html = '';
@@ -236,7 +243,7 @@ function criarCardProduto(p) {
     <span class="tag-produto ${clsTags[p.tag]}">${tags[p.tag]}</span>
     <div class="produto-foto-wrap">
       <img class="produto-foto" src="${prefixo()}images/${p.imagem}" alt="${p.nome}" loading="lazy"
-           onerror="this.src='${prefixo()}images/placeholder.jpg';this.onerror=null" />
+           onerror="imgError(this)" />
     </div>
     <div class="produto-corpo">
       <p class="produto-cat">${p.categoria}</p>

@@ -237,7 +237,6 @@
     <tbody>
       <tr><td>Font Awesome 6.4</td><td>Biblioteca de ícones vetoriais</td><td>cdnjs.cloudflare.com</td></tr>
       <tr><td>Unsplash</td><td>Imagens de camisas utilizadas na galeria e categorias</td><td>images.unsplash.com</td></tr>
-      <tr><td>Google Fonts</td><td>Tipografia moderna (Segoe UI fallback)</td><td>fonts.google.com</td></tr>
       <tr><td>QR Server API</td><td>Geração dinâmica do QR Code para pagamento via PIX</td><td>api.qrserver.com</td></tr>
     </tbody>
   </table>
@@ -388,7 +387,7 @@
     <li>Notificações toast animadas para ações do carrinho e favoritos</li>
     <li>Máscara de telefone em tempo real</li>
     <li>Toggles de visualização em grade/lista na página de produtos</li>
-    <li>Imagens dos cards de produto com fallback automático via <code>onerror</code> — exibe imagem substituta caso o arquivo não seja encontrado, evitando ícones quebrados</li>
+    <li>Imagens dos cards de produto e do carrinho com fallback automático via função <code>imgError()</code> — ao falhar o carregamento, exibe fundo cinza neutro via data URI, evitando ícones quebrados mesmo sem servidor PHP ativo</li>
     <li>Funções de seleção de tamanho e cor com assinaturas limpas, sem parâmetros desnecessários — código legível e sem variáveis mortas</li>
   </ul>
 
@@ -490,7 +489,7 @@
     <p>✔ Design responsivo para mobile, tablet e desktop</p>
     <p>✔ Todos os 212 links internos verificados e funcionando corretamente</p>
     <p>✔ Calculadora financeira testada em 26 cenários — subtotal, frete, descontos e parcelas sempre corretos</p>
-    <p>✔ Código JavaScript verificado sem erros de sintaxe; imagens com fallback automático via <code>onerror</code></p>
+    <p>✔ Código JavaScript verificado sem erros de sintaxe; imagens com fallback automático via função <code>imgError()</code> usando data URI — sem dependência de arquivo externo</p>
     <p>✔ Galeria com textos alternativos (<code>alt</code>) corrigidos e consistentes com os nomes dos produtos</p>
   </div>
 

@@ -111,7 +111,7 @@ function renderizarCarrinho() {
 
   lista.innerHTML = cart.map(item => `
   <div class="item-cart">
-    <img class="item-cart-img" src="${prefixo()}images/${item.imagem}" alt="${item.nome}" />
+    <img class="item-cart-img" src="${prefixo()}images/${item.imagem}" alt="${item.nome}" onerror="imgError(this)" />
     <div class="item-cart-info">
       <h4>${item.nome}</h4>
       <p class="tamanho">Tamanho: <strong>${item.tamanho}</strong></p>
