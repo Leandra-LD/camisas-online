@@ -172,7 +172,7 @@ button          { cursor: pointer; border: none; background: none; }
   transition: color var(--trans);
 }
 .icone-carrinho:hover { color: var(--vermelho); }
-.icone-favoritos:hover { color: #e74c3c; }
+.icone-favoritos:hover { color: var(--vermelho); }
 .badge-carrinho, .badge-favoritos {
   position: absolute; top: -8px; right: -10px;
   background: var(--vermelho);
@@ -182,7 +182,7 @@ button          { cursor: pointer; border: none; background: none; }
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
 }
-.badge-favoritos { background: #e74c3c; }
+.badge-favoritos { background: var(--vermelho); }
 
 /* ── FAVORITOS PAGE ─────────────────────────────────────── */
 .favoritos-vazio {
