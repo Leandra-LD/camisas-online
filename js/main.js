@@ -491,7 +491,10 @@ function mostrarToast(msg, tipo = '') {
 function atualizarBadge() {
   const cart = JSON.parse(localStorage.getItem('camisas_cart') || '[]');
   const total = cart.reduce((s, i) => s + i.qtd, 0);
-  document.querySelectorAll('.badge-carrinho').forEach(b => b.textContent = total);
+  document.querySelectorAll('.badge-carrinho').forEach(b => {
+    b.textContent = total;
+    b.style.display = total > 0 ? 'flex' : 'none';
+  });
 }
 
 /* ── BUSCA GLOBAL (HEADER) ───────────────────────────────── */
