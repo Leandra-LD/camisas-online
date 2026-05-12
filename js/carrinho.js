@@ -99,6 +99,7 @@ function renderizarCarrinho() {
   if (cart.length === 0) {
     lista.innerHTML = '';
     if (vazio) vazio.style.display = 'block';
+    revalidarCupom([]);
     atualizarResumo(calcularTotais([]));
     return;
   }
