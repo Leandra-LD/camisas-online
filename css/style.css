@@ -1032,6 +1032,47 @@ button          { cursor: pointer; border: none; background: none; }
   font-size: .79rem; color: rgba(255,255,255,.38);
 }
 
+/* ── NEWSLETTER ──────────────────────────────────────────── */
+.newsletter-section {
+  background: linear-gradient(135deg, var(--azul) 0%, #2471a3 100%);
+  padding: 52px 0;
+  color: var(--branco);
+}
+.newsletter-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+.newsletter-texto { flex: 1; min-width: 240px; }
+.newsletter-texto h3 {
+  font-size: 1.5rem; font-weight: 800; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 10px;
+}
+.newsletter-texto p { font-size: .95rem; opacity: .88; margin: 0; }
+.newsletter-form-wrap { flex: 1; min-width: 280px; }
+.newsletter-form {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+.newsletter-form input {
+  flex: 1; min-width: 200px;
+  padding: 12px 18px; border: none; border-radius: 30px;
+  font-size: .95rem; outline: none; color: var(--texto);
+  transition: box-shadow .2s;
+}
+.newsletter-form input:focus { box-shadow: 0 0 0 3px rgba(255,255,255,.4); }
+.newsletter-form button {
+  background: var(--vermelho); color: var(--branco);
+  padding: 12px 26px; border-radius: 30px;
+  font-size: .9rem; font-weight: 700; white-space: nowrap;
+  transition: background var(--trans);
+  display: flex; align-items: center; gap: 7px;
+}
+.newsletter-form button:hover { background: var(--laranja); }
+.newsletter-msg {
+  font-size: .82rem; margin-top: 10px; min-height: 18px;
+}
+
 /* ── TOAST ───────────────────────────────────────────────── */
 .toast {
   position: fixed; bottom: 24px; right: 24px;

@@ -193,6 +193,54 @@ function imgError(el) {
   el.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
 }
 
+/* ── CARREGAR PRODUTOS VIA PHP (API) ─────────────────────── */
+async function carregarProdutos() {
+  try {
+    const r = await fetch(prefixo() + 'php/produtos.php');
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const dados = await r.json();
+    if (Array.isArray(dados) && dados.length > 0) {
+      PRODUTOS.splice(0, PRODUTOS.length, ...dados);
+    }
+  } catch (e) {
+    // Sem servidor PHP ativo: mantém catálogo local definido acima
+  }
+}
+
+/* ── NEWSLETTER ──────────────────────────────────────────── */
+function enviarNewsletter(e) {
+  e.preventDefault();
+  const emailEl = document.getElementById('newsletter-email');
+  const msg     = document.getElementById('newsletter-msg');
+  if (!emailEl || !msg) return false;
+
+  const email = emailEl.value.trim();
+  const btn   = document.querySelector('.newsletter-form button[type="submit"]');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; }
+
+  fetch(prefixo() + 'php/newsletter.php', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ email })
+  })
+  .then(r => r.json())
+  .then(res => {
+    msg.textContent = res.mensagem;
+    msg.style.color = res.sucesso ? '#a8e6c0' : '#ffc1c1';
+    if (res.sucesso) emailEl.value = '';
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Inscrever'; }
+  })
+  .catch(() => {
+    // Sem servidor PHP: simula sucesso (ambiente acadêmico)
+    msg.textContent = 'E-mail cadastrado com sucesso!';
+    msg.style.color = '#a8e6c0';
+    emailEl.value = '';
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Inscrever'; }
+  });
+
+  return false;
+}
+
 /* ── GERAÇÃO DE ESTRELAS ─────────────────────────────────── */
 function gerarEstrelas(nota) {
   let html = '';

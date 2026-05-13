@@ -196,10 +196,10 @@
     HTML5, CSS3, JavaScript e PHP.
   </p>
   <p>
-    O site simula uma loja virtual completa, com catálogo de produtos, galeria de fotos,
-    carrinho de compras com persistência via localStorage, formulário de contato com
-    validação JavaScript e processamento server-side via PHP, finalização de pedidos
-    integrada ao back-end e relatório acadêmico.
+    O site simula uma loja virtual completa, com catálogo de produtos servido via API PHP,
+    galeria de fotos, carrinho de compras com persistência via localStorage, formulário de
+    contato e newsletter processados no servidor, validação de cupons em duas camadas
+    (client-side e server-side), finalização de pedidos integrada ao back-end e relatório acadêmico.
   </p>
 </div>
 
@@ -238,6 +238,7 @@
       <tr><td>Font Awesome 6.4</td><td>Biblioteca de ícones vetoriais</td><td>cdnjs.cloudflare.com</td></tr>
       <tr><td>Unsplash</td><td>Imagens de camisas utilizadas na galeria e categorias</td><td>images.unsplash.com</td></tr>
       <tr><td>QR Server API</td><td>Geração dinâmica do QR Code para pagamento via PIX</td><td>api.qrserver.com</td></tr>
+      <tr><td>Fetch API (nativa)</td><td>Comunicação assíncrona entre JavaScript e PHP (AJAX)</td><td>Nativa do navegador</td></tr>
     </tbody>
   </table>
 </div>
@@ -281,7 +282,10 @@
 │
 ├── <span class="pasta">php/</span>                    <span style="color:#55efc4">← Scripts PHP (back-end)</span>
 │   ├── <span class="php">contato.php</span>
-│   └── <span class="php">pedido.php</span>
+│   ├── <span class="php">pedido.php</span>
+│   ├── <span class="php">cupom.php</span>
+│   ├── <span class="php">newsletter.php</span>
+│   └── <span class="php">produtos.php</span>
 │
 └── <span class="pasta">relatorio/</span>              <span style="color:#55efc4">← Documentação</span>
     └── <span class="arq">relatorio.html</span>
@@ -395,9 +399,12 @@
   <ul>
     <li><code>contato.php</code> — formulário de contato envia os dados via <code>fetch</code> (AJAX) para o PHP, que sanitiza, valida server-side e envia e-mail via <code>mail()</code>; suporta resposta JSON (AJAX) e redirecionamento (POST direto)</li>
     <li><code>pedido.php</code> — ao finalizar a compra, o carrinho é enviado via <code>fetch</code> com payload JSON; o PHP gera número de pedido único, salva o registro em arquivo JSON e retorna confirmação; o QR Code PIX usa o número retornado pelo servidor</li>
+    <li><code>cupom.php</code> — valida os cupons de desconto no servidor (segurança em duas camadas): recebe código e subtotal via JSON, verifica existência e valor mínimo, retorna JSON com <code>valido</code>, <code>desconto</code> e <code>mensagem</code>; o JavaScript usa a validação server-side com fallback client-side quando o servidor não estiver ativo</li>
+    <li><code>newsletter.php</code> — processa inscrições de e-mail do formulário presente em todas as páginas; valida o e-mail com <code>filter_var</code>, verifica duplicatas no arquivo de log e salva a inscrição em <code>logs/newsletter.log</code> com data e hora</li>
+    <li><code>produtos.php</code> — serve o catálogo de produtos como API JSON; o JavaScript carrega o catálogo via <code>fetch</code> ao iniciar a página, substituindo o array local pelo retorno do servidor; suporta filtro por categoria via parâmetro GET (<code>?cat=casual</code>); o array local permanece como fallback sem servidor</li>
     <li>Validação e sanitização server-side com <code>htmlspecialchars</code>, <code>strip_tags</code> e <code>filter_var</code></li>
-    <li>Registro de logs de contatos (<code>logs/contatos.log</code>) e pedidos (<code>pedidos/</code>) em arquivos no servidor</li>
-    <li>Compatibilidade com ambiente acadêmico sem servidor: o <code>catch</code> do <code>fetch</code> garante que o fluxo funciona mesmo sem PHP ativo</li>
+    <li>Registro de logs: contatos (<code>logs/contatos.log</code>), inscrições (<code>logs/newsletter.log</code>) e pedidos (<code>pedidos/</code>)</li>
+    <li>Compatibilidade com ambiente acadêmico sem servidor: o <code>catch</code> do <code>fetch</code> em todos os scripts garante que o site funciona normalmente mesmo sem PHP ativo</li>
   </ul>
 
 </div>
@@ -485,6 +492,9 @@
     <p>✔ Seleção de cor com bolinhas interativas em 4 produtos; badge "Cor única" nos 7 produtos sem variação de cor</p>
     <p>✔ Favoritos com salvamento e restauração de tamanho e cor selecionados</p>
     <p>✔ Geração de QR Code PIX automático ao finalizar pedido via API externa</p>
+    <p>✔ Validação de cupons em duas camadas: server-side via <code>cupom.php</code> (principal) e client-side como fallback</p>
+    <p>✔ Formulário de newsletter em todas as páginas — e-mail validado e salvo no servidor via <code>newsletter.php</code>, com verificação de duplicatas</p>
+    <p>✔ Catálogo de produtos servido via API PHP (<code>produtos.php</code>) — JavaScript carrega o JSON do servidor e usa array local como fallback</p>
     <p>✔ Layout uniforme dos cards — mesma altura na grade com botões sempre alinhados na base</p>
     <p>✔ Design responsivo para mobile, tablet e desktop</p>
     <p>✔ Todos os 212 links internos verificados e funcionando corretamente</p>

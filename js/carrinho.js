@@ -216,18 +216,42 @@ function tentarCupom() {
   const msg = document.getElementById('cupom-msg');
   const btn = document.getElementById('btn-remover-cupom');
   if (!inp || !msg) return;
-  const cod = inp.value.trim().toUpperCase();
 
+  const cod      = inp.value.trim().toUpperCase();
+  const subtotal = obterCarrinho().reduce((s, i) => s + i.preco * i.qtd, 0);
+
+  // Envia ao servidor para validação segura
+  fetch(prefixo() + 'php/cupom.php', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ codigo: cod, subtotal })
+  })
+  .then(r => r.json())
+  .then(res => {
+    msg.textContent = res.mensagem;
+    msg.style.color = res.valido ? '#27ae60' : (subtotal > 0 ? '#e67e22' : '#e74c3c');
+    if (res.valido) {
+      if (btn) btn.style.display = 'inline';
+      aplicarDesconto(res.desconto);
+    } else {
+      if (btn) btn.style.display = 'none';
+    }
+  })
+  .catch(() => {
+    // Sem servidor PHP: validação client-side como fallback
+    _validarCupomLocal(cod, subtotal, msg, btn);
+  });
+}
+
+// Fallback client-side (sem servidor PHP ativo)
+function _validarCupomLocal(cod, subtotal, msg, btn) {
   if (!CUPONS[cod]) {
     msg.textContent = 'Cupom inválido ou expirado.';
     msg.style.color = '#e74c3c';
     if (btn) btn.style.display = 'none';
     return;
   }
-
   const { desconto, minimo } = CUPONS[cod];
-  const subtotal = obterCarrinho().reduce((s, i) => s + i.preco * i.qtd, 0);
-
   if (subtotal < minimo) {
     const falta = minimo - subtotal;
     msg.textContent = `Compra mínima de ${formatarPreco(minimo)} para este cupom. Faltam ${formatarPreco(falta)}.`;
@@ -235,7 +259,6 @@ function tentarCupom() {
     if (btn) btn.style.display = 'none';
     return;
   }
-
   msg.textContent = `Cupom "${cod}" aplicado — ${desconto}% de desconto!`;
   msg.style.color = '#27ae60';
   if (btn) btn.style.display = 'inline';
