@@ -185,20 +185,21 @@
 <div class="secao">
   <h2 class="secao-titulo"><i class="fas fa-book-open"></i> 1. Introdução</h2>
   <p>
-    Este relatório apresenta o projeto <strong>Camisas Online</strong>, uma loja virtual de camisas
-    desenvolvida como trabalho prático da disciplina <em>Desenvolvimento Web</em>, sob orientação
-    do Professor Paulo Cruz.
+    Este relatório descreve o desenvolvimento do projeto <strong>Camisas Online</strong>, um
+    site de comércio eletrônico voltado para a venda de camisas.
+    O trabalho foi realizado como avaliação prática da disciplina <em>Desenvolvimento Web</em>
+    sob orientação do Professor Paulo Cruz.
   </p>
   <p>
-    A proposta foi criar um site que fosse além de uma página simples — algo com navegação real entre
-    páginas, carrinho funcional, back-end em PHP e um visual que parecesse de fato uma loja online.
-    Quis aplicar tudo o que aprendi durante a disciplina em um único projeto coeso.
+    O objetivo principal foi aplicar na prática os conceitos de desenvolvimento web,
+    criando um site funcional, responsivo e organizado, utilizando as linguagens
+    HTML5, CSS3, JavaScript e PHP.
   </p>
   <p>
-    O resultado é um e-commerce fictício com catálogo de produtos carregado via PHP, galeria com
-    lightbox, sistema de favoritos, carrinho com cupons e múltiplas formas de pagamento, formulário
-    de contato e newsletter integrados ao servidor, e design responsivo para funcionar bem em
-    qualquer dispositivo.
+    O site simula uma loja virtual completa, com catálogo de produtos servido via API PHP,
+    galeria de fotos, carrinho de compras com persistência via localStorage, formulário de
+    contato e newsletter processados no servidor, validação de cupons em duas camadas
+    (client-side e server-side), finalização de pedidos integrada ao back-end e relatório acadêmico.
   </p>
 </div>
 
@@ -209,22 +210,22 @@
     <div class="tech-card">
       <i class="fab fa-html5 html-ic"></i>
       <h4>HTML5</h4>
-      <p>Usado para estruturar todas as páginas com tags semânticas como &lt;header&gt;, &lt;nav&gt;, &lt;section&gt; e &lt;footer&gt;, além de formulários com validação nativa.</p>
+      <p>Estrutura semântica das páginas com tags modernas como &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;footer&gt;.</p>
     </div>
     <div class="tech-card">
       <i class="fab fa-css3-alt css-ic"></i>
       <h4>CSS3</h4>
-      <p>Todo o visual foi feito com CSS puro — Flexbox, Grid Layout, variáveis de cor, animações e media queries para deixar o site responsivo.</p>
+      <p>Estilização completa com Flexbox, Grid Layout, variáveis CSS, animações e design responsivo (media queries).</p>
     </div>
     <div class="tech-card">
       <i class="fab fa-js-square js-ic"></i>
       <h4>JavaScript</h4>
-      <p>Responsável por toda a interatividade: carrinho salvo no localStorage, filtros de produtos, galeria lightbox, cupons, cálculos financeiros e comunicação com o PHP via Fetch API.</p>
+      <p>Interatividade: carrinho com localStorage, filtros de produtos, galeria lightbox e validação de formulários.</p>
     </div>
     <div class="tech-card">
       <i class="fab fa-php php-ic"></i>
       <h4>PHP</h4>
-      <p>Back-end com 5 scripts: processamento do formulário de contato, finalização de pedidos, validação de cupons, inscrições na newsletter e API do catálogo de produtos — todos retornam JSON.</p>
+      <p>Linguagem de back-end para processamento do formulário de contato e finalização de pedidos. Os scripts <code>contato.php</code> e <code>pedido.php</code> recebem os dados via Fetch API (AJAX) e retornam respostas em JSON.</p>
     </div>
   </div>
 
@@ -245,7 +246,7 @@
 <!-- 3. ESTRUTURA DE PASTAS -->
 <div class="secao">
   <h2 class="secao-titulo"><i class="fas fa-folder-open"></i> 3. Estrutura de Pastas</h2>
-  <p>Organizei o projeto separando cada tipo de arquivo em sua própria pasta, o que facilita a manutenção e deixa tudo mais fácil de encontrar:</p>
+  <p>O projeto segue uma organização modular, separando cada tipo de arquivo em sua respectiva pasta:</p>
   <div class="arvore">
 <span class="raiz">Camisas online/</span>
 ├── <span class="arq">index.html</span>              <span style="color:#55efc4">← Página principal (ponto de entrada)</span>
@@ -299,49 +300,49 @@
       <i class="fas fa-home"></i>
       <div>
         <h4>index.html — Início</h4>
-        <p>Página de entrada do site, com hero banner, seção de vantagens, categorias com foto, produtos em destaque carregados via PHP e banner de oferta com cupom.</p>
+        <p>Página principal com hero banner, seção de vantagens, categorias, produtos em destaque e banner de oferta.</p>
       </div>
     </div>
     <div class="pag-card">
       <i class="fas fa-tshirt"></i>
       <div>
         <h4>produtos.html — Catálogo</h4>
-        <p>Exibe os 11 produtos com sidebar de filtros (categoria, preço, ordenação). A busca funciona tanto pelo campo da página quanto pelo campo do header, com persistência via sessionStorage entre páginas.</p>
+        <p>Listagem de 11 produtos com filtros por categoria, tamanho, preço e ordenação. Suporta busca global via sessionStorage.</p>
       </div>
     </div>
     <div class="pag-card">
       <i class="fas fa-images"></i>
       <div>
         <h4>galeria.html — Galeria</h4>
-        <p>Grade com 11 fotos filtráveis por categoria. Ao clicar em qualquer imagem abre um lightbox com navegação por setas e suporte à tecla ESC para fechar.</p>
+        <p>11 fotos organizadas em grid com filtro por categoria (Casual, Social, Polo, Estampada, Esporte) e lightbox para ampliar as imagens.</p>
       </div>
     </div>
     <div class="pag-card">
       <i class="fas fa-heart"></i>
       <div>
         <h4>favoritos.html — Favoritos</h4>
-        <p>Guarda os produtos curtidos pelo usuário no localStorage, incluindo o tamanho e a cor que estavam selecionados na hora de favoritar — tudo restaurado ao abrir a página.</p>
+        <p>Lista de produtos salvos pelo usuário, persistida via localStorage. Permite adicionar e remover favoritos com atualização do badge no header.</p>
       </div>
     </div>
     <div class="pag-card">
       <i class="fas fa-shopping-cart"></i>
       <div>
         <h4>carrinho.html — Carrinho</h4>
-        <p>A página mais completa do projeto: controle de quantidade, seleção de tamanho e cor, cupons de desconto validados no servidor, 4 formas de pagamento (com QR Code PIX e parcelamento com juros), cálculo de frete e envio do pedido ao back-end.</p>
+        <p>Gerenciamento de itens com controle de quantidade, exibição de cor com bolinha colorida (ou badge "Cor única"), seleção de tamanho, sistema de cupons com valor mínimo por código, métodos de pagamento (PIX, Crédito, Débito, Boleto), cálculo de frete e desconto com precisão monetária, e finalização de pedido enviada ao back-end via Fetch API (<code>pedido.php</code>).</p>
       </div>
     </div>
     <div class="pag-card">
       <i class="fas fa-envelope"></i>
       <div>
         <h4>contato.html — Contato</h4>
-        <p>Formulário com validação no cliente antes de enviar — nome, e-mail e mensagem são obrigatórios. O PHP recebe os dados, valida novamente no servidor e registra o contato em log. Tem máscara de telefone e spinner de envio.</p>
+        <p>Formulário com validação JavaScript (nome, e-mail, mensagem obrigatórios). Após validação, os dados são enviados ao back-end via Fetch API (<code>contato.php</code>). Inclui máscara de telefone, spinner de carregamento e feedback visual de sucesso.</p>
       </div>
     </div>
     <div class="pag-card">
       <i class="fas fa-info-circle"></i>
       <div>
         <h4>sobre.html — Sobre Nós</h4>
-        <p>Página institucional da loja fictícia, com história, números, valores da empresa e apresentação da equipe com fotos.</p>
+        <p>Apresentação da empresa fictícia com números, valores institucionais e equipe com fotos.</p>
       </div>
     </div>
   </div>
@@ -411,7 +412,7 @@
 <!-- 6. BANCO DE DADOS / PRODUTOS -->
 <div class="secao">
   <h2 class="secao-titulo"><i class="fas fa-database"></i> 6. Catálogo de Produtos</h2>
-  <p>Como o projeto não usa banco de dados, os produtos ficam definidos em um array no arquivo <code>js/main.js</code> e também no <code>php/produtos.php</code>, que os serve como JSON quando há servidor ativo. Cada produto tem os seguintes campos:</p>
+  <p>Os produtos são gerenciados via array JavaScript no arquivo <code>js/main.js</code>, simulando um banco de dados. Cada produto contém:</p>
   <table>
     <thead>
       <tr><th>Campo</th><th>Tipo</th><th>Descrição</th></tr>
@@ -431,13 +432,13 @@
       <tr><td><code>descricao</code></td><td>String</td><td>Descrição curta do produto</td></tr>
     </tbody>
   </table>
-  <p>São <strong>11 produtos</strong> no total, divididos entre as 5 categorias: Casual, Social, Polo, Estampada e Esporte. Quatro deles têm opções de cor — nesses, o card exibe bolinhas coloridas clicáveis. Nos demais aparece um badge de "Cor única".</p>
+  <p>Ao todo são <strong>11 produtos</strong> cadastrados, distribuídos nas 5 categorias disponíveis: Casual, Social, Polo, Estampada e Esporte. Destes, <strong>4 possuem seleção de cor</strong> com bolinhas coloridas interativas no card do produto.</p>
 </div>
 
 <!-- 7. RESPONSIVIDADE -->
 <div class="secao">
   <h2 class="secao-titulo"><i class="fas fa-mobile-alt"></i> 7. Responsividade</h2>
-  <p>Desde o início me preocupei em fazer o site funcionar bem no celular, não só no computador. Para isso usei media queries em três pontos de quebra principais:</p>
+  <p>O site foi desenvolvido com abordagem <strong>mobile-friendly</strong>, adaptando-se a diferentes tamanhos de tela:</p>
   <table>
     <thead>
       <tr><th>Breakpoint</th><th>Dispositivo</th><th>Ajustes aplicados</th></tr>
@@ -467,19 +468,15 @@
 <div class="secao">
   <h2 class="secao-titulo"><i class="fas fa-check-circle"></i> 8. Considerações Finais</h2>
   <p>
-    Desenvolver o <strong>Camisas Online</strong> foi uma experiência muito mais trabalhosa do que eu
-    esperava no começo — e também muito mais rica. Cada funcionalidade nova que eu tentava adicionar
-    me levava a entender melhor como HTML, CSS e JavaScript se conectam de verdade.
+    O projeto <strong>Camisas Online</strong> atingiu todos os objetivos propostos: criação de um
+    site multi-páginas organizado em pastas, uso das linguagens solicitadas (HTML5, CSS3,
+    JavaScript e PHP), design responsivo e funcionalidades de e-commerce.
   </p>
   <p>
-    A parte que mais aprendi foi a integração com PHP. Nunca tinha usado a Fetch API para enviar dados
-    a um servidor antes, e entender como o JavaScript se comunica com o back-end — enviando JSON e
-    tratando a resposta — foi um salto grande no meu aprendizado. O sistema de fallback (o site
-    funciona mesmo sem servidor ativo) também foi um desafio interessante de resolver.
-  </p>
-  <p>
-    No geral, acho que o projeto cumpriu bem o que foi proposto: um site completo, organizado,
-    responsivo e com funcionalidades reais de e-commerce.
+    Durante o desenvolvimento foram aplicados conceitos fundamentais de desenvolvimento web como
+    separação de responsabilidades (HTML para estrutura, CSS para estilo, JS para comportamento),
+    boas práticas de semântica HTML5, CSS moderno com variáveis e Grid Layout,
+    além de interatividade avançada com JavaScript e localStorage.
   </p>
 
   <div class="box-conclusao">
@@ -506,13 +503,14 @@
     <p>✔ Galeria com textos alternativos (<code>alt</code>) corrigidos e consistentes com os nomes dos produtos</p>
   </div>
 
-  <h3 style="margin-top:24px">O que eu melhoraria com mais tempo</h3>
+  <h3 style="margin-top:24px">Melhorias Futuras</h3>
   <ul>
-    <li>Substituir o array de produtos por um banco de dados MySQL real, para poder adicionar e editar produtos sem mexer no código</li>
-    <li>Criar um sistema de login para o usuário ter histórico de pedidos e favoritos salvos na conta, não só no navegador</li>
-    <li>Integrar um gateway de pagamento real, como Mercado Pago ou PagSeguro, no lugar da simulação atual</li>
-    <li>Fazer um painel de administração para visualizar pedidos recebidos e controlar o estoque</li>
-    <li>Transformar em PWA para que o site funcione offline e possa ser instalado no celular como um app</li>
+    <li>Integração com banco de dados MySQL para gerenciamento dinâmico dos produtos</li>
+    <li>Sistema de login/cadastro de usuários</li>
+    <li>Integração com gateway de pagamento (Mercado Pago, PagSeguro)</li>
+    <li>Painel administrativo para gerenciar pedidos e estoque</li>
+    <li>Implementação de PWA (Progressive Web App)</li>
+    <li>SEO avançado e Open Graph para redes sociais</li>
   </ul>
 </div>
 
