@@ -373,6 +373,7 @@
     <li>Cards de vantagens e de valores também utilizam layout flex-column para altura uniforme na grade</li>
     <li>Cupons indisponíveis no modal exibem estilo específico (acinzentado, botão bloqueado e mensagem de quanto falta)</li>
     <li>Regras CSS organizadas sem duplicatas — seletores combinados (<code>.badge-carrinho, .badge-favoritos</code>) evitam redundância e mantêm o código enxuto</li>
+    <li>Seção de newsletter com layout centralizado, ícone em círculo, título em destaque, input e botão unidos em pílula única com sombra, e círculos decorativos via <code>::before</code>/<code>::after</code></li>
   </ul>
 
   <h3><span class="badge badge-js">JavaScript</span> Interatividade</h3>
@@ -400,7 +401,7 @@
     <li><code>contato.php</code> — formulário de contato envia os dados via <code>fetch</code> (AJAX) para o PHP, que sanitiza, valida server-side e envia e-mail via <code>mail()</code>; suporta resposta JSON (AJAX) e redirecionamento (POST direto)</li>
     <li><code>pedido.php</code> — ao finalizar a compra, o carrinho é enviado via <code>fetch</code> com payload JSON; o PHP gera número de pedido único, salva o registro em arquivo JSON e retorna confirmação; o QR Code PIX usa o número retornado pelo servidor</li>
     <li><code>cupom.php</code> — valida os cupons de desconto no servidor (segurança em duas camadas): recebe código e subtotal via JSON, verifica existência e valor mínimo, retorna JSON com <code>valido</code>, <code>desconto</code> e <code>mensagem</code>; o JavaScript usa a validação server-side com fallback client-side quando o servidor não estiver ativo</li>
-    <li><code>newsletter.php</code> — processa inscrições de e-mail do formulário presente em todas as páginas; valida o e-mail com <code>filter_var</code>, verifica duplicatas no arquivo de log e salva a inscrição em <code>logs/newsletter.log</code> com data e hora</li>
+    <li><code>newsletter.php</code> — processa inscrições de e-mail do formulário presente nas páginas principal e de contato; o JavaScript valida se o endereço termina com <code>@gmail.com</code> antes do envio; o PHP valida com <code>filter_var</code>, verifica duplicatas no arquivo de log e salva a inscrição em <code>logs/newsletter.log</code> com data e hora; a mensagem de retorno desaparece automaticamente após 4 segundos</li>
     <li><code>produtos.php</code> — serve o catálogo de produtos como API JSON; o JavaScript carrega o catálogo via <code>fetch</code> ao iniciar a página, substituindo o array local pelo retorno do servidor; suporta filtro por categoria via parâmetro GET (<code>?cat=casual</code>); o array local permanece como fallback sem servidor</li>
     <li>Validação e sanitização server-side com <code>htmlspecialchars</code>, <code>strip_tags</code> e <code>filter_var</code></li>
     <li>Registro de logs: contatos (<code>logs/contatos.log</code>), inscrições (<code>logs/newsletter.log</code>) e pedidos (<code>pedidos/</code>)</li>
@@ -491,7 +492,7 @@
     <p>✔ Favoritos com salvamento e restauração de tamanho e cor selecionados</p>
     <p>✔ Geração de QR Code PIX automático ao finalizar pedido via API externa</p>
     <p>✔ Validação de cupons em duas camadas: server-side via <code>cupom.php</code> (principal) e client-side como fallback</p>
-    <p>✔ Formulário de newsletter em todas as páginas — e-mail validado e salvo no servidor via <code>newsletter.php</code>, com verificação de duplicatas</p>
+    <p>✔ Seção de newsletter nas páginas principal e de contato — e-mail validado (apenas @gmail.com), salvo no servidor via <code>newsletter.php</code> com verificação de duplicatas; mensagem de retorno desaparece automaticamente após 4 segundos</p>
     <p>✔ Catálogo de produtos servido via API PHP (<code>produtos.php</code>) — JavaScript carrega o JSON do servidor e usa array local como fallback</p>
     <p>✔ Layout uniforme dos cards — mesma altura na grade com botões sempre alinhados na base</p>
     <p>✔ Design responsivo para mobile, tablet e desktop</p>

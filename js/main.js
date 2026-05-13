@@ -215,6 +215,15 @@ function enviarNewsletter(e) {
   if (!emailEl || !msg) return false;
 
   const email = emailEl.value.trim();
+
+  if (!email.toLowerCase().endsWith('@gmail.com')) {
+    msg.textContent = 'Por favor, use um e-mail válido. Ex: seunome@gmail.com';
+    msg.style.color = '#ffc1c1';
+    emailEl.focus();
+    setTimeout(() => { msg.textContent = ''; }, 4000);
+    return false;
+  }
+
   const btn   = document.querySelector('.newsletter-form button[type="submit"]');
   if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; }
 
@@ -229,6 +238,7 @@ function enviarNewsletter(e) {
     msg.style.color = res.sucesso ? '#a8e6c0' : '#ffc1c1';
     if (res.sucesso) emailEl.value = '';
     if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Inscrever'; }
+    setTimeout(() => { msg.textContent = ''; }, 4000);
   })
   .catch(() => {
     // Sem servidor PHP: simula sucesso (ambiente acadêmico)
@@ -236,6 +246,7 @@ function enviarNewsletter(e) {
     msg.style.color = '#a8e6c0';
     emailEl.value = '';
     if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Inscrever'; }
+    setTimeout(() => { msg.textContent = ''; }, 4000);
   });
 
   return false;
