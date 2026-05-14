@@ -166,7 +166,10 @@ function abrirModalCupons() {
   const modal = document.getElementById('modal-cupons');
   if (!modal) return;
 
-  const subtotal = obterCarrinho().reduce((s, i) => s + i.preco * i.qtd, 0);
+  const cart     = obterCarrinho();
+  const subtotal = arred(cart.reduce((s, i) => s + i.preco * i.qtd, 0));
+  const frete    = cart.length === 0 || subtotal >= 199 ? 0 : 19.90;
+  const total    = arred(subtotal + frete);
 
   modal.querySelectorAll('.cupom-card[data-cupom]').forEach(card => {
     const cod        = card.dataset.cupom;
@@ -176,14 +179,14 @@ function abrirModalCupons() {
     const cupom      = CUPONS[cod];
     if (!cupom || !btn) return;
 
-    const disponivel = subtotal >= cupom.minimo;
-    const falta      = cupom.minimo - subtotal;
+    const disponivel = total >= cupom.minimo;
+    const falta      = arred(cupom.minimo - total);
 
     card.classList.toggle('cupom-indisponivel', !disponivel);
     btn.disabled = !disponivel;
 
     if (!disponivel) {
-      if (faltaEl) faltaEl.textContent = `Faltam ${formatarPreco(falta)} para usar`;
+      if (faltaEl) faltaEl.textContent = `Faltam ${formatarPreco(falta)}`;
       if (badge)   badge.setAttribute('title', `Mínimo ${formatarPreco(cupom.minimo)}`);
     } else {
       if (faltaEl) faltaEl.textContent = '';
@@ -218,18 +221,21 @@ function tentarCupom() {
   if (!inp || !msg) return;
 
   const cod      = inp.value.trim().toUpperCase();
-  const subtotal = obterCarrinho().reduce((s, i) => s + i.preco * i.qtd, 0);
+  const cart     = obterCarrinho();
+  const subtotal = arred(cart.reduce((s, i) => s + i.preco * i.qtd, 0));
+  const frete    = cart.length === 0 || subtotal >= 199 ? 0 : 19.90;
+  const total    = arred(subtotal + frete);
 
   // Envia ao servidor para validação segura
   fetch(prefixo() + 'php/cupom.php', {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ codigo: cod, subtotal })
+    body:    JSON.stringify({ codigo: cod, subtotal: total })
   })
   .then(r => r.json())
   .then(res => {
     msg.textContent = res.mensagem;
-    msg.style.color = res.valido ? '#27ae60' : (subtotal > 0 ? '#e67e22' : '#e74c3c');
+    msg.style.color = res.valido ? '#27ae60' : (total > 0 ? '#e67e22' : '#e74c3c');
     if (res.valido) {
       if (btn) btn.style.display = 'inline';
       aplicarDesconto(res.desconto);
@@ -239,12 +245,12 @@ function tentarCupom() {
   })
   .catch(() => {
     // Sem servidor PHP: validação client-side como fallback
-    _validarCupomLocal(cod, subtotal, msg, btn);
+    _validarCupomLocal(cod, total, msg, btn);
   });
 }
 
 // Fallback client-side (sem servidor PHP ativo)
-function _validarCupomLocal(cod, subtotal, msg, btn) {
+function _validarCupomLocal(cod, total, msg, btn) {
   if (!CUPONS[cod]) {
     msg.textContent = 'Cupom inválido ou expirado.';
     msg.style.color = '#e74c3c';
@@ -252,9 +258,9 @@ function _validarCupomLocal(cod, subtotal, msg, btn) {
     return;
   }
   const { desconto, minimo } = CUPONS[cod];
-  if (subtotal < minimo) {
-    const falta = minimo - subtotal;
-    msg.textContent = `Compra mínima de ${formatarPreco(minimo)} para este cupom. Faltam ${formatarPreco(falta)}.`;
+  if (total < minimo) {
+    const falta = arred(minimo - total);
+    msg.textContent = `Total mínimo de ${formatarPreco(minimo)} para este cupom. Faltam ${formatarPreco(falta)}.`;
     msg.style.color = '#e67e22';
     if (btn) btn.style.display = 'none';
     return;
@@ -273,15 +279,17 @@ function revalidarCupom(cart) {
   const cod = inp.value.trim().toUpperCase();
   if (!cod || !CUPONS[cod]) return;
 
-  const subtotal = cart.reduce((s, i) => s + i.preco * i.qtd, 0);
+  const subtotal = arred(cart.reduce((s, i) => s + i.preco * i.qtd, 0));
+  const frete    = cart.length === 0 || subtotal >= 199 ? 0 : 19.90;
+  const total    = arred(subtotal + frete);
   const { minimo } = CUPONS[cod];
 
-  if (subtotal < minimo) {
+  if (total < minimo) {
     percentualDesconto = 0;
     const msg = document.getElementById('cupom-msg');
     const btn = document.getElementById('btn-remover-cupom');
     if (msg) {
-      msg.textContent = `Cupom removido: subtotal ficou abaixo do mínimo de ${formatarPreco(minimo)}.`;
+      msg.textContent = `Cupom removido: total ficou abaixo do mínimo de ${formatarPreco(minimo)}.`;
       msg.style.color = '#e74c3c';
     }
     if (btn) btn.style.display = 'none';

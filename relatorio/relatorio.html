@@ -371,7 +371,7 @@
     <li>Navbar com indicador da página ativa</li>
     <li>Cards de produto com <code>display: flex; flex-direction: column</code> — todos os cards de uma linha ficam com a mesma altura e os botões de ação sempre alinhados na base</li>
     <li>Cards de vantagens e de valores também utilizam layout flex-column para altura uniforme na grade</li>
-    <li>Cupons indisponíveis no modal exibem estilo específico (acinzentado, botão bloqueado e mensagem de quanto falta)</li>
+    <li>Modal de cupons redesenhado com visual de vale-desconto: cada card possui seção colorida de altura total à esquerda (com percentual e texto "OFF"), borda tracejada ao redor do card, divisória tracejada interna e botão arredondado; cupons indisponíveis ficam em cinza com mensagem indicando quanto falta para o valor mínimo</li>
     <li>Regras CSS organizadas sem duplicatas — seletores combinados (<code>.badge-carrinho, .badge-favoritos</code>) evitam redundância e mantêm o código enxuto</li>
     <li>Seção de newsletter com layout centralizado, ícone em círculo, título em destaque, input e botão unidos em pílula única com sombra, e círculos decorativos via <code>::before</code>/<code>::after</code></li>
   </ul>
@@ -383,7 +383,7 @@
     <li>Filtros de produtos por categoria, tamanho, preço e ordenação; campo de busca com botão e suporte à tecla Enter</li>
     <li>Busca global persistida via sessionStorage entre páginas</li>
     <li>Galeria lightbox com navegação por teclado (setas e ESC)</li>
-    <li>Sistema de cupons de desconto com validação de compra mínima: PATTAYA 5% (mín. R$ 50), BANGKOK 10% (mín. R$ 100), CHIANGMAI 15% (mín. R$ 150) e PHUKET 20% (mín. R$ 200); cupons indisponíveis são bloqueados no modal com mensagem indicando quanto falta; o cupom é removido automaticamente ao apagar o código do campo ou se o subtotal cair abaixo do mínimo após remover itens</li>
+    <li>Sistema de cupons de desconto com validação de compra mínima: PATTAYA 5% (mín. R$ 50), BANGKOK 10% (mín. R$ 100), CHIANGMAI 15% (mín. R$ 150) e PHUKET 20% (mín. R$ 200); a disponibilidade de cada cupom é verificada com base no total com frete (subtotal + frete), exibindo quanto falta para atingir o mínimo; o desconto é aplicado sobre o subtotal dos produtos; o cupom é removido automaticamente ao apagar o código do campo ou se o total cair abaixo do mínimo após remover itens</li>
     <li>Métodos de pagamento: PIX (5% de desconto com QR Code gerado automaticamente via API externa), Cartão de Crédito (até 12x com juros calculados pela fórmula de amortização Price), Débito e Boleto</li>
     <li>Calculadora financeira do carrinho com precisão centesimal: subtotal, frete grátis acima de R$ 199,00, desconto empilhável (cupom + PIX), todos os valores arredondados para 2 casas decimais garantindo que a soma das linhas exibidas seja exata; valor das parcelas atualizado automaticamente ao aplicar ou remover cupom</li>
     <li>Contador dinâmico do carrinho e favoritos no header — badges se ocultam automaticamente quando o contador é zero</li>
@@ -492,6 +492,7 @@
     <p>✔ Favoritos com salvamento e restauração de tamanho e cor selecionados</p>
     <p>✔ Geração de QR Code PIX automático ao finalizar pedido via API externa</p>
     <p>✔ Validação de cupons em duas camadas: server-side via <code>cupom.php</code> (principal) e client-side como fallback</p>
+    <p>✔ Modal de cupons com visual de vale-desconto: cards com seção colorida, borda tracejada, texto de desconto e botão "Usar" — disponibilidade verificada pelo total com frete</p>
     <p>✔ Seção de newsletter nas páginas principal e de contato — e-mail validado (apenas @gmail.com), salvo no servidor via <code>newsletter.php</code> com verificação de duplicatas; mensagem de retorno desaparece automaticamente após 4 segundos</p>
     <p>✔ Catálogo de produtos servido via API PHP (<code>produtos.php</code>) — JavaScript carrega o JSON do servidor e usa array local como fallback</p>
     <p>✔ Layout uniforme dos cards — mesma altura na grade com botões sempre alinhados na base</p>

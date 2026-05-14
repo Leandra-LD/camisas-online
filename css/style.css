@@ -790,36 +790,54 @@ button          { cursor: pointer; border: none; background: none; }
   margin-top: 0;
 }
 .modal-caixa .modal-fechar:hover { color: var(--vermelho); background: none; }
-.lista-cupons { display: flex; flex-direction: column; gap: 10px; }
+.lista-cupons { display: flex; flex-direction: column; gap: 12px; }
 .cupom-card {
-  display: flex; align-items: center; gap: 14px;
-  border: 1.5px solid var(--cinza-borda); border-radius: 10px;
-  padding: 12px 14px; transition: border-color var(--trans);
+  display: flex; align-items: stretch;
+  border: 2px dashed var(--cinza-borda); border-radius: 12px;
+  overflow: hidden; min-height: 82px;
+  transition: border-color var(--trans), box-shadow var(--trans);
 }
-.cupom-card:hover:not(.cupom-indisponivel) { border-color: var(--azul); }
+.cupom-card:hover:not(.cupom-indisponivel) {
+  border-color: var(--azul);
+  box-shadow: 0 4px 14px rgba(27,63,110,.10);
+}
 .cupom-badge {
-  min-width: 52px; height: 52px; background: var(--azul); color: #fff;
-  border-radius: 10px; display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; font-weight: 800; flex-shrink: 0;
+  width: 72px; min-width: 72px; background: var(--azul); color: #fff;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 2px;
+  font-size: 1.25rem; font-weight: 800; flex-shrink: 0;
+  border-right: 2px dashed rgba(255,255,255,.45);
   transition: background var(--trans);
+  letter-spacing: -.5px;
 }
-.cupom-info { flex: 1; }
-.cupom-info strong { display: block; font-size: .92rem; color: var(--azul); letter-spacing: .5px; }
-.cupom-info span { font-size: .78rem; color: var(--texto-muted); }
+.cupom-badge small {
+  font-size: .6rem; font-weight: 700; letter-spacing: 1px;
+  opacity: .85; text-transform: uppercase;
+}
+.cupom-info {
+  flex: 1; text-align: left;
+  padding: 13px 12px 13px 16px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.cupom-info strong { display: block; font-size: .93rem; color: var(--azul); letter-spacing: .5px; margin-bottom: 3px; }
+.cupom-desc { display: block; font-size: .77rem; color: var(--texto-muted); }
+.cupom-minimo { display: block; font-size: .77rem; color: var(--texto-muted); }
 .cupom-falta {
-  display: block; font-size: .73rem; color: var(--laranja);
-  font-weight: 700; margin-top: 3px;
+  display: block; font-size: .72rem; color: var(--laranja);
+  font-weight: 700; margin-top: 4px; min-height: 1.05em;
 }
 .btn-usar-cupom {
-  padding: 7px 14px; background: var(--azul); color: #fff;
-  border-radius: 8px; font-size: .82rem; font-weight: 700;
-  cursor: pointer; white-space: nowrap; transition: background var(--trans);
+  align-self: center; margin: 0 14px 0 0;
+  padding: 8px 16px; background: var(--azul); color: #fff;
+  border-radius: 20px; font-size: .82rem; font-weight: 700;
+  cursor: pointer; white-space: nowrap; transition: background var(--trans), transform var(--trans);
+  flex-shrink: 0;
 }
-.btn-usar-cupom:hover { background: var(--azul-esc); }
+.btn-usar-cupom:hover { background: var(--azul-esc); transform: scale(1.04); }
 
 /* Cupom indisponível */
 .cupom-indisponivel {
-  opacity: .55;
+  opacity: .5;
   border-color: var(--cinza-borda) !important;
 }
 .cupom-indisponivel .cupom-badge { background: var(--texto-muted); }
@@ -828,6 +846,7 @@ button          { cursor: pointer; border: none; background: none; }
   background: var(--cinza-borda);
   color: var(--texto-muted);
   cursor: not-allowed;
+  transform: none;
 }
 
 /* ── MÉTODOS DE PAGAMENTO ────────────────────────────────── */
@@ -910,7 +929,7 @@ button          { cursor: pointer; border: none; background: none; }
 .campo-form select:focus,
 .campo-form textarea:focus { border-color: var(--azul); }
 .campo-form textarea { resize: vertical; }
-.msg-erro { font-size: .76rem; color: #e74c3c; margin-top: 4px; display: block; }
+.msg-erro { font-size: .88rem; color: #e74c3c; margin-top: 4px; display: block; }
 .btn-enviar {
   width: 100%; background: var(--vermelho); color: var(--branco);
   padding: 13px; border-radius: 9px; font-size: 1rem; font-weight: 800;
