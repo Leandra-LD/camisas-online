@@ -407,15 +407,6 @@ function aplicarFiltros() {
   renderizarTodos();
 }
 
-function selecionarTamanho(btn, tam) {
-  btn.classList.toggle('sel');
-  if (btn.classList.contains('sel')) {
-    filtroAtivo.tams.push(tam);
-  } else {
-    filtroAtivo.tams = filtroAtivo.tams.filter(t => t !== tam);
-  }
-  renderizarTodos();
-}
 
 function atualizarPreco(val) {
   filtroAtivo.maxPreco = parseFloat(val) || 9999;
@@ -427,7 +418,6 @@ function atualizarPreco(val) {
 function limparFiltros() {
   filtroAtivo = { cats: [], tams: [], maxPreco: 9999, busca: '', ordem: 'padrao' };
   document.querySelectorAll('.grupo-filtro input[type="checkbox"]').forEach(c => c.checked = false);
-  document.querySelectorAll('.btn-tamanho').forEach(b => b.classList.remove('sel'));
   const rp = document.getElementById('range-preco');
   if (rp) { rp.value = rp.max; const sp = document.getElementById('preco-display'); if (sp) sp.textContent = formatarPreco(parseFloat(rp.max)); }
   const so = document.getElementById('select-ordem');

@@ -383,9 +383,9 @@
     <li>Filtros de produtos por categoria, tamanho, preço e ordenação; campo de busca com botão e suporte à tecla Enter</li>
     <li>Busca global persistida via sessionStorage entre páginas</li>
     <li>Galeria lightbox com navegação por teclado (setas e ESC)</li>
-    <li>Sistema de cupons de desconto com validação de compra mínima: PATTAYA 5% (mín. R$ 50), BANGKOK 10% (mín. R$ 100), CHIANGMAI 15% (mín. R$ 150) e PHUKET 20% (mín. R$ 200); a disponibilidade de cada cupom é verificada com base no total com frete (subtotal + frete), exibindo quanto falta para atingir o mínimo; o desconto é aplicado sobre o subtotal dos produtos; o cupom é removido automaticamente ao apagar o código do campo ou se o total cair abaixo do mínimo após remover itens</li>
+    <li>Sistema de cupons de desconto com validação de compra mínima: PATTAYA 5% (mín. R$ 50), BANGKOK 10% (mín. R$ 100), CHIANGMAI 15% (mín. R$ 150) e PHUKET 20% (mín. R$ 200); tanto a verificação de disponibilidade quanto o cálculo do desconto são feitos sobre o total com frete (subtotal + frete), garantindo que o percentual exibido corresponda exatamente ao valor descontado; o cupom é removido automaticamente ao apagar o código do campo ou se o total cair abaixo do mínimo após remover itens</li>
     <li>Métodos de pagamento: PIX (5% de desconto com QR Code gerado automaticamente via API externa), Cartão de Crédito (até 12x com juros calculados pela fórmula de amortização Price), Débito e Boleto</li>
-    <li>Calculadora financeira do carrinho com precisão centesimal: subtotal, frete grátis acima de R$ 199,00, desconto empilhável (cupom + PIX), todos os valores arredondados para 2 casas decimais garantindo que a soma das linhas exibidas seja exata; valor das parcelas atualizado automaticamente ao aplicar ou remover cupom</li>
+    <li>Calculadora financeira do carrinho com precisão centesimal: subtotal, frete grátis acima de R$ 199,00, desconto empilhável (cupom + PIX) calculado sobre o total com frete, todos os valores arredondados para 2 casas decimais garantindo que a soma das linhas exibidas seja exata; valor das parcelas atualizado automaticamente ao aplicar ou remover cupom</li>
     <li>Contador dinâmico do carrinho e favoritos no header — badges se ocultam automaticamente quando o contador é zero</li>
     <li>Salvamento de tamanho e cor selecionados ao favoritar produto — restaurados ao abrir a página de favoritos</li>
     <li>Validação de formulário no client-side com mensagens de erro individuais por campo</li>
@@ -492,7 +492,7 @@
     <p>✔ Favoritos com salvamento e restauração de tamanho e cor selecionados</p>
     <p>✔ Geração de QR Code PIX automático ao finalizar pedido via API externa</p>
     <p>✔ Validação de cupons em duas camadas: server-side via <code>cupom.php</code> (principal) e client-side como fallback</p>
-    <p>✔ Modal de cupons com visual de vale-desconto: cards com seção colorida, borda tracejada, texto de desconto e botão "Usar" — disponibilidade verificada pelo total com frete</p>
+    <p>✔ Modal de cupons com visual de vale-desconto: cards com seção colorida, borda tracejada, texto de desconto e botão "Usar" — disponibilidade e cálculo do desconto baseados no total com frete</p>
     <p>✔ Seção de newsletter nas páginas principal e de contato — e-mail validado (apenas @gmail.com), salvo no servidor via <code>newsletter.php</code> com verificação de duplicatas; mensagem de retorno desaparece automaticamente após 4 segundos</p>
     <p>✔ Catálogo de produtos servido via API PHP (<code>produtos.php</code>) — JavaScript carrega o JSON do servidor e usa array local como fallback</p>
     <p>✔ Layout uniforme dos cards — mesma altura na grade com botões sempre alinhados na base</p>
