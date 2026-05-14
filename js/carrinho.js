@@ -79,9 +79,10 @@ const arred = v => Math.round(v * 100) / 100;   // arredonda para 2 casas decima
 function calcularTotais(cart) {
   const subtotal  = arred(cart.reduce((s, i) => s + i.preco * i.qtd, 0));
   const frete     = cart.length === 0 || subtotal >= 199 ? 0 : 19.90;
+  const bruto     = arred(subtotal + frete);
   const pctTotal  = Math.min((percentualDesconto || 0) + (descontoPix || 0), 100);
-  const desconto  = arred(subtotal * (pctTotal / 100));
-  const total     = arred(subtotal + frete - desconto);
+  const desconto  = arred(bruto * (pctTotal / 100));
+  const total     = arred(bruto - desconto);
   return { subtotal, frete, desconto, total };
 }
 
